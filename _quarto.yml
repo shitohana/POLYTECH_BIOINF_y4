@@ -1,0 +1,22 @@
+project:
+  type: website
+  render: 
+    - index.qmd
+    - practices/
+  output-dir: docs
+    
+website:
+  title: "POLYTECH_BIOINF_y4"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+

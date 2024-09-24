@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Константин Юдыцкий">
+<meta name="dcterms.date" content="2024-01-01">
+
+<title>Биологические базы данных – POLYTECH_BIOINF_y4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">POLYTECH_BIOINF_y4</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#источники-биологических-данных" id="toc-источники-биологических-данных" class="nav-link active" data-scroll-target="#источники-биологических-данных">Источники биологических данных</a></li>
+  <li><a href="#статьи" id="toc-статьи" class="nav-link" data-scroll-target="#статьи">Статьи</a>
+  <ul class="collapse">
+  <li><a href="#базы-данных" id="toc-базы-данных" class="nav-link" data-scroll-target="#базы-данных">Базы данных</a></li>
+  <li><a href="#структура-статьи" id="toc-структура-статьи" class="nav-link" data-scroll-target="#структура-статьи">Структура статьи</a></li>
+  <li><a href="#как-читать-статьи" id="toc-как-читать-статьи" class="nav-link" data-scroll-target="#как-читать-статьи">Как читать статьи</a></li>
+  </ul></li>
+  <li><a href="#omics-data" id="toc-omics-data" class="nav-link" data-scroll-target="#omics-data">Omics data</a>
+  <ul class="collapse">
+  <li><a href="#типы-данных" id="toc-типы-данных" class="nav-link" data-scroll-target="#типы-данных">Типы данных</a>
+  <ul class="collapse">
+  <li><a href="#fasta" id="toc-fasta" class="nav-link" data-scroll-target="#fasta">FASTA</a></li>
+  <li><a href="#fastq" id="toc-fastq" class="nav-link" data-scroll-target="#fastq">FASTQ</a></li>
+  <li><a href="#gffgtfbed" id="toc-gffgtfbed" class="nav-link" data-scroll-target="#gffgtfbed">GFF/GTF/BED</a></li>
+  <li><a href="#sambam" id="toc-sambam" class="nav-link" data-scroll-target="#sambam">SAM/BAM</a></li>
+  <li><a href="#vcf" id="toc-vcf" class="nav-link" data-scroll-target="#vcf">VCF</a></li>
+  </ul></li>
+  <li><a href="#базы-данных-1" id="toc-базы-данных-1" class="nav-link" data-scroll-target="#базы-данных-1">Базы данных</a>
+  <ul class="collapse">
+  <li><a href="#genbank" id="toc-genbank" class="nav-link" data-scroll-target="#genbank">GenBank</a></li>
+  <li><a href="#sra" id="toc-sra" class="nav-link" data-scroll-target="#sra">SRA</a></li>
+  <li><a href="#uniprot" id="toc-uniprot" class="nav-link" data-scroll-target="#uniprot">UniProt</a></li>
+  <li><a href="#pdb" id="toc-pdb" class="nav-link" data-scroll-target="#pdb">PDB</a></li>
+  <li><a href="#notable-mentions" id="toc-notable-mentions" class="nav-link" data-scroll-target="#notable-mentions">Notable mentions</a></li>
+  </ul></li>
+  <li><a href="#сборки-геномов" id="toc-сборки-геномов" class="nav-link" data-scroll-target="#сборки-геномов">Сборки геномов</a></li>
+  <li><a href="#genome-browsers" id="toc-genome-browsers" class="nav-link" data-scroll-target="#genome-browsers">Genome browsers</a>
+  <ul class="collapse">
+  <li><a href="#интерпретация-глифов" id="toc-интерпретация-глифов" class="nav-link" data-scroll-target="#интерпретация-глифов">Интерпретация глифов</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#задание" id="toc-задание" class="nav-link" data-scroll-target="#задание">Задание</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Биологические базы данных</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Константин Юдыцкий </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 1, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="источники-биологических-данных" class="level1">
+<h1>Источники биологических данных</h1>
+<p>Корректный выбор данных является неотъемлемой и зачастую важнейшей частью современных биологических исследований. За последние полвека биология как наука, и методы ее изучения кардинально изменились. Уже в 1982 году была создана первая крупномасштабная база биомедицинских данных GenBank. В 2000 году был закончен “Human Genome Project” – проект по составлению полной последовательности человеческого генома. Над ним несколько лет трудились десятки лабораторий по всему миру. Сейчас же на одном лишь ПК, можно проектировать новые медикаменты, создавать улучшенные сорта растений, выявлять врожденные геномные мутации, проводить эволюционные исследования, моделировать виртуальные биологические системы и многое другое. Все это стало возможно благодаря все растущим биологическим базам данных.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/db_tree.png" class="img-fluid figure-img" width="447"></p>
+<figcaption>Increasing tree of biological databases<span class="citation" data-cites="thalor:2019">[@thalor:2019]</span></figcaption>
+</figure>
+</div>
+<p>Биологические данные, собранные человечеством, распределены в десятки (если не сотни) различных баз данных, самой крупной из которых является сервис NCBI - <em>National Center for Biotechnology Information</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Для изучения и знакомства со всеми биологическими базами данных вряд ли хватит целой книги, поэтому здесь мы рассмотрим главные из них.</p>
+</section>
+<section id="статьи" class="level1">
+<h1>Статьи</h1>
+<section id="базы-данных" class="level2">
+<h2 class="anchored" data-anchor-id="базы-данных">Базы данных</h2>
+<p><strong>Google Scholar</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> – бесплатная поисковая система по научным публикациям, запущенная в ноябре 2004 года. С помощью поисковых роботов портал индексирует метаданные и осуществляет полнотекстовый поиск по научной литературе, включая журнальные статьи, препринты, диссертации, книги и технические отчёты. Пользователи могут искать нужные работы по авторам, ключевым словам, названию журнала. Углублённый поиск позволяет ранжировать материалы по публикации, дате и предметной области.</p>
+<p>Академия Google не предоставляет данные о точном количестве проиндексированных работ, однако, по предварительным подсчётам, на 2019 год их было не менее 390 млн. Несмотря на отсутствие достоверных данных о размере базы, портал считается крупнейшей в мире академической поисковой системой, со степенью охвата до 90</p>
+<div class="tcolorbox">
+<p>Google Scholar хотя и является крупнейшей базой данных научных работ, далеко не всегда позволяет найти качественные статьи, поскольку туда попадают любые индексируемые работы, не всегда подвергнутые тщательному ревьюированию.</p>
+</div>
+<p><strong>PubMed</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> – бесплатная поисковая система по биомедицинским исследованиям, созданная NCBI в 1997 году. Ежедневно портал посещают около 2,5 млн пользователей.</p>
+<p>PubMed – предоставляет доступ сразу к нескольким базам данных, однако ключевой считается коллекция MEDLINE, содержащая более 30 млн цитирований по естественным, химическим, поведенческим наукам, в том числе по биоинженерии и биофизике. Со временем в PubMed были интегрированы базы данных PreMEDLINE, OLDMEDLINE и книжная коллекция NCBI. PubMed также предоставляет доступ к онлайн-репозиторию PubMed Central.</p>
+<p>Домашняя страница PubMed содержит простое окно поиска и гиперссылки на руководства, инструменты и другие ресурсы. После того как пользователь вводит вопрос, PubMed автоматически уточняет его через систему идентификации MeSH (Medical Subject Headings). Это позволяет проводить наиболее тщательный поиск по всем материалам в связанных базах данных.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/pubmed_search.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Результат поискового запроса в PubMed</figcaption>
+</figure>
+</div>
+<p>PubMed не хранит полные версии самих статей. Однако если полная версия работы доступна на сайте издательства, то система автоматически генерирует на неё ссылку, даже если статья скрыта за пейволлом. Если полнотекстовая версия размещена в репозитории PubMed Central, ссылка на полный текст появится при отображении её аннотации в PubMed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/pubmed_article.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Страница статьи в PubMed</figcaption>
+</figure>
+</div>
+<div class="tcolorbox">
+<p>В PubMed индексируются не все существующие биологические журналы. Если поиск не дает результатов, попробуйте Google Scholar, или даже просто Google поиск. Однако начинать все же лучше с PubMed.</p>
+</div>
+<p><strong>bioRxiv</strong> (произносится как «биоархив») — бесплатный электронный архив научных статей и препринтов по биологии. Авторы публикуют на bioRxiv ранее не рецензированные работы, чтобы получить фидбэк от других участников портала или утвердить первенство открытия. Перед публикацией рукописи не рецензируются, однако проходят первичную проверку модераторов на плагиат. Около 30 % авторов впоследствии размещают на портале отредактированные с учётом полученных комментариев версии. Большинство представленных на bioRxiv рукописей в результате публикуются в рецензируемых журналах.</p>
+<p>У любой научной публикации существует DOI (digital object identifier) – цифровой идентификатор объекта, а не идентификатор цифрового объекта. DOI начали использовать с 2000 года, в настоящее время их присваивают более 5000 органов (издательства, центры научных данных, киностудии и другие). Имеется более 100 миллионов имен DOI и более 1,5 миллиарда публикаций DOI в год. DOI порой присваивают и публикациям, созданным задолго до начала его использования.</p>
+</section>
+<section id="структура-статьи" class="level2">
+<h2 class="anchored" data-anchor-id="структура-статьи">Структура статьи</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/Typical-Research-Article-Structure.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Стандартная структура статей<span class="citation" data-cites="article-struct">[@article-struct]</span></figcaption>
+</figure>
+</div>
+<p>Почти все статьи структурированы похоже:</p>
+<ol type="1">
+<li><p>Title - Что исследовали + что получили очень кратко.</p></li>
+<li><p>Authors</p></li>
+<li><p>Keywords</p></li>
+<li><p>Abstract - Что исследовали + что получили развернуто.</p></li>
+<li><p>Introduction - Введение в проблему и постановка задачи</p></li>
+<li><p>Method - Как исследовали?</p></li>
+<li><p>Results - Что получили?</p></li>
+<li><p>Discussion - Какие выводы можно сделать из проведенного исследования?</p></li>
+<li><p>Conclusion - Итог.</p></li>
+<li><p>Acknowledgements</p></li>
+<li><p>References</p></li>
+</ol>
+</section>
+<section id="как-читать-статьи" class="level2">
+<h2 class="anchored" data-anchor-id="как-читать-статьи">Как читать статьи</h2>
+<p>Если пытаться читать статьи последовательно, как книгу, то данное занятие скорее всего окажется очень утомительным и не слишком продуктивным. Конечно, навык в чтении и понимании статей набирается с опытом, и вырабатываемый метод индивидуален, однако существует несколько основных общих принципов:</p>
+<ol type="1">
+<li><p>В первую очередь, нужно хорошо сформулировать вопрос, на который вы хотите найти ответ в статьях. Когда он будет готов, можно проводить поиск по ключевым словам, которые его описывают.</p></li>
+<li><p>Порядок чтения статьи:</p>
+<ol type="1">
+<li><p>Abstract – подходит ли мне эта статья по содержанию?</p></li>
+<li><p>Conclusions - являются ли результаты этой статьи существенными в моем вопросе?</p></li>
+<li><p>Results - какие именно результаты получили исследователи?</p></li>
+<li><p>Materials and methods – как эти результаты были получены?</p></li>
+</ol></li>
+</ol>
+<p>Если на каждом этапе ответ на поставленный вопрос оказывается неудовлетворительным, то скорее всего следует продолжить поиск подходящей литературы.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/article.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="omics-data" class="level1">
+<h1>Omics data</h1>
+<p>Отрасль науки, неофициально известная как омика, представляет собой различные дисциплины в биологии, названия которых оканчиваются на суффикс -омика, такие как геномика (ДНК), протеомика (белки), метаболомика (биохимические взаимодействия), метагеномика и транскриптомика (РНК). Омика направлена на коллективную характеристику и количественную оценку наборов биологических молекул, которые отражают структуру, функцию и динамику организма или организмов.</p>
+<section id="типы-данных" class="level2">
+<h2 class="anchored" data-anchor-id="типы-данных">Типы данных</h2>
+<ol type="1">
+<li><p>Данные, отражающие фундаментальные знания (aka reference – FASTA, GFF, BED)</p></li>
+<li><p>Экспериментально полученные данные (aka sequencing reads: FASTQ)</p></li>
+<li><p>Данные, сгенерированные анализом (aka results: BAM, VCF, other.)<span class="citation" data-cites="biostar">[@biostar]</span></p></li>
+</ol>
+<section id="fasta" class="level3">
+<h3 class="anchored" data-anchor-id="fasta">FASTA</h3>
+<p><strong>FASTA</strong> — текстовый формат для нуклеотидных или полипептидных последовательностей, в котором нуклеотиды или аминокислоты обозначаются при помощи однобуквенных кодов. Из-за своей простоты и практичности в настоящее время используется большинством программ работы с биологическими последовательностями. Файлы данного формата могут содержать названия последовательностей, их идентификаторы в базах данных и комментарии. В зависимости от природы содержащихся в нем биологических последовательностей файл формата FASTA может иметь различные расширения.</p>
+<p>Расширения – .fa, .fasta, .fna.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/FASTA.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</section>
+<section id="fastq" class="level3">
+<h3 class="anchored" data-anchor-id="fastq">FASTQ</h3>
+<p>Формат <strong>FASTQ</strong> — текстовый формат данных, используемый для представления биологической последовательности (обычно нуклеотидной последовательности) и показателей качества каждого элемента последовательности. Элементы последовательности и их показатели качества кодируются для краткости одиночными символами ASCII.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/fastq.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</section>
+<section id="gffgtfbed" class="level3">
+<h3 class="anchored" data-anchor-id="gffgtfbed">GFF/GTF/BED</h3>
+<p>Форматы GFF/GTF/BED - это так называемые «интервальные» форматы, в которых сохраняются только координаты региона в геноме. Каждый из них разграничен табуляцией и содержит информацию о хромосомной координате, начале, конце, нить, значении и других атрибутах, хотя порядок столбцов зависит от формата.</p>
+<p>Трехстолбцовый BED содержит информацию о хромосоме, начале и конце региона.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/bed4.png" class="img-fluid figure-img"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+<p>Шестистолбцовый BED также содержит название региона, значение какой-либо характеристики (depends…) и нить ДНК.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/bed6.png" class="img-fluid figure-img"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+<p>GFF/GTF форматы имеют 9 столбцов, их спецификацию можно найти на сайте UCSC<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/gff.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</section>
+<section id="sambam" class="level3">
+<h3 class="anchored" data-anchor-id="sambam">SAM/BAM</h3>
+<p><strong>Sequence Alignment Map</strong><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> (SAM) - текстовый формат для хранения биологических последовательностей, выровненных относительно референсной последовательности. Он широко используется для хранения данных, таких как нуклеотидные последовательности, генерируемые технологиями NGS.</p>
+<p>Binary Alignment Map (BAM) - бинарная версия SAM.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/sam.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</section>
+<section id="vcf" class="level3">
+<h3 class="anchored" data-anchor-id="vcf">VCF</h3>
+<p><strong>Variant Call Format</strong><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> (VCF) - это стандартный формат текстовых файлов, используемый в биоинформатике для хранения вариаций генных последовательностей.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/vcf.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="базы-данных-1" class="level2">
+<h2 class="anchored" data-anchor-id="базы-данных-1">Базы данных</h2>
+<p>INSDC<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> (<em>International Nucleotide Sequence Database Collaboration</em>) – коллаборация организаций осуществляющая хранение “основных” геномных данных. Участниками организации являются:</p>
+<ol type="1">
+<li><p>NCBI<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>: National Center for Biotechnology Information</p></li>
+<li><p>EMBL<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>: European Molecular Biology Laboratory</p></li>
+<li><p>DDBJ<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>: DNA Data Bank of Japan</p></li>
+</ol>
+<p>INSDC установил правила в отношении типов данных, которые будут копироваться. Наиболее важными из них с точки зрения биоинформатика являются:</p>
+<section id="genbank" class="level3">
+<h3 class="anchored" data-anchor-id="genbank">GenBank</h3>
+<p><strong>GenBank</strong><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> содержит всю аннотированную и идентифицированную информацию о последовательности ДНК.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/genbank.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</section>
+<section id="sra" class="level3">
+<h3 class="anchored" data-anchor-id="sra">SRA</h3>
+<p><strong>SRA</strong><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>: Short Read Archive содержит данные, полученные в ходе высокопроизводительного секвенирования.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/sra.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</section>
+<section id="uniprot" class="level3">
+<h3 class="anchored" data-anchor-id="uniprot">UniProt</h3>
+<p><strong>UniProt</strong><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>: Universal Protein Resource хранилище данных о последовательности и характеристиках белков.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/uniprot.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</section>
+<section id="pdb" class="level3">
+<h3 class="anchored" data-anchor-id="pdb">PDB</h3>
+<p><strong>Protein Data Bank</strong><a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> (PDB) является основным хранилищем структурной информации о биологических макромолекулах (белках и нуклеиновых кислотах). PDB содержит структуры для целого спектра биомолекул - от небольших кусочков белков/нуклеиновых кислот до сложных молекулярных структур, таких как рибосомы.</p>
+<figure class="figure">
+<figure class="figure">
+<p><img src="_files/db/images/prot1.png" style="width:45.0%" class="figure-img"></p>
+<figcaption>
+Three-dimensional structure of BOMBYXIN-II
+</figcaption>
+</figure>
+<figure class="figure">
+<p><img src="_files/db/images/prot2.png" style="width:45.0%" class="figure-img"></p>
+<figcaption>
+Cryo-EM structure of a yeast pre-40S ribosomal subunit
+</figcaption>
+</figure>
+<figcaption>
+3D-структуры белков из PDB
+</figcaption>
+</figure>
+</section>
+<section id="notable-mentions" class="level3">
+<h3 class="anchored" data-anchor-id="notable-mentions">Notable mentions</h3>
+<ul>
+<li><p><strong>UCSC Genome Browser</strong><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> - предлагает подробные данные о геномах млекопитающих, а также утилиту для их просмотра.</p></li>
+<li><p><strong>RNA-Central</strong><a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> – мета-база данных, объединяющая информацию из нескольких других ресурсов.</p></li>
+<li><p><strong>Ensembl</strong><a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> — совместный научный проект Европейского института биоинформатики и Института Сенгера. Основной задачей этого проекта является обеспечение специалистов интегрированным доступом к базам данных, касающихся строения геномов более 50 видов позвоночных, включая человека (<em>Homo sapiens</em>), мышь (<em>Mus musculus</em>), крысу (<em>Rattus norvegicus</em>), рыбку Данио-рерио (<em>Danio rerio</em>) и др. Базы данных Ensembl регулярно обновляются с частотой не менее двух раз в год.</p></li>
+<li><p><strong>FlyBase</strong><a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> - это база данных генов и геномов дрозофилы (плодовой мушки).</p></li>
+<li><p><strong>WormBase</strong><a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> - это основной ресурс по биологии нематод.</p></li>
+<li><p><strong>SGD</strong><a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a>: Saccharomyces Genome Database предоставляет всестороннюю биологическую информацию о дрожжах <em>Saccharomyces cerevisiae</em>, а также инструменты поиска и анализа для изучения этих данных.</p></li>
+<li><p><strong>TAIR</strong><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> The Arabidopsis Information Resource - это основной ресурс генетических и молекулярных данных о модельном растении <em>Arabidopsis thaliana</em>.</p></li>
+<li><p><strong>EcoCyc</strong><a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a> (Encyclopedia of <em>E. coli</em> Genes and Metabolic Pathways) - это научная база данных о бактерии <em>Escherichia coli</em> K-12 MG1655.</p></li>
+<li><p><strong>GeneCards</strong><a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a> - это интегративная база данных с возможностью поиска, которая предоставляет полную и удобную для пользователя информацию обо всех аннотированных и предсказанных генах человека. База данных автоматически объединяет данные из &nbsp;150 веб-источников, включая геномную, транскриптомную, протеомную, генетическую, клиническую и функциональную информацию.</p></li>
+<li><p><strong>MGI</strong><a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>: (Mouse Genome Informatics) собирает и хранит всесторонние фенотипы и функциональные аннотации для генов и аллелей мыши.</p></li>
+</ul>
+</section>
+</section>
+<section id="сборки-геномов" class="level2">
+<h2 class="anchored" data-anchor-id="сборки-геномов">Сборки геномов</h2>
+<p>Референсный геном (референсная сборка) - это цифровая база данных последовательностей нуклеиновых кислот, собранная учеными как репрезентативный пример набора генов в одном идеализированном индивидуальном организме какого-либо вида. Поскольку они собираются на основе секвенирования ДНК нескольких индивидуальных доноров, референсные геномы не могут представлять точный набор генов какого-либо отдельного организма. Вместо этого эталон представляет собой гаплоидную мозаику из различных последовательностей ДНК от каждого донора. Например, один из самых последних референсных геномов человека, сборка GRCh38/hg38, получена из &gt;60 библиотек геномных клонов. Существуют референсные геномы для множества видов вирусов, бактерий, грибов, растений и животных. Референсные геномы обычно используются в качестве основы для выравнивания чтений других геномов, что позволяет собирать их гораздо быстрее и дешевле, чем в рамках первоначального проекта «Геном человека». Доступ к референсным геномам можно получить онлайн в нескольких базах данных, используя специальные браузеры, такие как Ensembl или UCSC Genome Browser.</p>
+<p>Сколько существует сборок человеческого генома? 38 на данный момент. Увы, существуют не только различные геномные сборки, но и различные ресурсы по распространению данных могут расходиться во мнениях относительно того, как маркировать одни и те же данные.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/genes_comparison.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Сравнение геномных аннотаций сделанных GENCODE, Ensemble, RefSeq</figcaption>
+</figure>
+</div>
+<p>Human Gene Nomenclature Committee<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a> (HGNC) является единственной организацией, которая присваивает стандартную номенклатуру генам человека. Названия, присваиваемые HGNC, обычно формируются из так называемого корневого (stem) символа, который используется в качестве основы для серии утвержденных символов, которые определяются как члены функционального или структурного семейства генов. Например, CYP: cytochrome P450; HOX: homeobox; DUSP: dual specificity phosphatase; SCN2A: sodium channel voltage-gated type II alpha 2 polypeptides и т. д.</p>
+</section>
+<section id="genome-browsers" class="level2">
+<h2 class="anchored" data-anchor-id="genome-browsers">Genome browsers</h2>
+<p>Геномный браузер - это графический интерфейс для отображения информации из базы геномных данных. Большинство геномных браузеров рисуют дорожки, представляющие прямую нить генома в направлении от 5’ (слева) к 3’ (справа). Геномные признаки, нарисованные на этой линейной дорожке, называются глифами. Глиф - это пиктограмма, соответствующая определенной геномной характеристике. Универсального стандарта, определяющего все инструменты визуализации, не существует. Интерпретация глифов приходит с опытом и уровнем знакомства с каждым инструментом. Например, здесь представлен снимок экрана по умолчанию геномного браузера UCSC:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/ucsc_screen.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Интерфейс UCSC Genome Browser</figcaption>
+</figure>
+</div>
+<p>В большинстве случаев геномные браузеры работают только с данными в простых форматах: FASTA, BED, GFF, SAM/BAM. Форматы данных, содержащие более сложную информацию, такие как GenBank или EMBL, обычно нуждаются в преобразовании и упрощении в линейно-ориентированный формат, например BED или GFF. Большинство инструментов визуализации поставляются с предварительно загруженными данными, а также с различными геномными сборками для широко используемых организмов: человека, мыши и т. д. Это означает, что данные для многих геномных характеристик, скорее всего, уже имеются. Для других организмов зачастую требуется самостоятельно загружать данные в браузер.</p>
+<div id="tab:my_label">
+<table class="caption-top table">
+<caption>Caption</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Standalone</strong></td>
+<td style="text-align: center;"><strong>Online</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://igv.org">IGV (Integrative Genomic Viewer)</a></td>
+<td style="text-align: center;"><a href="https://genome.ucsc.edu/">UCSC Genome/Table Browser</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://jbrowse.org/jb2/">JBrowse2</a></td>
+<td style="text-align: center;"><a href="http://www.ensembl.org">Ensembl Genome Browse</a>r</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://github.com/DECIPHER-genomics/Genoverse">Genoverse</a></td>
+<td style="text-align: center;"><a href="https://www.ncbi.nlm.nih.gov/gdv/">NCBI Genome Data Viewer</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="интерпретация-глифов" class="level3">
+<h3 class="anchored" data-anchor-id="интерпретация-глифов">Интерпретация глифов</h3>
+<p>Глифы - это визуальное представление некоторых геномных характеристик:</p>
+<ul>
+<li><p>Горизонтальные интервалы: направления, гены, выравнивания</p></li>
+<li><p>Значения через интервалы: покрытия, вероятности</p></li>
+<li><p>Атрибуты в местах расположения: мутации, делеции, и т.д.</p></li>
+</ul>
+<p>На рисунке показан пример такого отображения для геномного браузера NCBI Genome Data Viewer (показан ген HBB бета-цепи гемоглобина человека):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/ncbi_view.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+<p>Транскрипты схематически изображаются в виде соединенных линиями прямоугольников. Прямоугольники соответствуют экзонам гена, а закрашенная (темно-зеленая) область в прямоугольниках соответствует белок-кодирующей последовательности. Линии, соединяющие прямоугольники, соответствуют интронам. Слева от транскриптов указаны их идентификаторы, а справа – идентификаторы соответствующих им белковых продуктов.</p>
+<p>Идентификаторы (Accession number) белок-кодирующих мРНК-транскриптов в базе данных RefSeq начинаются с префикса “NM_”. RefSeq содержит также файлы соответствующих транскриптам белковых продуктов (их последовательность определяется по открытой рамке считывания в транскрипте), они имеют идентификаторы с префиксом “NP_”. Теоретически предсказываемые мРНК-транскрипты (имеющие статус “predicted” или “model”) и соответствующие им белковые продукты имеют идентификаторы с префиксами “XM_” и “XP_” соответственно.</p>
+<p>Для указания хромосомной локализации гена (т.н. хромосомного локуса) используется следующая система обозначения. Локус записывается в виде</p>
+<p><span class="math inline">\(N[p/q]RB.S\)</span></p>
+<p>где N – номер хромосомы, p или q – обозначают короткое или длинное плечо хромосомы (от фр. petit – “малый”, queue – “хвост”), R – номер области (region), B – номер зоны (band), S – номер подзоны (sub-band). Пример локуса для гена альбумина (ALB) – 4q13.3. Зоны в данном случае соответствуют цитогенетическим зонам, получаемым при G-окрашивании хромосом красителем. Такое окрашивание используется для определения кариотипа, поскольку распределение темных (гетерохроматин) и светлых (эухроматин) полос позволяет однозначно идентифицировать хромосомы:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/db/images/karyotype.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Нормальный кариотип человечека.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="задание" class="level1">
+<h1>Задание</h1>
+<ol type="1">
+<li><p>По полученному топику произвести поиск в PubMed и определить, какой ген (вместо gene X) может участововать в данном биологическом процессе.</p></li>
+<li><p>Найти ген в базах данных GenBank, Ensembl. Выписать:</p>
+<ol type="1">
+<li><p>Хромосомный локус гена.</p></li>
+<li><p>Полное название.</p></li>
+<li><p>Альтернативные названия.</p></li>
+<li><p>Идентификаторы NCBI (Entrez ID), Ensembl, HGNC.</p></li>
+<li><p>Краткое описание гена.</p></li>
+</ol></li>
+<li><p>Найти ген в геномных браузерах UCSC, Ensembl и NCBI. Сохранить картинки, генерируемые геномными браузерами, где будет изображен выбранный ген.</p></li>
+<li><p>Картинку гена из NCBI Genome Viewer разметить, показав на ней положение экзонов и 3’/5’-UTR областей.</p></li>
+<li><p>Скачать FASTA последовательность нуклеотидной и аминокислотной последовательностей гена.</p></li>
+<li><p>Найти белковый продукт гена в базе данных UniProt, выписать:</p>
+<ol type="1">
+<li><p>Субклеточную локализацию белка.</p></li>
+<li><p>Идентификаторы белковых изоформ.</p></li>
+</ol></li>
+<li><p>Найти 3D-структуру белкового продукта гена в PDB. Сохранить ее в виде картинки.</p></li>
+</ol>
+<div class="spacing">
+<p>.75</p>
+<ol type="1">
+<li><p>The role of gene X in repair of double-strand breaks during homologous recombination.</p></li>
+<li><p>The role of gene X in the G1/S transition of the cell cycle.</p></li>
+<li><p>The role of gene X in intrinsic apoptotic signaling triggered by mitochondrial stress.</p></li>
+<li><p>The role of gene X in senescence and its connection to tumor suppression.</p></li>
+<li><p>The role of gene X in modulating interferon responses during viral infection.</p></li>
+<li><p>The role of gene X in axon guidance during early neurodevelopment.</p></li>
+<li><p>The role of gene X in insulin resistance in adipocytes under high-fat diet conditions.</p></li>
+<li><p>The role of gene X in epithelial-mesenchymal transition during tissue regeneration.</p></li>
+<li><p>The role of gene X in vascular endothelial cell migration during angiogenesis.</p></li>
+<li><p>The role of gene X in histone modification and chromatin remodeling in epigenetic silencing.</p></li>
+<li><p>The role of gene X in cellular response to reactive oxygen species in mitochondria.</p></li>
+<li><p>The role of gene X in fibroblast activation during wound repair.</p></li>
+<li><p>The role of gene X in autophagosome formation and lysosome fusion.</p></li>
+<li><p>The role of gene X in myoblast fusion during muscle fiber formation.</p></li>
+<li><p>The role of gene X in extravasation of metastatic cancer cells.</p></li>
+<li><p>The role of gene X in cholesterol transport between organelles.</p></li>
+<li><p>The role of gene X in regulating circadian oscillations in peripheral tissues.</p></li>
+<li><p>The role of gene X in mitochondrial dynamics, specifically fission and fusion.</p></li>
+<li><p>The role of gene X in endothelial cell specification during heart development.</p></li>
+<li><p>The role of gene X in modulation of macrophage polarization during inflammation.</p></li>
+</ol>
+</div>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://www.ncbi.nlm.nih.gov" class="uri">https://www.ncbi.nlm.nih.gov</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://scholar.google.com" class="uri">https://scholar.google.com</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://pubmed.ncbi.nlm.nih.gov" class="uri">https://pubmed.ncbi.nlm.nih.gov</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://genome.ucsc.edu/FAQ/FAQformat.html" class="uri">https://genome.ucsc.edu/FAQ/FAQformat.html</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://samtools.github.io/hts-specs/SAMv1.pdf" class="uri">https://samtools.github.io/hts-specs/SAMv1.pdf</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf" class="uri">https://samtools.github.io/hts-specs/VCFv4.2.pdf</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><a href="http://www.insdc.org/" class="uri">http://www.insdc.org/</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><a href="http://www.ncbi.nlm.nih.gov/" class="uri">http://www.ncbi.nlm.nih.gov/</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a href="http://www.embl.org/" class="uri">http://www.embl.org/</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><a href="http://www.ddbj.nig.ac.jp/" class="uri">http://www.ddbj.nig.ac.jp/</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><a href="http://www.ncbi.nlm.nih.gov/genbank/" class="uri">http://www.ncbi.nlm.nih.gov/genbank/</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p><a href="http://www.ncbi.nlm.nih.gov/sra" class="uri">http://www.ncbi.nlm.nih.gov/sra</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p><a href="http://www.uniprot.org/" class="uri">http://www.uniprot.org/</a><a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p><a href="http://www.rcsb.org/pdb/home/home.do" class="uri">http://www.rcsb.org/pdb/home/home.do</a><a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p><a href="https://genome.ucsc.edu" class="uri">https://genome.ucsc.edu</a><a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p><a href="https://rnacentral.org" class="uri">https://rnacentral.org</a><a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p><a href="http://www.ensembl.org" class="uri">http://www.ensembl.org</a><a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p><a href="http://flybase.org/" class="uri">http://flybase.org/</a><a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p><a href="https://www.wormbase.org" class="uri">https://www.wormbase.org</a><a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p><a href="http://www.yeastgenome.org/" class="uri">http://www.yeastgenome.org/</a><a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p><a href="https://www.arabidopsis.org/" class="uri">https://www.arabidopsis.org/</a><a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p><a href="http://ecocyc.org/" class="uri">http://ecocyc.org/</a><a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p><a href="https://www.genecards.org" class="uri">https://www.genecards.org</a><a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p><a href="http://www.informatics.jax.org/" class="uri">http://www.informatics.jax.org/</a><a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p><a href="http://www.genenames.org/" class="uri">http://www.genenames.org/</a><a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
