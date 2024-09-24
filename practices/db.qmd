@@ -299,7 +299,7 @@ Human Gene Nomenclature Committee[^25] (HGNC) является единстве�
 
 ::: {#tab:my_label}
 |                                                             |                                                              |
-|:-----------------------------------------------------------:|:------------------------------------------------------------:|
+|:----------------------------------:|:----------------------------------:|
 |                       **Standalone**                        |                          **Online**                          |
 |     [IGV (Integrative Genomic Viewer)](https://igv.org)     |    [UCSC Genome/Table Browser](https://genome.ucsc.edu/)     |
 |            [JBrowse2](https://jbrowse.org/jb2/)             |       [Ensembl Genome Browse](http://www.ensembl.org)r       |
@@ -364,46 +364,44 @@ $N[p/q]RB.S$
 
 7.  Найти 3D-структуру белкового продукта гена в PDB. Сохранить ее в виде картинки.
 
-::: spacing
-.75
+**Варианты**
 
-1.  The role of gene X in repair of double-strand breaks during homologous recombination.
+1.  *The role of gene X in repair of double-strand breaks during homologous recombination.*
 
-2.  The role of gene X in the G1/S transition of the cell cycle.
+2.  *The role of gene X in the G1/S transition of the cell cycle.*
 
-3.  The role of gene X in intrinsic apoptotic signaling triggered by mitochondrial stress.
+3.  *The role of gene X in intrinsic apoptotic signaling triggered by mitochondrial stress.*
 
-4.  The role of gene X in senescence and its connection to tumor suppression.
+4.  *The role of gene X in senescence and its connection to tumor suppression.*
 
-5.  The role of gene X in modulating interferon responses during viral infection.
+5.  *The role of gene X in modulating interferon responses during viral infection.*
 
-6.  The role of gene X in axon guidance during early neurodevelopment.
+6.  *The role of gene X in axon guidance during early neurodevelopment.*
 
-7.  The role of gene X in insulin resistance in adipocytes under high-fat diet conditions.
+7.  *The role of gene X in insulin resistance in adipocytes under high-fat diet conditions.*
 
-8.  The role of gene X in epithelial-mesenchymal transition during tissue regeneration.
+8.  *The role of gene X in epithelial-mesenchymal transition during tissue regeneration.*
 
-9.  The role of gene X in vascular endothelial cell migration during angiogenesis.
+9.  *The role of gene X in vascular endothelial cell migration during angiogenesis.*
 
-10. The role of gene X in histone modification and chromatin remodeling in epigenetic silencing.
+10. *The role of gene X in histone modification and chromatin remodeling in epigenetic silencing.*
 
-11. The role of gene X in cellular response to reactive oxygen species in mitochondria.
+11. *The role of gene X in cellular response to reactive oxygen species in mitochondria.*
 
-12. The role of gene X in fibroblast activation during wound repair.
+12. *The role of gene X in fibroblast activation during wound repair.*
 
-13. The role of gene X in autophagosome formation and lysosome fusion.
+13. *The role of gene X in autophagosome formation and lysosome fusion.*
 
-14. The role of gene X in myoblast fusion during muscle fiber formation.
+14. *The role of gene X in myoblast fusion during muscle fiber formation.*
 
-15. The role of gene X in extravasation of metastatic cancer cells.
+15. *The role of gene X in extravasation of metastatic cancer cells.*
 
-16. The role of gene X in cholesterol transport between organelles.
+16. *The role of gene X in cholesterol transport between organelles.*
 
-17. The role of gene X in regulating circadian oscillations in peripheral tissues.
+17. *The role of gene X in regulating circadian oscillations in peripheral tissues.*
 
-18. The role of gene X in mitochondrial dynamics, specifically fission and fusion.
+18. *The role of gene X in mitochondrial dynamics, specifically fission and fusion.*
 
-19. The role of gene X in endothelial cell specification during heart development.
+19. *The role of gene X in endothelial cell specification during heart development.*
 
-20. The role of gene X in modulation of macrophage polarization during inflammation.
-:::
+20. *The role of gene X in modulation of macrophage polarization during inflammation.*
