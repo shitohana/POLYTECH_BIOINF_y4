@@ -299,7 +299,7 @@ Human Gene Nomenclature Committee[^25] (HGNC) является единстве�
 
 ::: {#tab:my_label}
 |                                                             |                                                              |
-|:----------------------------------:|:----------------------------------:|
+|:-----------------------------------------------------------:|:------------------------------------------------------------:|
 |                       **Standalone**                        |                          **Online**                          |
 |     [IGV (Integrative Genomic Viewer)](https://igv.org)     |    [UCSC Genome/Table Browser](https://genome.ucsc.edu/)     |
 |            [JBrowse2](https://jbrowse.org/jb2/)             |       [Ensembl Genome Browse](http://www.ensembl.org)r       |
