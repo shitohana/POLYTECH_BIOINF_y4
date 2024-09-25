@@ -272,15 +272,17 @@ Important
 </section>
 <section id="терминал" class="level1">
 <h1>Терминал</h1>
-<div>
-
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/linux/VT05.jpg" class="img-fluid figure-img" width="300"></p>
+<figcaption>ЭТО терминал! (VT05)</figcaption>
+</figure>
 </div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="_files/linux/VT05.jpg" class="img-fluid" width="300" alt="ЭТО терминал! (VT05)"> <img src="_files/linux/CatFileLsChmodRun.png" class="img-fluid" width="247" alt="А это Bourne again shell (bash)."></p>
-</div>
-</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/linux/CatFileLsChmodRun.png" class="img-fluid figure-img" width="247"></p>
+<figcaption>А это Bourne again shell (bash).</figcaption>
+</figure>
 </div>
 <p>Согласно Wikipedia: компьютерный терминал – устройство, используемое для взаимодействия пользователя (или оператора) с компьютером или компьютерной системой, локальной или удалённой. Однако слово терминал уже долгое время не используется в данном смысле. Терминалом гораздо чаще называют программу, предназначенную для эмуляции терминала - командную оболочку Unix (и не только).</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -444,9 +446,9 @@ I/O redirection
 <li><p><kbd aria-hidden="true">Ctrl-C</kbd><span class="visually-hidden">Ctrl-C</span> – очистить командную <em>строку</em>.</p></li>
 <li><p><kbd aria-hidden="true">Tab</kbd><span class="visually-hidden">Tab</span> – показать все возможные варианты продолжения команды.</p></li>
 <li><p><kbd aria-hidden="true">Tab+Tab</kbd><span class="visually-hidden">Tab+Tab</span> – выбрать первый предложенный вариант продолжения.</p></li>
-<li><p><kbd aria-hidden="true">A;</kbd><span class="visually-hidden">A;</span> – выполнить A, затем B вне зависимости от успеха выполнения A.</p></li>
-<li><p><kbd aria-hidden="true">A</kbd><span class="visually-hidden">A</span> – выполнить B <em>только</em> в случае успеха A.</p></li>
-<li><p><kbd aria-hidden="true">A</kbd><span class="visually-hidden">A</span> – выполнить B <em>только</em> в случае ошибки/неуспеха A.</p></li>
+<li><p><code>A; B</code> – выполнить A, затем B вне зависимости от успеха выполнения A.</p></li>
+<li><p><code>A &amp;&amp; B</code> – выполнить B <em>только</em> в случае успеха A.</p></li>
+<li><p><code>A || B</code> – выполнить B <em>только</em> в случае ошибки/неуспеха A.</p></li>
 </ul>
 </section>
 <section id="общий-вид-команд" class="level2">
