@@ -190,7 +190,7 @@ window.Quarto = {
   <li><a href="#taxonomy" id="toc-taxonomy" class="nav-link" data-scroll-target="#taxonomy">Taxonomy</a></li>
   </ul></li>
   <li><a href="#маленькая-шпаргалка-на-будущее" id="toc-маленькая-шпаргалка-на-будущее" class="nav-link" data-scroll-target="#маленькая-шпаргалка-на-будущее">Маленькая шпаргалка на будущее</a></li>
-  <li><a href="#итак-что-тут-у-нас" id="toc-итак-что-тут-у-нас" class="nav-link" data-scroll-target="#итак-что-тут-у-нас">Итак что тут у нас?</a></li>
+  <li><a href="#итак-что-мы-нашли" id="toc-итак-что-мы-нашли" class="nav-link" data-scroll-target="#итак-что-мы-нашли">Итак, что мы нашли?</a></li>
   </ul></li>
   <li><a href="#blast" id="toc-blast" class="nav-link" data-scroll-target="#blast">BLAST+</a>
   <ul class="collapse">
@@ -237,7 +237,7 @@ window.Quarto = {
 
 <section id="введение" class="level1">
 <h1>Введение</h1>
-<p><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi"><strong>BLAST</strong></a> (Basic Local Alignment Search Tool) — это разработанный Национальным центром биотехнологической информации (NCBI) мощный набор алгоритмов, используемых для сравнения биологических последовательностей. Сравнение можно производить как между двумя и более <em>вашими</em> последовательностями, так и между вашей последовательностью и выбранной базой данных ДНК, РНК или пептидов. Второй вариант исследователями используется чаще.</p>
+<p><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi"><strong>BLAST</strong></a> (Basic Local Alignment Search Tool) — это разработанный Национальным центром биотехнологической информации (NCBI) мощный набор алгоритмов, используемых для сравнения биологических последовательностей. Сравнение может производиться как между двумя и более <em>вашими</em> последовательностями, так и между вашей последовательностью и выбранной базой данных ДНК, РНК или пептидов. <em>Второй вариант исследователями используется чаще.</em></p>
 <p>BLAST широко применяется в молекулярной биологии, генетике и эволюционных исследованиях для:</p>
 <ul>
 <li><p>Идентификации неизвестных последовательностей, например, при попадании в образец чужеродной ДНК;</p></li>
@@ -247,13 +247,13 @@ window.Quarto = {
 </section>
 <section id="зоопарк-алгоритмов" class="level1">
 <h1>Зоопарк алгоритмов</h1>
-<p>Запуск алгоритмов можно производить, как на <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">вебсайте NCBI</a>, так и локально у себя на компьютере (об этом чуть позже). На главной странице сайта можно увидеть <em>основной</em> набор инструментов BLAST, в который входят различные версии алгоритмов:</p>
+<p>Воспользоваться BLAST можно как на <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">вебсайте NCBI</a>, так и локально у себя на компьютере (об этом чуть позже). На главной странице сайта можно увидеть <em>основной</em> набор инструментов BLAST, в который входят различные алгоритмы:</p>
 <ul>
-<li><p><strong><em>blastn</em></strong> (nucleotide blast) - сравнивает нуклеотидные последовательности, что полезно для выявления генов и геномных элементов;</p></li>
-<li><p><strong><em>blastp</em></strong> (protein blast) - сравнивает белковые последовательности, помогая идентифицировать белки с похожей структурой или функцией;</p></li>
-<li><p><strong><em>blastx</em></strong> - переводит нуклеотидные последовательности в пептидную последовательность и сравнивает их с базами данных белков, что способствует обнаружению потенциальных кодирующих регионов (<strong>protein vs.&nbsp;protein</strong>);</p></li>
-<li><p><strong><em>tblastn</em></strong> - с использованием белкового запроса ищет в <strong>транслированных</strong> нуклеотидных базах данных (<strong>protein vs.&nbsp;protein</strong>) - эффективен для анализа последовательностей геномов, в которых известна последовательность белков, но плохо изучена последовательность нуклеотидов (и РНК, и ДНК). Так же для полезен для межвидовых сравнений - ведь один и тот же белок может быть закодирован по-разному у разных организмов;</p></li>
-<li><p><strong><em>tblastx -</em></strong> транслирует одновременно и нуклеотидный запрос и базу данных, по которой ведётся поиск. Таким образом поиск происходит <strong>protein vs.&nbsp;protein</strong></p></li>
+<li><p><strong><em>blastn</em></strong> (nucleotide blast) - сравнивает нуклеотидные последовательности. Нужен для поиска схожих последовательностей ДНК или РНК в базе данных, поиск генови изучение геномных вариантов .</p></li>
+<li><p><strong><em>blastp</em></strong> (protein blast) - сравнивает белковые последовательности. Исползуется для поиска схожих белков, изучения функциональных доменов, выявление эволюционных связей и поиска белковых семейств</p></li>
+<li><p><strong><em>blastx</em></strong> - переводит нуклеотидные последовательности в пептидную последовательность и сравнивает их с базами данных белков (<strong>nucl-&gt;protein vs.&nbsp;protein db</strong>). Помогает выявить белки, которые могли бы кодироваться данным фрагментом.</p></li>
+<li><p><strong><em>tblastn</em></strong> - с использованием белкового запроса ищет в <strong>транслированных</strong> нуклеотидных базах данных (<strong>protein vs.&nbsp;protein&lt;-nucl db</strong>). Помогает найти гены, которые могут кодировать подобные белки в нуклеотидных базах данных, включая некодирующие последовательности или неаннотированные участки</p></li>
+<li><p><strong><em>tblastx -</em></strong> транслирует одновременно и нуклеотидный запрос и базу данных, по которой ведётся поиск. Таким образом поиск происходит (<strong>nucl</strong>-&gt;<strong>protein vs.&nbsp;protein&lt;-nucl db</strong>). Выявление схожих белков, кодируемых на уровне ДНК, когда рамка считывания неизвестна.</p></li>
 </ul>
 <p><img src="_files/blast/images/basic_algos_web.png" class="img-fluid" width="1800"></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -290,7 +290,7 @@ TCGGAGTCCTCGTCCTCAGCAGCAGCTGCCGCCGTTGCCGCCATGTCGACGCCACCGAATCCTTTCCTAA
 TGTTCCGCACTGCGCCGTCTTTCTTTCCCGGATTTCCGCCTTACGGATTTCCCCCCTTTCTACCACAAAA
 TCCGCTGCATCCTACGAACATTCCGATGTTTTTCTCGAAAAATCCCATGGATTTGGGTTGCGGTGGTCCG
 GAGATCACTTCTCCCGTTTCCGCCTTTGATCAGAAACTACCATTTGGCTTTCTAAAGGGTGAGAACAGTG</code></pre>
-<p>Нам дано, что это часть какого-то гена. Неизвестно его имя, функция и даже организм. Но так как мы биоинформатики, то нам узнать это - раз плюнуть!</p>
+<p>Нам дано, что это часть какого-то гена. Неизвестно его имя, функция и даже организм. Но так как мы биоинформатики, то нам это - раз плюнуть!</p>
 <section id="settings" class="level2">
 <h2 class="anchored" data-anchor-id="settings">Settings</h2>
 <section id="enter-query-sequence" class="level3">
@@ -321,10 +321,10 @@ GAGATCACTTCTCCCGTTTCCGCCTTTGATCAGAAACTACCATTTGGCTTTCTAAAGGGTGAGAACAGTG</code></p
 <li><p>Геномная ДНК</p></li>
 <li><p>Митохондриальная ДНК</p></li>
 <li><p>Вирусная или бактериальная ДНК</p></li>
-<li><p>РНК (16S, 18S, 28S)</p></li>
+<li><p>Рибосомальная РНК (16S, 18S, 28S)</p></li>
 <li><p>Сырые данные из секвенатора и др.</p></li>
 </ul>
-<p>По умолчанию это <em>Core nucleotide database</em> (<strong>core_nt</strong>) - это курируемая NCBI нуклеотидная база данных, которая содержит огромное количество нуклеотидных последовательностей. Она включает в себя базы данных: GenBank, EMBL, DDBJ, PDB, RefSeq и является к тому же <em>Non-redundant,</em> то есть хранит уникальные последовательности, а не нескольких копий одного и того же (по крайней мере очень сильно стараются).</p>
+<p>По умолчанию это <em>Core nucleotide database</em> (<strong>core_nt</strong>) - это курируемая NCBI база данных, которая содержит огромное количество нуклеотидных последовательностей. Она включает в себя базы данных: GenBank, EMBL, DDBJ, PDB, RefSeq и является к тому же <em>Non-redundant,</em> то есть хранит уникальные последовательности, а не нескольких копий одного и того же (по крайней мере очень сильно старается).</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -335,17 +335,18 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Около выбранной базы данных есть значок вопросительного знака - нажмите на него и увидете сводную информацию о базе данных. Вообще этот значок есть много где на сайте - смело нажимайте, если что-то не понятно</p>
+<p>Около выбранной базы данных есть значок вопросительного знака - нажав на него, вы увидете сводную информацию о базе данных. Вообще этот значок есть много где на сайте - смело нажимайте, если что-то не понятно</p>
 </div>
 </div>
 </section>
 <section id="organism" class="level4">
 <h4 class="anchored" data-anchor-id="organism">Organism</h4>
-<p>Опциональным параметром является спецификация <em>taxid:</em> класса, названия семейства, рода, вида или даже организма и прочее. Спецификация таксона значительно сузит и ускорит поиск. По умолчанию поиск будет производиться по всей базе. Если искомый ген есть у многих организмов, то в результате вы их все и получите, но с разной степенью схожести. Иногда исследователю это и нужно - чтобы исследовать эволюцию этого гена. На странице полученных результатов их так же можно отфильтровать по организму.</p>
+<p>Опциональным параметром является спецификация <em>taxid:</em> класса, названия семейства, рода, вида или даже организма и прочее. Спецификация таксона значительно сузит и ускорит поиск. По умолчанию поиск будет производиться по всей базе. Если искомый ген есть у многих организмов, то в результате вы их все и получите, но с разной степенью схожести. Иногда исследователю это и нужно - чтобы исследовать различия между организмами.<br>
+Позже на странице полученных результатов их так же можно будет отфильтровать по организму.</p>
 </section>
-<section id="enterz-query" class="level4">
-<h4 class="anchored" data-anchor-id="enterz-query">Enterz Query</h4>
-<p>Это способ применения дополнительных более тонких фильтров <strong>поиска в базах данных NCBI (можно использовать при поиске чего угодно в NCBI!)</strong>, таких как BLAST, для уточнения результатов с помощью определенных ключевых слов, полей и логических операторов. Он позволяет сузить поиск до конкретных организмов, диапазонов дат или других аннотаций с помощью специального синтаксиса запроса. Запросы Entrez особенно полезны при поиске в больших базах данных, таких как nr (нередуцированные), nt (нуклеотиды) или <strong>RefSeq</strong>. Но синтаксис там и правда иногда жуткий.</p>
+<section id="enterez-query" class="level4">
+<h4 class="anchored" data-anchor-id="enterez-query">Enterez Query</h4>
+<p>Это способ применения дополнительных более тонких фильтров <strong>поиска в базах данных NCBI (можно использовать при поиске чего угодно в NCBI)</strong>, таких как BLAST, для уточнения результатов с помощью определенных ключевых слов, полей и логических операторов. Он позволяет сузить поиск до конкретных организмов, диапазонов дат или других аннотаций с помощью специального синтаксиса запроса. Запросы Entrez особенно полезны при поиске в больших базах данных, таких как <strong>nr/nt</strong> или <strong>RefSeq</strong>. Но синтаксис там правда иногда жуткий.</p>
 <p><code>Homo sapiens[organism] AND BRCA1[gene] AND 2020:2024[pdat]</code> - Организм - человек, Ген BRCA1, Информация с 2020 по 2024 год</p>
 </section>
 </section>
@@ -355,6 +356,20 @@ Important
 </section>
 <section id="p.s." class="level3">
 <h3 class="anchored" data-anchor-id="p.s.">P.S.</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>В алгоритмах <strong>blastx</strong> и <strong>tblastx</strong> есть дополнительный параметр <em>Genetic code.</em> Это важный параметр, если у вас необычный организм или не геномная ДНК (митохондриальная или пластидная). Вы помните про вырожденность генетического кода и перевод триплетов (кодонов) в определенную аминокислоту при трансляции в белок из мРНК. Зачем тут что-то выбирать…?</p>
+<p><u><strong>Но всё не так просто</strong></u>. Даже внутри нас с вами в ядре и митохондрии генетический код различается! Например, в ядерном геноме кодон <em>UGA</em> является стоп-кодоном, а в митохондриальном он кодирует триптофан. Есть и другие различия! Различные огранизмы с разной частотой используют разные сочетания трёх нуклеотидов для одной и той же аминокислоты. Известны и случаи, когда один и тот же кодон играет роль стоп-кодона и кодона, кодирующего аминокислоту. Чтобы учесть подобные нюансы и сделать поиск более точным, важно учесть <em>Genetic code.</em></p>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -365,56 +380,45 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>В алгоритмах <strong>blastx</strong> и <strong>tblastx</strong> есть дополнительный параметр <em>Genetic code.</em> Это важный параметр, если у вас необычный организм или не геномная ДНК (митохондриальная или пластидная). Вы помните про вырожденность генетического кода и перевод триплетов (кодонов) в определенную аминокислоту при трансляции в белок из мРНК. Что ту выбирать…?</p>
-<p><u><strong>Но всё не так просто</strong></u>. Даже внутри нас с вами в ядре и митохондрии генетический код различается! Например, в ядерном геноме кодон <em>UGA</em> является стоп-кодоном, а в митохондриальном он кодирует триптофан. ЕСть и лругие различия! Различные огранизмы с разной частотой используют разные сочетания трёх нуклеотидов для одной и той же аминокислоты. Известны и случаи, когда один и тот же кодон играет роль стоп-кодона и кодона, кодирующего аминокислоту. Чтобы учесть подобные нюансы и сделать поиск более точным, важно учесть какой у вас <em>Genetic code.</em></p>
+<p>Под кнопкой BLAST есть вкладка <strong>Algorithm parameters</strong><em>.</em> Если чувствуете себя чересчур крутым, то можете понастраивать алгоритм поиска и выравнивания. <strong><em>Но пока давайте не будем ломать то, что хорошо работает.</em></strong></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Под кнопкой BLAST есть вкладка <strong>Algorithm parameters</strong><em>.</em> Есличувствуете себя чересчур крутым, то можете понастраивать алгоритм поиска и выравнивания. <strong><em>Но пока давайте не будем ломать то, что хорошо работает.</em></strong></p>
-</div>
-</div>
-<p>Теперь мы готовы к запуску! нажимаем заветную кнопку <strong>BLAST!</strong></p>
+<p><u>Теперь мы готовы к запуску! нажимаем заветную кнопку <strong>BLAST!</strong></u></p>
 </section>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <p><img src="_files/blast/images/results_page.png" class="img-fluid" width="1400"></p>
-<p>На странице результатов можно напомнить себе сводную информацию по запуске поиска<em>.</em> Есть возможность отфильтровать результаты по показателям (о них ниже) и организму. Здесь можно увидеть ID задачи, с помощью которой можно будет найти свои результаты в <em>Recent Results.</em></p>
-<div class="callout callout-style-default callout-important callout-titled">
+<p>На странице результатов можно напомнить себе сводную информацию о запуске поиска<em>.</em> Есть возможность отфильтровать результаты по показателям (о них ниже) и организму. Здесь можно увидеть ID задачи, с помощью которой можно будет найти свои результаты в <em>Recent Results.</em></p>
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Советую сохранить этот ID и учесть, что реузльтаты хранятся на сайте всего 24 часа! Поэтому настоятельно советую их сохранить, если они вам будут нужны позже</strong></p>
 </div>
 </div>
-<p>Ну и, конечно, сами результаты…</p>
+<p>Ну и, конечно, сами результаты. Рассмотрим каждую вкладку результатов.</p>
 <section id="descriptions" class="level3">
 <h3 class="anchored" data-anchor-id="descriptions">Descriptions</h3>
-<p>Самая главная вкладка результатов, где есть названия последовтельностей и значения, по которым можно определить насколько эта последовательность похожа на искомую.</p>
+<p>Самая главная вкладка результатов, где есть названия последовательностей и значения, по которым можно определить насколько эта последовательность похожа на искомую.</p>
 <ul>
 <li><p><strong>Max score</strong> - означает наилучшее локальное выравнивание между нашей последовательностью и найденной</p></li>
 <li><p><strong>Total score</strong> - сумма scores всех вариантов глобального выравнивания.<br>
-Если <strong>Max score = Total score</strong>, значит есть лишь один вариант выравнивания и он лучший</p></li>
-<li><p><strong>Query cover - насколько найденная последовательность совпадает с нашей</strong></p></li>
-<li><p><strong>BIt score -</strong> нормализованный показатель, позволяющий сравнивать различные поисковые запросы, независимо от размера базы данных или длины запроса<strong>.<br>
-</strong>Равен<span class="math inline">\(\frac{(λ * Raw Score - \ln K)}{\ln 2}\)</span>, где λ и K - константы&amp; определяемы областью поиска…</p></li>
-<li><p><strong>E-value -</strong> количество выравниваний с данным или бОльшим score, которые, могут “случайно” быть в базе данных.<br>
-<strong>E-value = длина нашей посл-ти * кол-во нуклеотидов в базе данных * 2 ^ (Bit score)</strong></p>
+Если <strong>Max score = Total score</strong>, значит есть лишь один вариант выравнивания и он лучший.</p></li>
+<li><p><strong>Query cover -</strong> насколько найденная последовательность совпадает с нашей (покрывает её).</p></li>
+<li><p><strong>Bit score -</strong> нормализованный показатель, позволяющий сравнивать различные поисковые запросы, независимо от размера базы данных или длины запроса<strong>.<br>
+</strong>Равен <span class="math inline">\(\frac{(λ * Raw Score - \ln K)}{\ln 2}\)</span> , где λ и K - константы, определяемые областью поиска…</p></li>
+<li><p><strong>E-value -</strong> количество выравниваний с данным или б<em>о</em>льшим score, которые, могут “случайно” совпасть в базе данных.</p>
+<ul>
+<li><strong>E-value =</strong> длина нашей посл-ти * кол-во нуклеотидов в базе данных * 2 ^ (Bit score)</li>
+</ul></li>
+</ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -425,24 +429,25 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Чаще всего смотрят именно на этот показатель</p>
+<p>Чаще всего смотрят именно на этот показатель.</p>
 </div>
-</div></li>
-<li><p><strong>Per Ident.</strong> - Процент совпадений между выровненными последовательностями.</p></li>
+</div>
+<ul>
+<li><p><strong>Per Ident.</strong> - Процент совпадений между выравненными последовательностями.</p></li>
 <li><p><strong>Accession -</strong> уникальный идентификатор, присваиваемый конкретной последовательности в одной из баз данных. Для отслеживания отдельных записей используются регистрационные номера, что облегчает поиск, цитирование и ссылки на конкретные последовательности.</p></li>
 </ul>
 </section>
 <section id="graphic-summary" class="level3">
 <h3 class="anchored" data-anchor-id="graphic-summary">Graphic summary</h3>
-<p>Здесь визуально представлено то, как выравниваются найденные последовательности на нашу</p>
+<p>Здесь визуально представлено то, как выравниваются найденные последовательности на нашу.</p>
 </section>
 <section id="alignments" class="level3">
 <h3 class="anchored" data-anchor-id="alignments">Alignments</h3>
-<p>Более подробная информация о том, как каждый результат выравнивается на наш запрос - масштаб до нуклеотида. Каждое такое выравнивание можно скачать, визуализировать в геномном браузере. Также здесь есть информация из других баз данных о найденных последовательностях (она не написана тут, но можно перейти по ссылкам)</p>
+<p>Более подробная информация о том, как каждый результат выравнивается на наш запрос - масштаб до нуклеотида. Каждое такое выравнивание можно скачать, визуализировать в геномном браузере. Также здесь есть информация из других баз данных о найденных последовательностях (она не написана тут, но можно перейти по ссылкам).</p>
 </section>
 <section id="taxonomy" class="level3">
 <h3 class="anchored" data-anchor-id="taxonomy">Taxonomy</h3>
-<p>Здесь можно узнать общую информацию о таксономичческой принадлежности найденных последовательностях</p>
+<p>Здесь можно узнать общую информацию о таксономичческой принадлежности найденных последовательностей.</p>
 </section>
 </section>
 <section id="маленькая-шпаргалка-на-будущее" class="level2">
@@ -462,16 +467,16 @@ Tip
 <li><p>Результаты разнородные и их слишком много? -&gt; Отфильтруйте их или в результатах, или установите фильтры при поиске. Подумайте над использованием и другой более узкой базы данных (например, <strong>RefSeq</strong>).</p></li>
 <li><p>Результатов мало или результат - это название организма и номер хромосомы -&gt; Убедитесь, что с вашей последовательностью всё нормально. Попробуйте использовать более обширную базу данных (например <strong>nr/nt</strong>). Использовать модифицированный алгоритм: для нуклеотидов - <strong>Discontiguous MegaBLAST</strong>, для пептидов - <strong>PSI-BLAST</strong>. Или даже совем другие - <strong>tblastx</strong> или <strong>tblastn</strong> - основанные на трансляции в пептиды могут показать более “удаленные” последовательности</p>
 <ul>
-<li>Bозможно, вы ищете и некодирующую последовательность (интрон, межгенная область)</li>
+<li>Bозможно, ваш запрос является некодирующей последовательностью (интрон, межгенная область).</li>
 </ul></li>
-<li><p>Результат сомнительный? -&gt; Бывает и так, что вы нашли что-то неизведанное! Однако вероятность такого мала, если вы не секвенируете обитателей какой-нибудь Амазонки или Мариансокй впадины. Возможно, ваша последовательность содержит повторы, ошибки. Убедитесь, что вы установили правильные фильтры (особенно на организм)</p></li>
+<li><p>Результат сомнительный? -&gt; Бывает и так, что вы отправляете на поиск что-то неизведанное! Однако вероятность такого мала, если вы не секвенировали обитателей какой-нибудь Амазонки или Мариансокй впадины. Возможно, ваша последовательность содержит повторы, ошибки. Убедитесь, что вы установили правильные фильтры (особенно на организм).</p></li>
 </ul>
 </div>
 </div>
 </section>
-<section id="итак-что-тут-у-нас" class="level2">
-<h2 class="anchored" data-anchor-id="итак-что-тут-у-нас">Итак что тут у нас?</h2>
-<p>В результате мы нашли, что наша последовательность из гена <em>hamlet</em> <strong>Drosophila melanogaster</strong>.</p>
+<section id="итак-что-мы-нашли" class="level2">
+<h2 class="anchored" data-anchor-id="итак-что-мы-нашли">Итак, что мы нашли?</h2>
+<p>В результате мы нашли, что наша последовательность из гена <em>hamlet</em> мушки <strong>Drosophila melanogaster</strong>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -492,36 +497,36 @@ Note
 <section id="blast" class="level1">
 <h1>BLAST+</h1>
 <p><strong>BLAST+</strong> - это улучшенная версия оригинального BLAST, разработанная для повышения производительности, гибкости и масштабируемости задач выравнивания последовательностей (по крайней мере они так пишут о себе). BLAST+ реализован на языке C++ и является утилитой для запуска через терминал UNIX-систем.</p>
-<p>Пакет BLAST+ включает в себя несколько уже описанных выше инструментов, таких как <strong>blastn</strong>, <strong>blastp</strong>, <strong>blastx</strong>, <strong>tblastn</strong> и <strong>tblastx</strong>. Они позволяют использовать биологические попследовательности, хранящихся прямо у вас на компьютере, для поиска по базам данных, скачанными локально или даже <strong>созданных самостоятельно</strong> (!)</p>
+<p>Пакет BLAST+ включает в себя несколько уже описанных выше инструментов: <strong>blastn</strong>, <strong>blastp</strong>, <strong>blastx</strong>, <strong>tblastn</strong> и <strong>tblastx</strong>. Они позволяют использовать биологические попследовательности, хранящихся прямо у вас на компьютере, для поиска по базам данных, скачанными локально или даже <strong>созданных самостоятельно</strong>.</p>
 <section id="зачем-запускать-blast-локально-и-создавать-свою-базу-данных-последовательностей" class="level2">
 <h2 class="anchored" data-anchor-id="зачем-запускать-blast-локально-и-создавать-свою-базу-данных-последовательностей">Зачем запускать BLAST локально и создавать свою базу данных последовательностей?</h2>
 <ol type="1">
 <li><p><em>Оптимизация производительности</em></p>
 <p>Локальный запуск и база данных позволит избежать ограничений, связанных с серверной версией, таких как лимиты на размер последовательности для поиска (100 тыс п.н.) или число запросов. Также, если есть возможность запустить алгоритм на высокопроизводительном сервере, то поиск будет в разы быстрее.</p>
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>При создании базы данных создаются <strong>файлы-индексы</strong>, благодаря которым дальнейший поиск по ней происходит намного быстрее (подробнее будет далее). Есть вариант не индексацию (базу данных), но рекомендую так делать <em>только</em> если ваша база данных маленькая и/или состоит из коротких последовательностей (например, поиск <strong>под</strong>последовательности в не очень большой последовательности).</p>
+<p>При создании базы данных создаются файлы-индексы, благодаря которым дальнейший поиск по ней происходит намного быстрее (подробнее будет далее).</p>
 </div>
 </div></li>
 <li><p><em>Интеграция в пайплайн</em></p>
-<p>Иногда запуск BLAST - это лишь один из шагов в большом автоматизированном анализе. При этом отправка промежуточного результата на веб-версию BLAST неудобна и излишна. К этому еще добавлются и замечания из первого пункта.</p></li>
+<p>Иногда запуск BLAST - это лишь один из шагов в большом последовательном автоматизированном анализе. При этом отправка промежуточного результата на веб-версию BLAST неудобна и излишна. К этому еще добавлются и ограниичения из первого пункта.</p></li>
 <li><p><em>Поиск по последовательностям и данным, которых нет в общедоступных базах данных</em></p>
-<p>Например, вы изучаете неизвестных человечеству бактерий, геномы которых вы только что расшифровали и которые публиковать вы пока не собираетесь. Вам очень хочется узнать есть ли в их геномах какая-то последовательность (например, гена, кодирующего токсин). Для этого можно сделать локальную базу данных, содержащую геномы ваших бактерий, а затем произвести по ней поиск уже известной всему миру последовательности гена токсина.</p></li>
+<p>Например, вы изучаете неизвестных человечеству бактерий, геномы которых вы только что расшифровали. Вам очень хочется узнать есть ли в их геномах какая-то последовательность (например, гена, кодирующего токсин). Для этого можно сделать локальную базу данных, содержащую геномы ваших бактерий, а затем произвести по ней поиск уже известной всему миру последовательности гена токсина.</p></li>
 </ol>
 </section>
 <section id="как-создать-локальную-базу-данных-и-запустить-поиск-по-ней" class="level2">
 <h2 class="anchored" data-anchor-id="как-создать-локальную-базу-данных-и-запустить-поиск-по-ней">Как создать локальную базу данных и запустить поиск по ней</h2>
 <section id="пусть-у-нас-есть-.fasta" class="level3">
 <h3 class="anchored" data-anchor-id="пусть-у-нас-есть-.fasta">Пусть у нас есть .fasta</h3>
-<pre><code>#db.fasta
+<pre><code>#seqs.fasta
 &gt;seq1
 GTACGAGATTACGGCGCATCGATCGATTGCGGATTGCGCGATATATCT
 TAGGCGCTAGCTATATTTTTCGGGAAAAAAGCGCTAGATTCAGCGCGC
@@ -542,16 +547,16 @@ TTCAAATATTTTCTTCAGGGCGATCGATTATCGACGATTATTCTATTT</code></pre>
 <section id="попробуем-обычный-поиск-в-файле" class="level3">
 <h3 class="anchored" data-anchor-id="попробуем-обычный-поиск-в-файле">Попробуем обычный поиск в файле:</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">--colour</span><span class="op">=</span>auto <span class="st">"CTGCATATATTTCGAAAA"</span> db.fasta <span class="co">#no output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>К сожалению, мы ничего найдем… А вдруг мутации!? И здесь вступает <strong>blastn:</strong></p>
+<p>К сожалению, мы ничего найдем… Вероятно, дело в мутациях. И здесь вступает <strong>BLAST:</strong></p>
 </section>
 <section id="создание-локальной-базы-данных" class="level3">
 <h3 class="anchored" data-anchor-id="создание-локальной-базы-данных">Создание локальной базы данных</h3>
-<p>Во-вторых, создадим базу данных:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">makeblastdb</span> <span class="at">-in</span> db.fasta <span class="at">-dbtype</span> nucl <span class="at">-out</span> databases/db_3_seqs <span class="at">-parse_seqids</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Сначла нужно создать базу данных, по кторой будем производить поиск:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">makeblastdb</span> <span class="at">-in</span> seqs.fasta <span class="at">-dbtype</span> nucl <span class="at">-out</span> databases/db_3_seqs <span class="at">-parse_seqids</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p><code>-in</code> - наша база данных</p></li>
-<li><p><code>-dbtype</code> - тип базы данных (<code>nucl</code> - ДНК/РНК, <code>prot</code> - пептиды, белки)</p></li>
-<li><p><code>-out</code> - Это <strong>название базы данных.</strong> То есть ваша база данных будет храниться в папке databases. а файлы в ней будут с именем <code>db_3_seqs.n**</code>, где <code>n**</code> - это одно из многих расширений файлов. Далее при использовании BLAST+, если нужно ИМЯ базы данных, то надо указывать подобное имя (<code>databases/db_3_seqs</code>)</p></li>
+<li><p><code>-in</code> - наша база данных;</p></li>
+<li><p><code>-dbtype</code> - тип базы данных (<code>nucl</code> - ДНК/РНК, <code>prot</code> - пептиды, белки);</p></li>
+<li><p><code>-out</code> - Это <strong>название базы данных.</strong> То есть ваша база данных будет храниться в папке <code>databases</code>, а файлы в ней будут с именем <code>db_3_seqs.n**</code>, где <code>n**</code> - это какое-то расширение файла. Далее при использовании BLAST+, если понадобится ИМЯ базы данных, то надо указывать подобное имя (<code>databases/db_3_seqs</code>);</p></li>
 <li><p><code>-parse_seqids</code> - распознать ID последовательностей. Нужно, если <code>-in</code> принимает .fasta и вы хотите сохранить названия записей в файле (<code>&gt;seq1</code>).</p></li>
 <li><p>Прочие параметры, которые можно увидеть, если набрать команду <code>makeblastdb -help</code></p></li>
 </ul>
@@ -571,18 +576,19 @@ Tip
 </section>
 <section id="поиск" class="level3">
 <h3 class="anchored" data-anchor-id="поиск">Поиск!</h3>
-<p>Во-первых, <strong>blastn</strong> принимает на вход только файлы. Поэтому засунем в файл искомую последовательность</p>
+<p>Так как поиск будет производиться по нуклеотидным последовательностям, то воспользуемся <strong>blastn.<br>
+blastn</strong> принимает на вход только файлы, поэтому создадим fasta-файл c искомой последовательностью:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">"&gt;unknown_seq\nCTGCATATATTTCGAAAA"</span> <span class="op">&gt;</span> query.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Побежали!</strong></p>
+<p><strong>А теперь побежали!</strong></p>
 <p>Сделаем сразу в двух форматах, чтобы понять разницу</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> query.fasta <span class="at">-db</span> databases/db_3_seqs <span class="at">-outfmt</span> 7 <span class="at">-word_size</span><span class="op">=</span>9 <span class="op">&gt;</span> blast_results_fmt6.txt</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> query.fasta <span class="at">-db</span> databases/db_3_seqs <span class="at">-outfmt</span> 0 <span class="at">-word_size</span><span class="op">=</span>9 <span class="op">&gt;</span> blast_results_fmt0.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p><code>-query</code> - файл искомой последовательности</p></li>
-<li><p><code>-db</code> - созданная нами база данных по которой ищем</p></li>
+<li><p><code>-query</code> - файл искомой последовательности;</p></li>
+<li><p><code>-db</code> - созданная нами база данных, по которой ищем;</p></li>
 <li><p><code>-outfmt</code> - формат вывода результата (их всего 18 видов, о которых можно узнать через <code>blastn -help</code>)</p></li>
-<li><p><code>-word_size</code> - алгоритм BLAST устроен так, что сначала он ищет лучшее совпадение “слова” длиной соответствующем <code>word_size</code>. <strong>Если искомая последовательность меньше параметра <code>word_size</code>, то</strong> <strong>ничего не найдется</strong>. У нас достаточно маленькая последовательность, поэтому мы используем своё число.</p></li>
+<li><p><code>-word_size</code> - алгоритм BLAST устроен так, что сначала он ищет лучшее совпадение “слова” длиной, соответствующей <code>word_size</code>. <strong>Если искомая последовательность меньше параметра <code>word_size</code>, то</strong> <strong>ничего не найдется</strong>. У нас достаточно маленькая последовательность, поэтому мы используем своё число.</p></li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -595,7 +601,7 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <p>Если наша последовательность содержит замены, то <code>word_size</code>, который меньше нашей последовательности <strong>не гарантирует, что что-то найдется</strong>. Всё дело в заменах, делециях, инсерциях и прочее…</p>
-<p>Допустим у нас последовательтность AG<u><strong>TCGTA</strong></u>A, а ищем мы внутри нее T<u><strong>G</strong></u>GTA. Если выберем <code>word_size=4</code>, то можем ничего не найти! Потому что сначала BLAST <strong>пытается вырввнить четырёхбуквенные “слова”</strong> (TGGT и GGTA) <strong>идеально и если не находит <u>ни одного “идеального” совпадения</u>, то результат будет пустым.</strong> Теперь установим <code>word_size=3</code> (TGG, GGT, <strong>GTA</strong>). И тут мы найдем “идеальное” совпадение</p>
+<p>Допустим у нас последовательтность AG<u><strong>TCGTA</strong></u>A, а ищем мы внутри нее T<u><strong>G</strong></u>GTA. Если выберем <code>word_size=4</code>, то можем ничего не найти! Сначала BLAST <strong>пытается выравнить четырёхбуквенные “слова”</strong> (TGGT и GGTA) <strong>идеально и если не находит <u>ни одного “идеального” совпадения</u>, то результат будет пустым.</strong> Теперь установим <code>word_size=3</code> (TGG, GGT, <strong>GTA</strong>). И тут мы найдем “идеальное” совпадение:</p>
 <p>AGTC<strong>GTA</strong>A<strong><br>
 </strong>NNNN<strong>GTA</strong>N</p>
 <p>Отсюда начнется “расширение” поиска алгоритма далее</p>
@@ -617,10 +623,28 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>Существует также параметр <code>-task</code> и принимает значения, о которых можно узнать подробнее отдельно (<code>&lt;algorithm&gt; -help</code>).</p>
-<p>В нашей задаче мог пригодиться “<code>blastn-short" ("blastp-short"</code> - для белков<code>)</code>, который сделан специально для поиска коротких последовталеьностей.</p></li>
+<li><p>Существует также параметр <code>-task</code>, и он принимает значения, о которых можно узнать подробнее отдельно (<code>&lt;algorithm&gt; -help</code>).</p>
+<ul>
+<li>В нашей задаче мог пригодиться “<code>blastn-short"</code> (<code>"blastp-short"</code> - для белков<code>)</code>, который сделан специально для поиска коротких последоваталеьностей.</li>
+</ul></li>
 <li><p>Параметр <code>-remote</code> позволяет использовать сервера и мощности NCBI. Но учтите все ограничения, которые есть у веб-версии!</p></li>
 </ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Есть вариант не создавать базу данных, но рекомендую так делать <em>только</em> если ваша база данных маленькая и/или состоит из коротких последовательностей (например, поиск <strong>под</strong>последовательности в не очень большой последовательности).</p>
+<p>Для этого в алгоритме поиска используйте парамер <code>-subject</code> вместо <code>-db</code> :</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>algorithm<span class="op">&gt;</span> -query <span class="ex">query.fasta</span> <span class="at">-subject</span> seqs.fasta-word_size=9 <span class="op">&gt;</span> blast_results_subject.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Результат будет тот же, но обратите внимание, что здесь мы пишем не навзание базы данных а сразу файл с последовательностями, среди которых ищем. Таким образом, мы пропускаем этап создания базы данных, но на больших данных это сильно замедлит поиск.</p>
 </div>
 </div>
 </section>
@@ -628,7 +652,7 @@ Note
 <section id="результат" class="level3">
 <h3 class="anchored" data-anchor-id="результат">Результат</h3>
 <p>Выведем на экран реузльтат:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> blast_results_fmt6.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> blast_results_fmt6.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code># BLASTN 2.16.0+
 # Query: unknown_seq
 # Database: my_db
@@ -636,7 +660,7 @@ Note
 # 1 hits found
 unknown_seq seq2    88.889  18  2   0   1   18  54  71  5.99e-04    23.3
 # BLAST processed 1 queries</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> blast_results_fmt0.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> blast_results_fmt0.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
 <p>Не буду приводить вывод, потому что он большой, но визуально более понятный!</p>
 </blockquote>
