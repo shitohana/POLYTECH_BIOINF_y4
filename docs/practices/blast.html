@@ -643,7 +643,7 @@ Important
 <div class="callout-body-container callout-body">
 <p>Есть вариант не создавать базу данных, но рекомендую так делать <em>только</em> если ваша база данных маленькая и/или состоит из коротких последовательностей (например, поиск <strong>под</strong>последовательности в не очень большой последовательности).</p>
 <p>Для этого в алгоритме поиска используйте парамер <code>-subject</code> вместо <code>-db</code> :</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>algorithm<span class="op">&gt;</span> -query <span class="ex">query.fasta</span> <span class="at">-subject</span> seqs.fasta-word_size=9 <span class="op">&gt;</span> blast_results_subject.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>algorithm<span class="op">&gt;</span> -query <span class="ex">query.fasta</span> <span class="at">-subject</span> seqs.fasta  <span class="op">&gt;</span> blast_results_subject.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Результат будет тот же, но обратите внимание, что здесь мы пишем не навзание базы данных а сразу файл с последовательностями, среди которых ищем. Таким образом, мы пропускаем этап создания базы данных, но на больших данных это сильно замедлит поиск.</p>
 </div>
 </div>
@@ -662,9 +662,9 @@ unknown_seq seq2    88.889  18  2   0   1   18  54  71  5.99e-04    23.3
 # BLAST processed 1 queries</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> blast_results_fmt0.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Не буду приводить вывод, потому что он большой, но визуально более понятный!</p>
+<p>Не буду здесь приводить вывод, потому что он большой, но визуально более понятный!</p>
 </blockquote>
-<p>Что ж, мы нашли, что наша последовательность была во второй последовательности! <strong>Мы молодцы!</strong></p>
+<p><u><strong>Что ж, мы нашли, что наша последовательность была во второй последовательности! Мы молодцы!</strong></u></p>
 <p><em>Теперь мы многое умеем и сможем применить это в самостоятельной работе</em></p>
 </section>
 </section>
@@ -676,7 +676,7 @@ unknown_seq seq2    88.889  18  2   0   1   18  54  71  5.99e-04    23.3
 <h2 class="anchored" data-anchor-id="первая-задача"><u><strong>Первая задача</strong></u>:</h2>
 <p><strong>Определить имя каждого гена и скачать <u>полную</u> пептидную последовательность в формате .fasta.</strong></p>
 <p>Для этого используйте WEB-BLAST. Подумайте каким алгоритмом воспользоваться в случае каждой последовательности и напишите причину.</p>
-<p>В полученных результатах обращайте внимание на <strong>Accessions</strong> начинающиеся на <strong>NM_</strong> (в случае РНК) или <strong>NP_</strong> (в случае аминокислот). В случае <strong>NM_</strong>, нужно найти соответствующую ей запись <strong>NP_</strong> и <u><strong>скачать именно ее</strong></u>. Её можно найти на странице записи <strong>NM_</strong>.</p>
+<p>В полученных результатах обращайте внимание на <strong>Accessions</strong> начинающиеся на <strong>NM</strong> или <strong>NP</strong> (чем они отличаются?). В случае <strong>NM</strong>, нужно найти соответствующую ей запись <strong>NP</strong> и <u><strong>скачать именно ее</strong></u>. Её можно найти на странице записи <strong>NM</strong>.</p>
 <ul>
 <li><p><em>Подсказка и напутствие</em>: имя каждого гена должно быть необычным, как <em>hamlet,</em> который мы нашли до этого</p></li>
 <li><p>Используйте базы данных по-умолчанию</p></li>
@@ -687,7 +687,7 @@ unknown_seq seq2    88.889  18  2   0   1   18  54  71  5.99e-04    23.3
 <h2 class="anchored" data-anchor-id="вторая-задача"><u><strong>Вторая задача</strong></u>:</h2>
 <p><strong>Сделать локальную базу данных из найденных аминокислотных последовательностей и найти в ней последовательность из файла <code>unknown.fasta</code></strong></p>
 <p>Для этого используйте утилиты <code>makeblastd</code> и соответствующий алгоритм (какой и почему?)</p>
-<p>В качестве ответа на это задание напишите название гена, в котором было найден наилучшее совпадение, а также его функцию. Как вы определили. что совпадение наилучшее?</p>
+<p>В качестве ответа на это задание напишите название гена, в котором было найден наилучшее совпадение, а также его функцию. Как вы определили. что совпадение наилучшее? Продемострируйте это (в этом поможет изменение формата)</p>
 </section>
 <section id="важные-замечания" class="level2">
 <h2 class="anchored" data-anchor-id="важные-замечания">Важные замечания</h2>
