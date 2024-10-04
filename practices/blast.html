@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Владислав Станин">
-<meta name="dcterms.date" content="2024-01-01">
+<meta name="dcterms.date" content="2024-10-04">
 
 <title>BLAST – POLYTECH_BIOINF_y4</title>
 <style>
@@ -237,7 +237,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 1, 2024</p>
+      <p class="date">October 4, 2024</p>
     </div>
   </div>
   
@@ -560,7 +560,7 @@ TTCAAATATTTTCTTCAGGGCGATCGATTATCGACGATTATTCTATTT</code></pre>
 </section>
 <section id="попробуем-обычный-поиск-в-файле" class="level3">
 <h3 class="anchored" data-anchor-id="попробуем-обычный-поиск-в-файле">Попробуем обычный поиск в файле:</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">--colour</span><span class="op">=</span>auto <span class="st">"CTGCATATATTTCGAAAA"</span> db.fasta <span class="co">#no output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">--colour</span><span class="op">=</span>auto <span class="st">"CTGCATATATTTCGAAAA"</span> seqs.fasta <span class="co">#no output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>К сожалению, мы ничего найдем… Вероятно, дело в мутациях. И здесь вступает <strong>BLAST:</strong></p>
 </section>
 <section id="создание-локальной-базы-данных" class="level3">
@@ -568,7 +568,7 @@ TTCAAATATTTTCTTCAGGGCGATCGATTATCGACGATTATTCTATTT</code></pre>
 <p>Сначала нужно создать базу данных, по которой будем производить поиск:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">makeblastdb</span> <span class="at">-in</span> seqs.fasta <span class="at">-dbtype</span> nucl <span class="at">-out</span> databases/db_3_seqs <span class="at">-parse_seqids</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p><code>-in</code> - наша база данных;</p></li>
+<li><p><code>-in</code> - наш файл с несколькими записями fasta;</p></li>
 <li><p><code>-dbtype</code> - тип базы данных (<code>nucl</code> - ДНК/РНК, <code>prot</code> - пептиды, белки);</p></li>
 <li><p><code>-out</code> - Это <strong>название базы данных.</strong> То есть ваша база данных будет храниться в папке <code>databases</code>, а файлы в ней будут с именем <code>db_3_seqs.n**</code>, где <code>n**</code> - это какое-то расширение файла. Далее при использовании BLAST+, если понадобится ИМЯ базы данных, то надо указывать подобное имя (<code>databases/db_3_seqs</code>);</p></li>
 <li><p><code>-parse_seqids</code> - распознать ID последовательностей. Нужно, если <code>-in</code> принимает .fasta и вы хотите сохранить названия записей в файле (<code>&gt;seq1</code>).</p></li>
