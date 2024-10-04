@@ -2,7 +2,12 @@
 title: "BLAST"
 author:
 - Владислав Станин
-date: Сентябрь, 2024
+date: 10/4/2024
+lang: ru
+format: 
+   pdf:
+      include-in-header: ../docs/header_for_tex.tex
+      latex-tinytex: true
 ---
 
 # Введение
@@ -259,7 +264,7 @@ TTCAAATATTTTCTTCAGGGCGATCGATTATCGACGATTATTCTATTT
 ### Попробуем обычный поиск в файле:
 
 ``` bash
-grep --colour=auto "CTGCATATATTTCGAAAA" db.fasta #no output
+grep --colour=auto "CTGCATATATTTCGAAAA" seqs.fasta #no output
 ```
 
 К сожалению, мы ничего найдем... Вероятно, дело в мутациях. И здесь вступает **BLAST:**
@@ -272,7 +277,7 @@ grep --colour=auto "CTGCATATATTTCGAAAA" db.fasta #no output
 makeblastdb -in seqs.fasta -dbtype nucl -out databases/db_3_seqs -parse_seqids
 ```
 
--   `-in` - наша база данных;
+-   `-in` - наш файл с несколькими записями fasta;
 
 -   `-dbtype` - тип базы данных (`nucl` - ДНК/РНК, `prot` - пептиды, белки);
 
@@ -374,7 +379,7 @@ cat blast_results_fmt0.txt
 
 > Не буду здесь приводить вывод, потому что он большой, но визуально более понятный!
 
-[**Что ж, мы нашли, что наша последовательность была во второй последовательности! \
+[**Что ж, мы нашли, что наша последовательность была во второй последовательности!\
 Мы молодцы!**]{.underline}
 
 *Теперь мы многое умеем и сможем применить это в самостоятельной работе*
