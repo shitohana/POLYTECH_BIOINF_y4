@@ -512,6 +512,7 @@ Note
 <h1>BLAST+</h1>
 <p><strong>BLAST+</strong> - это улучшенная версия оригинального BLAST, разработанная для повышения производительности, гибкости и масштабируемости задач выравнивания последовательностей (по крайней мере они так пишут о себе). BLAST+ реализован на языке C++ и является утилитой для запуска через терминал UNIX-систем.</p>
 <p>Пакет BLAST+ включает в себя несколько уже описанных выше инструментов: <strong>blastn</strong>, <strong>blastp</strong>, <strong>blastx</strong>, <strong>tblastn</strong> и <strong>tblastx</strong>. Они позволяют использовать биологические попследовательности, хранящихся прямо у вас на компьютере, для поиска по базам данных, скачанными локально или даже <strong>созданных самостоятельно</strong>.</p>
+<p>Также, пакет включает в себя множетсво других утилит полезных для работы с последовательностями и базами данных: <a href="https://www.ncbi.nlm.nih.gov/books/NBK52640/">ССЫЛКА</a></p>
 <section id="зачем-запускать-blast-локально-и-создавать-свою-базу-данных-последовательностей" class="level2">
 <h2 class="anchored" data-anchor-id="зачем-запускать-blast-локально-и-создавать-свою-базу-данных-последовательностей">Зачем запускать BLAST локально и создавать свою базу данных последовательностей?</h2>
 <ol type="1">
@@ -819,7 +820,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/shitohana\.github\.io\/POLYTECH_BIOINF_y4\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
