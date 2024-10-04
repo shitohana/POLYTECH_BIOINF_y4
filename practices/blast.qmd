@@ -3,11 +3,6 @@ title: "BLAST"
 author:
 - Владислав Станин
 date: 10/4/2024
-lang: ru
-format: 
-   pdf:
-      include-in-header: ../docs/header_for_tex.tex
-      latex-tinytex: true
 ---
 
 # Введение
