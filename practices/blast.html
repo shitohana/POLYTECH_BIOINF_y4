@@ -512,6 +512,7 @@ Note
 <h1>BLAST+</h1>
 <p><strong>BLAST+</strong> - это улучшенная версия оригинального BLAST, разработанная для повышения производительности, гибкости и масштабируемости задач выравнивания последовательностей (по крайней мере они так пишут о себе). BLAST+ реализован на языке C++ и является утилитой для запуска через терминал UNIX-систем.</p>
 <p>Пакет BLAST+ включает в себя несколько уже описанных выше инструментов: <strong>blastn</strong>, <strong>blastp</strong>, <strong>blastx</strong>, <strong>tblastn</strong> и <strong>tblastx</strong>. Они позволяют использовать биологические попследовательности, хранящихся прямо у вас на компьютере, для поиска по базам данных, скачанными локально или даже <strong>созданных самостоятельно</strong>.</p>
+<p>Также, пакет включает в себя множетсво других утилит полезных для работы с последовательностями и базами данных: <a href="https://www.ncbi.nlm.nih.gov/books/NBK52640/">ССЫЛКА</a></p>
 <section id="зачем-запускать-blast-локально-и-создавать-свою-базу-данных-последовательностей" class="level2">
 <h2 class="anchored" data-anchor-id="зачем-запускать-blast-локально-и-создавать-свою-базу-данных-последовательностей">Зачем запускать BLAST локально и создавать свою базу данных последовательностей?</h2>
 <ol type="1">
@@ -597,7 +598,7 @@ blastn</strong> принимает на вход только файлы, поэ
 <p>Сделаем сразу в двух форматах, чтобы понять разницу</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> query.fasta <span class="at">-db</span> databases/db_3_seqs <span class="at">-outfmt</span> 7 <span class="at">-word_size</span><span class="op">=</span>9 <span class="op">&gt;</span> blast_results_fmt6.txt</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> query.fasta <span class="at">-db</span> databases/db_3_seqs <span class="at">-outfmt</span> 0 <span class="at">-word_size</span><span class="op">=</span>9 <span class="op">&gt;</span> blast_results_fmt0.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> query.fasta <span class="at">-db</span> databases/db_3_seqs <span class="at">-word_size</span><span class="op">=</span>9 <span class="op">&gt;</span> blast_results_fmt0.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p><code>-query</code> - файл искомой последовательности;</p></li>
 <li><p><code>-db</code> - созданная нами база данных, по которой ищем;</p></li>
@@ -644,7 +645,7 @@ Note
 <ul>
 <li>В нашей задаче мог пригодиться “<code>blastn-short"</code> (<code>"blastp-short"</code> - для белков<code>)</code>, который сделан специально для поиска коротких последоваталеьностей.</li>
 </ul></li>
-<li><p>Параметр <code>-remote</code> позволяет использовать сервера и мощности NCBI. Но учтите все ограничения, которые есть у веб-версии!</p></li>
+<li><p>Параметр <code>-remote</code> позволяет отправлять ваши последовательности на NCBI (как WEB-BLAST, но в терминале). Но учтите все ограничения, которые есть у веб-версии! <strong>Обратите внимание</strong>, что название базы данных после <code>-db</code> нужно указывать то, которое предлагает WEB-BLAST (например, <strong><code>nt</code></strong>). Свою базу данных использовать нельзя.</p></li>
 </ol>
 </div>
 </div>
@@ -695,7 +696,7 @@ unknown_seq seq2    88.889  18  2   0   1   18  54  71  5.99e-04    23.3
 <h2 class="anchored" data-anchor-id="первая-задача"><u><strong>Первая задача</strong></u>:</h2>
 <p><strong>Определить имя каждого гена и скачать <u>полную аминокислотную</u> последовательность в формате .fasta.</strong></p>
 <p>Для этого используйте WEB-BLAST. Подумайте каким алгоритмом воспользоваться в случае каждой последовательности и почему.</p>
-<p>В полученных результатах обращайте внимание на <strong>Accessions</strong> начинающиеся на <strong>NM</strong> или <strong>NP</strong> (что это за записи?). В случае <strong>NM</strong>, нужно найти соответствующую ей запись <strong>NP</strong> и <u><strong>скачать именно ее</strong></u>. Её можно найти на вебстранице записи <strong>NM</strong>.</p>
+<p>В полученных результатах обращайте внимание на <strong>Accessions</strong> начинающиеся именно на <strong>NM</strong> или <strong>NP</strong> (что это за записи?). В случае <strong>NM</strong>, нужно найти соответствующую ей запись <strong>NP</strong> и <u><strong>скачать именно ее</strong></u>. Её можно найти на вебстранице записи <strong>NM</strong>. Среди нескольких <strong>Accessions</strong> выбирайте тот, который выше в топе результатов.</p>
 <ul>
 <li><p><em>Подсказка и напутствие:</em> имя каждого гена должно быть необычным, как <em>hamlet.</em></p></li>
 <li><p>Используйте базы данных по-умолчанию</p></li>
