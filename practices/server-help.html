@@ -2,14 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Владислав Станин">
-<meta name="dcterms.date" content="2024-10-11">
 
-<title>Множественное выравнивание – POLYTECH_BIOINF_y4</title>
+<title>Q&amp;A по виртуальной машине – POLYTECH_BIOINF_y4</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -41,6 +39,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/kbd/kbd.js"></script>
+<link href="../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,20 +110,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#введение" id="toc-введение" class="nav-link active" data-scroll-target="#введение">Введение</a></li>
-  <li><a href="#алгоритмы-msa" id="toc-алгоритмы-msa" class="nav-link" data-scroll-target="#алгоритмы-msa">Алгоритмы MSA</a>
-  <ul class="collapse">
-  <li><a href="#алгоритмы-прогрессивного-выравнивания" id="toc-алгоритмы-прогрессивного-выравнивания" class="nav-link" data-scroll-target="#алгоритмы-прогрессивного-выравнивания">Алгоритмы прогрессивного выравнивания</a>
-  <ul class="collapse">
-  <li><a href="#шаги" id="toc-шаги" class="nav-link" data-scroll-target="#шаги">Шаги:</a></li>
-  <li><a href="#программы" id="toc-программы" class="nav-link" data-scroll-target="#программы">Программы:</a></li>
-  <li><a href="#плюсы-и-минусы" id="toc-плюсы-и-минусы" class="nav-link" data-scroll-target="#плюсы-и-минусы">Плюсы и минусы</a></li>
-  </ul></li>
-  <li><a href="#итеративные-алгоритмы-уточнения" id="toc-итеративные-алгоритмы-уточнения" class="nav-link" data-scroll-target="#итеративные-алгоритмы-уточнения">Итеративные алгоритмы уточнения</a>
-  <ul class="collapse">
-  <li><a href="#шаги-1" id="toc-шаги-1" class="nav-link" data-scroll-target="#шаги-1">Шаги:</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#настройка-сетевого-адаптера" id="toc-настройка-сетевого-адаптера" class="nav-link active" data-scroll-target="#настройка-сетевого-адаптера">Настройка сетевого адаптера</a></li>
+  <li><a href="#подключение-к-вм-по-ssh" id="toc-подключение-к-вм-по-ssh" class="nav-link" data-scroll-target="#подключение-к-вм-по-ssh">Подключение к ВМ по SSH</a></li>
   </ul>
 </nav>
     </div>
@@ -132,26 +120,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Множественное выравнивание</h1>
+<h1 class="title">Q&amp;A по виртуальной машине</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Владислав Станин </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 11, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -161,91 +137,50 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="введение" class="level1">
-<h1>Введение</h1>
-<p><strong>Множественное выравнивание последовательностей</strong> (Multiple Sequence Alignment, MSA) - фундаментальный метод в биоинформатике, используемых для сравнения <strong>трех или более биологических последовательностей</strong>. MSA позволяет выявить эволюционные взаимосвязи между последовательностями, определить консервативные участки и функциональные домены, а также предсказать структуру и функцию белков.</p>
-<p><strong>MSA используется для</strong>:</p>
-<ul>
-<li><p><strong><em>Выявления консервативных регионов и функциональных доменов</em></strong> - они обычно имеют низковариативную последовательность</p></li>
-<li><p><strong><em>Определения эволюционных взаимосвязей</em></strong> - эволюция приводит к изменению последовательностей в определнных участках. По ним можно восстанавливать эволюционные расхождения организмов.</p></li>
-<li><p><strong><em>Предсказания структуры и функции белков</em></strong> - если у белка с неизвестной функцией есть участок идентичный участку от другого белка с известной функцией, то можно предположить, что неизвестный белок имеет схожую функцию и локализацию.</p></li>
-<li><p><strong><em>Идентификация мотивов и паттернов</em></strong> - в ДНК можно встретить последовательности, которые могут ничего не кодировать, но иметь сторого определённую последовательность. Это может быть место посадки транскрипционного фактора без которого не продолжится определенный метаболический путь.</p></li>
-</ul>
-<p>Очевидное отличие отличие от парного выравнивания - множественное выравнивание учитывает сходство между всеми последовательностями одновременно. <em>Это делает его более информативным, но и более вычислительно сложным</em>.</p>
-</section>
-<section id="алгоритмы-msa" class="level1">
-<h1>Алгоритмы MSA</h1>
-<p>Существует несколько подходов к построению множественного выравнивания.</p>
-<section id="алгоритмы-прогрессивного-выравнивания" class="level2">
-<h2 class="anchored" data-anchor-id="алгоритмы-прогрессивного-выравнивания">Алгоритмы прогрессивного выравнивания</h2>
-<p>Прогрессивные методы начинают с выравнивания наиболее похожих последовательностей и постепенно добавляют более отдаленные. Один из наиболее широко используемых подходов благодаря своей простоте и скорости</p>
-<section id="шаги" class="level3">
-<h3 class="anchored" data-anchor-id="шаги">Шаги:</h3>
+<section id="настройка-сетевого-адаптера" class="level1">
+<h1>Настройка сетевого адаптера</h1>
+<p>Чтобы на виртуальной машине как минимум работала сеть, а также, чтобы к ней можно было подключиться по SSH, в первую очередь необходимо настроить на ней сетевой адаптер. Для этого в VirtualBox:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/server-help/Снимок экрана 2024-10-05 в 14.32.00.png" class="img-fluid figure-img" width="500"></p>
+<figcaption>Открываем настройки конфигурации виртуальной машины</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/server-help/Снимок экрана 2024-10-05 в 14.32.13.png" class="img-fluid figure-img" width="500"></p>
+<figcaption>Переходим на вкладку Network</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/server-help/Снимок экрана 2024-10-05 в 14.32.26.png" class="img-fluid figure-img" width="500"></p>
+<figcaption>Создаем (если его нет) сетевые адаптеры</figcaption>
+</figure>
+</div>
+<p>На вкладке Network нужно создать два сетевых адаптера:</p>
 <ol type="1">
-<li>Выполнить попарное выравнивание для всех пар последовательностей.</li>
-<li>Создайте направляющее дерево (guide tree), обычно дендрограмму, на основе сходства или расстояния между последовательностями.</li>
-<li>Постепенно выравнивайте последовательности в соответствии с деревом, начиная с наиболее похожих пар и включая дополнительные последовательности или группы последовательностей.</li>
+<li>NAT</li>
+<li>Внутренняя сеть</li>
 </ol>
 </section>
-<section id="программы" class="level3">
-<h3 class="anchored" data-anchor-id="программы">Программы:</h3>
-<ul>
-<li><p><del><strong>ClustalW/Clustal Omega</strong></del>: строит направляющее дерево, используя матрицу расстояний, полученную из парных оценок <em>(pairwise scores)</em>, а затем выравнивает последовательности шаг за шагом на основе этого дерева.</p></li>
-<li><p><strong>T-Coffee</strong>: Улучшает ClustalW, используя информацию из нескольких выравниваний и парных выравниваний (consistency-based).</p></li>
-</ul>
-</section>
-<section id="плюсы-и-минусы" class="level3">
-<h3 class="anchored" data-anchor-id="плюсы-и-минусы">Плюсы и минусы</h3>
-<section id="плюсы" class="level4">
-<h4 class="anchored" data-anchor-id="плюсы">Плюсы</h4>
-<ul>
-<li><p><u><strong>Быстрая и нетребовательная</strong></u> работа с большим количеством последовательностей.</p></li>
-<li><p>Отлично выравнивает, если <u><strong>последовательности очень похожи</strong></u>.</p></li>
-</ul>
-</section>
-<section id="минусы" class="level4">
-<h4 class="anchored" data-anchor-id="минусы">Минусы</h4>
-<ul>
-<li><p><del>Ошибки в первых выравниваниях “распространяются” далее, что приводит к потенциально неточным результатам.</del></p></li>
-<li><p>Не подходит для очень разных последовательностей.</p></li>
-</ul>
-</section>
-</section>
-</section>
-<section id="итеративные-алгоритмы-уточнения" class="level2">
-<h2 class="anchored" data-anchor-id="итеративные-алгоритмы-уточнения">Итеративные алгоритмы уточнения</h2>
-<p>Итеративные методы начинают с начального выравнивания и затем улучшают его путем многократных циклов оптимизации</p>
-<section id="шаги-1" class="level3">
-<h3 class="anchored" data-anchor-id="шаги-1">Шаги:</h3>
+<section id="подключение-к-вм-по-ssh" class="level1">
+<h1>Подключение к ВМ по SSH</h1>
+<p>Для подключения к виртуальной машине по SSH выполните следующие шаги:</p>
 <ol type="1">
-<li><p>Создать начальное выравнивание (часто [алгоритмами прогрессивного выравнивания])</p></li>
-<li><p>Итеративное выравнивание подмножеств последовательностей или столбцов для оптимизации заданной функции оценки.</p></li>
-<li><p>Повторяйте до сходимости или до достижения максимального числа итераций.</p></li>
-</ol>
-<p>Распространенные алгоритмы:</p>
-<p>MUSCLE (Multiple Sequence Comparison by Log-Expectation): Строит начальное выравнивание с помощью прогрессивной стратегии, а затем итеративно улучшает его.</p>
-<p>MAFFT (Multiple Alignment using Fast Fourier Transform): Использует быстрое преобразование Фурье для быстрого попарного выравнивания и итеративного уточнения для повышения точности.</p>
-<p>Плюсы:</p>
-<p>Как правило, генерирует более точные выравнивания, чем чисто прогрессивные методы.</p>
-<p>Уменьшает влияние ранних ошибок выравнивания.</p>
-<p>Минусы:</p>
-<p>Вычислительные затраты при работе с очень большими наборами данных.</p>
-<p>Переведено с помощью DeepL.com (бесплатная версия)</p>
-<ol type="1">
-<li>Итеративные методы начинают с начального выравнивания и затем улучшают его путем многократных циклов оптимизации.
-<ul>
-<li>MUSCLE и MAFFT</li>
-</ul></li>
-<li>Методы на основе скрытых марковских моделей (HMM) используют вероятностные модели для выравнивания последовательностей.
-<ul>
-<li>HMMER и SAM являются примерами HMM-based</li>
-</ul></li>
-<li>Методы на основе консенсуса строят выравнивание, опираясь на консенсусную последовательность, представляющую общие черты всех входных последовательностей</li>
+<li><p>Запускаем в VirtualBox нашу виртуальную машину.</p></li>
+<li><p>В консоли виртуальной машины выполняем команду <code>ip a</code> , которая выводит свойства сетевых интерфейсов, в том числе и тот, который нам нужен. Один из адаптеров будет иметь адрес вида 10.0.2.n, где n - произвольное число от 1 до 254, этот адрес нам не интересен, т.к. он недоступен из хостовой машины. Второй имеет адрес вида 192.168.56.n , именно он нам и нужен.</p>
+<p><img src="_files/server-help/2024-10-05 14.37.42.jpg" class="img-fluid" width="500"></p></li>
+<li><p>На собственном компьютере открываем терминал (<kbd aria-hidden="true">Win-R</kbd><span class="visually-hidden">Win-R</span> - <code>cmd</code>) и вводим команду:</p>
+<p><code>ssh user@192.168.56.n -p 57022</code></p>
+<p><code>n</code> здесь заменяем на число из п. 2.</p></li>
+<li><p>После исполнения команды нас спросят, доверяем ли мы этому серверу, тк подключаемся к нему в первый раз, мы пишем yes. Затем, нас попросят пароль пользователя, с которым мы подключаемся. для этой машины это <code>user</code>. При вводе пароль не будет отображаться (даже звездочки), это нормально.</p></li>
+<li><p>В терминале появится строка, как на вирт. машине - это значит, что мы подключились и дальнейшие действия будут происходить на ней.</p>
+<p>для отключения от вирт. машины, вводим команду</p>
+<p><code>exit</code></p></li>
 </ol>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
