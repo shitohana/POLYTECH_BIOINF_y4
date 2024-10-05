@@ -5,3 +5,7 @@ title: "Дополнительные главы биоинформатики. 4 
 -   [Практика 1. Биологические базы данных.](practices/db.qmd)
 -   [Практика 2. GNU/Linux.](practices/linux.qmd)
 -   [Практика 3. BLAST](practices/blast.qmd)
+
+Дополнительно:
+
+[Q&A по виртуальной машине](practices/server-help.qmd) для практики 2.
