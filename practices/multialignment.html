@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Владислав Станин">
+<meta name="dcterms.date" content="2024-10-11">
+
+<title>Множественное выравнивание – POLYTECH_BIOINF_y4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">POLYTECH_BIOINF_y4</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#введение" id="toc-введение" class="nav-link active" data-scroll-target="#введение">Введение</a></li>
+  <li><a href="#алгоритмы-msa" id="toc-алгоритмы-msa" class="nav-link" data-scroll-target="#алгоритмы-msa">Алгоритмы MSA</a>
+  <ul class="collapse">
+  <li><a href="#алгоритмы-прогрессивного-выравнивания" id="toc-алгоритмы-прогрессивного-выравнивания" class="nav-link" data-scroll-target="#алгоритмы-прогрессивного-выравнивания">Алгоритмы прогрессивного выравнивания</a>
+  <ul class="collapse">
+  <li><a href="#шаги" id="toc-шаги" class="nav-link" data-scroll-target="#шаги">Шаги:</a></li>
+  <li><a href="#программы" id="toc-программы" class="nav-link" data-scroll-target="#программы">Программы:</a></li>
+  <li><a href="#плюсы-и-минусы" id="toc-плюсы-и-минусы" class="nav-link" data-scroll-target="#плюсы-и-минусы">Плюсы и минусы</a></li>
+  </ul></li>
+  <li><a href="#итеративные-алгоритмы-уточнения" id="toc-итеративные-алгоритмы-уточнения" class="nav-link" data-scroll-target="#итеративные-алгоритмы-уточнения">Итеративные алгоритмы уточнения</a>
+  <ul class="collapse">
+  <li><a href="#шаги-1" id="toc-шаги-1" class="nav-link" data-scroll-target="#шаги-1">Шаги:</a></li>
+  <li><a href="#программы-1" id="toc-программы-1" class="nav-link" data-scroll-target="#программы-1">Программы:</a></li>
+  <li><a href="#плюсы-и-минусы-1" id="toc-плюсы-и-минусы-1" class="nav-link" data-scroll-target="#плюсы-и-минусы-1">Плюсы и минусы</a></li>
+  </ul></li>
+  <li><a href="#другие-важные-алгоритмы" id="toc-другие-важные-алгоритмы" class="nav-link" data-scroll-target="#другие-важные-алгоритмы">Другие важные алгоритмы</a></li>
+  </ul></li>
+  <li><a href="#форматы-файлов" id="toc-форматы-файлов" class="nav-link" data-scroll-target="#форматы-файлов">Форматы файлов</a>
+  <ul class="collapse">
+  <li><a href="#clustal-.aln" id="toc-clustal-.aln" class="nav-link" data-scroll-target="#clustal-.aln">clustal (.aln)</a></li>
+  <li><a href="#phylip-.phy" id="toc-phylip-.phy" class="nav-link" data-scroll-target="#phylip-.phy">phylip (.phy)</a></li>
+  <li><a href="#nexus-.nxs" id="toc-nexus-.nxs" class="nav-link" data-scroll-target="#nexus-.nxs">nexus (.nxs)</a></li>
+  <li><a href="#fasta-.fas.fa.fasta.fna.faa" id="toc-fasta-.fas.fa.fasta.fna.faa" class="nav-link" data-scroll-target="#fasta-.fas.fa.fasta.fna.faa">fasta (.fas/.fa/.fasta/.fna/.faa)</a></li>
+  </ul></li>
+  <li><a href="#практика-msa" id="toc-практика-msa" class="nav-link" data-scroll-target="#практика-msa">Практика MSA</a>
+  <ul class="collapse">
+  <li><a href="#выравнивание-нуклеотидных-последовательностей" id="toc-выравнивание-нуклеотидных-последовательностей" class="nav-link" data-scroll-target="#выравнивание-нуклеотидных-последовательностей">Выравнивание нуклеотидных последовательностей</a>
+  <ul class="collapse">
+  <li><a href="#данные" id="toc-данные" class="nav-link" data-scroll-target="#данные">Данные</a></li>
+  <li><a href="#запускаем-программы-для-выравнивания" id="toc-запускаем-программы-для-выравнивания" class="nav-link" data-scroll-target="#запускаем-программы-для-выравнивания">Запускаем программы для выравнивания</a></li>
+  <li><a href="#визуализация" id="toc-визуализация" class="nav-link" data-scroll-target="#визуализация">Визуализация</a></li>
+  <li><a href="#результат" id="toc-результат" class="nav-link" data-scroll-target="#результат">Результат</a></li>
+  <li><a href="#о-частых-ошибках" id="toc-о-частых-ошибках" class="nav-link" data-scroll-target="#о-частых-ошибках">О частых ошибках</a></li>
+  </ul></li>
+  <li><a href="#выравнивание-аминокислотных-последовательностей" id="toc-выравнивание-аминокислотных-последовательностей" class="nav-link" data-scroll-target="#выравнивание-аминокислотных-последовательностей">Выравнивание аминокислотных последовательностей</a>
+  <ul class="collapse">
+  <li><a href="#данные-1" id="toc-данные-1" class="nav-link" data-scroll-target="#данные-1">Данные</a></li>
+  <li><a href="#запускаем-программы-для-выравнивания-1" id="toc-запускаем-программы-для-выравнивания-1" class="nav-link" data-scroll-target="#запускаем-программы-для-выравнивания-1">Запускаем программы для выравнивания</a></li>
+  <li><a href="#визуализизация" id="toc-визуализизация" class="nav-link" data-scroll-target="#визуализизация">Визуализизация</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#добавление-к-выравниванию-новых-последовательностей" id="toc-добавление-к-выравниванию-новых-последовательностей" class="nav-link" data-scroll-target="#добавление-к-выравниванию-новых-последовательностей"><strong>Добавление к выравниванию новых последовательностей</strong></a></li>
+  <li><a href="#качество-выравнивания" id="toc-качество-выравнивания" class="nav-link" data-scroll-target="#качество-выравнивания">Качество выравнивания</a></li>
+  <li><a href="#выравнивание-не-выходя-из-ugene" id="toc-выравнивание-не-выходя-из-ugene" class="nav-link" data-scroll-target="#выравнивание-не-выходя-из-ugene">Выравнивание не выходя из UGENE</a></li>
+  <li><a href="#перекидываем-мостик-к-построению-деревьев" id="toc-перекидываем-мостик-к-построению-деревьев" class="nav-link" data-scroll-target="#перекидываем-мостик-к-построению-деревьев">Перекидываем мостик к построению деревьев</a></li>
+  <li><a href="#домашнее-задание" id="toc-домашнее-задание" class="nav-link" data-scroll-target="#домашнее-задание">Домашнее задание</a></li>
+  <li><a href="#литература" id="toc-литература" class="nav-link" data-scroll-target="#литература">Литература</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Множественное выравнивание</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Владислав Станин </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 11, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="введение" class="level1">
+<h1>Введение</h1>
+<p><strong>Множественное выравнивание последовательностей</strong> (Multiple Sequence Alignment, MSA) - фундаментальный метод в биоинформатике, используемых для сравнения <strong>трех или более биологических последовательностей</strong>. MSA позволяет выявить эволюционные взаимосвязи между последовательностями, определить консервативные участки и функциональные домены, а также предсказать структуру и функцию белков.</p>
+<p><strong>MSA используется для</strong>:</p>
+<ul>
+<li><p><strong><em>Выявления консервативных регионов и функциональных доменов</em></strong> - они обычно имеют низковариативную последовательность</p></li>
+<li><p><strong><em>Определения эволюционных взаимосвязей</em></strong> - эволюция приводит к изменению последовательностей в определнных участках. По ним можно восстанавливать эволюционные расхождения организмов.</p></li>
+<li><p><strong><em>Предсказания структуры и функции белков</em></strong> - если у белка с неизвестной функцией есть участок идентичный участку от другого белка с известной функцией, то можно предположить, что неизвестный белок имеет схожую функцию и локализацию.</p></li>
+<li><p><strong><em>Идентификация мотивов и паттернов</em></strong> - в ДНК можно встретить последовательности, которые могут ничего не кодировать, но иметь сторого определённую последовательность. Это может быть место посадки транскрипционного фактора без которого не продолжится определенный метаболический путь.</p></li>
+</ul>
+<p>Очевидное отличие отличие от парного выравнивания - множественное выравнивание учитывает сходство между всеми последовательностями одновременно. <em>Это делает его более информативным, но и более вычислительно сложным</em>.</p>
+<p>Готовое выравнивание последовательностей еще по-другому называется <u><strong>профилем</strong></u>. <u><strong><br>
+</strong></u>Напомним себе о алгориттмах используемых для построения таких профилей...</p>
+</section>
+<section id="алгоритмы-msa" class="level1">
+<h1>Алгоритмы MSA</h1>
+<p>Существует несколько подходов к построению множественного выравнивания.</p>
+<section id="алгоритмы-прогрессивного-выравнивания" class="level2">
+<h2 class="anchored" data-anchor-id="алгоритмы-прогрессивного-выравнивания">Алгоритмы прогрессивного выравнивания</h2>
+<p>Один из наиболее широко используемых подходов MSA. Он предполагает постепенное построение выравнивания путем добавления последовательностей по одной за раз.</p>
+<section id="шаги" class="level3">
+<h3 class="anchored" data-anchor-id="шаги">Шаги:</h3>
+<ol type="1">
+<li>Попарное выравнивание всех последовательностей друг с другом, в простейшем случае используя метод глобального выравнивания Нидлмана-Вунша.</li>
+<li>Создание матрицы расстояний на основе результатов парного выравнивания.</li>
+<li>Создание направляющего <u><strong>бинарного</strong></u> дерева, в простейшем варианте - используя метод ближайших соседей (об этом на следующей практике).</li>
+<li>Постепенное выравнивание последовательностей в соответствии с бинарным деревом: начиная с листьев (наиболее близких последовательностей) и направляясь к корню, выравнивавая всё менее похожие последовательности в одно выравнивание.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/progressive.png" class="img-fluid figure-img" width="1600"></p>
+<figcaption>V. Ranwez, N. Chantret - “Strengths and Limits of Multiple Sequence Alignment and Filtering Methods”</figcaption>
+</figure>
+</div>
+</section>
+<section id="программы" class="level3">
+<h3 class="anchored" data-anchor-id="программы">Программы:</h3>
+<ul>
+<li><strong>CLustalW</strong> - строит направляющее дерево, используя матрицу расстояний, полученную из парных оценок <em>(pairwise scores)</em>, а затем выравнивает последовательности шаг за шагом на основе этого дерева <span class="citation" data-cites="thompson1994">(<a href="#ref-thompson1994" role="doc-biblioref">Thompson, Higgins, and Gibson 1994</a>)</span>.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Clustal Omega</strong> - версия ClustalW, используюящая скрытые марковские модели (HMM) для построения профилей, а также имеющая возможность запуска в многопоточном режиме <span class="citation" data-cites="sievers2011">(<a href="#ref-sievers2011" role="doc-biblioref">Sievers et al. 2011</a>)</span>.</p>
+</div>
+</div>
+<ul>
+<li><p><strong>T-Coffee</strong> <span class="citation" data-cites="notredame2000">(<a href="#ref-notredame2000" role="doc-biblioref">Notredame, Higgins, and Heringa 2000</a>)</span> - улучшает подход к прогрессивному выравниванию за нескольких приёмов:</p>
+<ul>
+<li><p>T-coffee создаёт библиотеки (большой набор) попарных локальных и глобальных выравниваний (в т.ч. с использованием алгоритма ClustalW)</p></li>
+<li><p>Далее расширяет библиотеку засчёт добавления к каждой паре выравнивания третью последовательность</p></li>
+<li><p>Таким образом праные выравнвиания уточняются, а каждой паре остатков присваивается вес</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="плюсы-и-минусы" class="level3">
+<h3 class="anchored" data-anchor-id="плюсы-и-минусы">Плюсы и минусы</h3>
+<p>(+) <u><strong>Быстрая и нетребовательная</strong></u> работа с большим количеством последовательностей.<br>
+(+) Отлично выравнивает, если <u><strong>последовательности очень похожи</strong></u>.<br>
+(-) Ошибки, появившиеся в первых выравниваниях “распространяются” далее, что приводит к потенциально неточным результатам<br>
+(-) Поскольку прогрессивные методы являются эвристическими, то не гарантируют схождения к глобальному оптимуму<del><br>
+</del>(-) Не подходит для очень разных последовательностей.<br>
+(-) Старадет биологический смысл выраввнивания</p>
+</section>
+</section>
+<section id="итеративные-алгоритмы-уточнения" class="level2">
+<h2 class="anchored" data-anchor-id="итеративные-алгоритмы-уточнения">Итеративные алгоритмы уточнения</h2>
+<p>Итеративные методы начинают с начального выравнивания и затем улучшают его путем многократных циклов оптимизации.</p>
+<section id="шаги-1" class="level3">
+<h3 class="anchored" data-anchor-id="шаги-1">Шаги:</h3>
+<ol type="1">
+<li><p>Создать начальное выравнивание (часто используя <a href="#алгоритмы-прогрессивного-выравнивания">Алгоритмы прогрессивного выравнивания</a>)</p></li>
+<li><p>Выберите последовательность или подмножество последовательностей из текущего выравнивания для уточнения. Это может быть сделано различными способами:</p>
+<ul>
+<li>Выбор и удаление одной последовательности за раз;</li>
+<li>Выбор и удаление последовательностей на основе критериев;</li>
+<li>Случайное разбиение выравнивания на два набора последовательностей.</li>
+</ul></li>
+<li><p>Удалённую(-ые) последовательность(-и) выровнять заново на оставшийся профиль выравнивания или, если было сделано разбиение на два набора, то перевыровнять эти два набора (профиля) последовталеьностей</p></li>
+<li><p>Оценить новое выравнивание с помощью функции оценки (критерия).</p></li>
+<li><p>Если новое выравнивание улучшает оценку, то принять его в качестве текущего, а иначе сохранить предыдущее выравнивание.</p></li>
+<li><p>Повторять шаги 2-5 до тех пор, пока не будет достигнут минимум критерия или максимальное количество итерацй</p></li>
+</ol>
+<p><em>Пример итеративного уточнения за счёт разбиения на два набора и перевыравнивания двух наборов последовталеьностей (профилей). Здеcь</em> <span class="math inline">\(S_{TA}\)</span> - <em>score of tested alignment</em>, <span class="math inline">\(S_{CA}\)</span> - s<em>core of current alignment:</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/tree_partitioning.png" class="img-fluid figure-img" width="1400"></p>
+<figcaption>V. Ranwez, N. Chantret - “Strengths and Limits of Multiple Sequence Alignment and Filtering Methods”</figcaption>
+</figure>
+</div>
+</section>
+<section id="программы-1" class="level3">
+<h3 class="anchored" data-anchor-id="программы-1">Программы:</h3>
+<ul>
+<li><p><strong>MUSCLE</strong> (Multiple Sequence Comparison by Log-Expectation) - на каждой итерации делит выравнивание на два профиля и перевыравнивает их друг на друга. Использует оценку логарифмического ожидания для построения выравнивания <span class="citation" data-cites="edgar2004">(<a href="#ref-edgar2004" role="doc-biblioref">Edgar 2004</a>)</span>.</p></li>
+<li><p><strong>MAFFT</strong> (Multiple Alignment using Fast Fourier Transform) - Использует быстрое преобразование Фурье для построения направляющего дерева, быстрого попарного выравнивания и итеративного уточнения. Подбирает стратуегию выраввнивания взависимости от количества данных: <em>от быстрого, но грубого до медленного, но точного</em> <span class="citation" data-cites="katoh2002">(<a href="#ref-katoh2002" role="doc-biblioref">Katoh et al. 2002</a>)</span>.</p></li>
+</ul>
+</section>
+<section id="плюсы-и-минусы-1" class="level3">
+<h3 class="anchored" data-anchor-id="плюсы-и-минусы-1">Плюсы и минусы</h3>
+<p>(+) Как правило, генерирует более точные выравнивания, чем просто прогрессивные методы.<br>
+(+) Уменьшает влияние ранних ошибок выравнивания<br>
+(+) Легче справляется с разнородными последовталеьностями<br>
+(-) Требовательны к ресурсам при работе с очень большими наборами данных.<br>
+(-) Старадет биологический смысл выраввнивания<br>
+(-) Плохое начальное выравнивание всё еще может испортить последующее выравнивание</p>
+</section>
+</section>
+<section id="другие-важные-алгоритмы" class="level2">
+<h2 class="anchored" data-anchor-id="другие-важные-алгоритмы">Другие важные алгоритмы</h2>
+<ul>
+<li><p><strong>Prank</strong> <span class="citation" data-cites="löytynoja2014a">(<a href="#ref-löytynoja2014a" role="doc-biblioref">Löytynoja 2014</a>)</span></p>
+<ul>
+<li><p>Очень немногие из методов MSA учитывают лежащий в основе выравниваний эволюционный процесс, и prank является заметным исключением.</p></li>
+<li><p>Однако за счет того, что биологиечская задача превалирует над математической, то выраванивания могут оказаться неэффективными - в том числе по вычислительной мощности.</p></li>
+</ul></li>
+<li><p><strong>Kalign</strong> <span class="citation" data-cites="lassmann2005">(<a href="#ref-lassmann2005" role="doc-biblioref">Lassmann and Sonnhammer 2005</a>)</span></p>
+<ul>
+<li><p>По сравению с остальными алгоритмами, он вычислительно эффективнее и быстрее. Поэтому, если надо создать “прикидочное” выравнивание, то он хорошо для этого подходит.</p></li>
+<li><p>Использует алгоритм сопоставления строк</p></li>
+<li><p>Плохо справляется с очень непохожими последовталеьностями</p></li>
+<li><p>Меньше опций для кастомизации и улучшения выравнивания</p></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="форматы-файлов" class="level1">
+<h1>Форматы файлов</h1>
+<p>Форматов, в которых может быть записано выравнивание множество. Их важно узнавать и понимать, потому что некоторые утилиты принимают строго определнные форматы, а на остальные ругаются.</p>
+<section id="clustal-.aln" class="level2">
+<h2 class="anchored" data-anchor-id="clustal-.aln">clustal (.aln)</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">CLUSTAL</span> W 2.1 multiple sequence alignment </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">seq1</span>       MAKVLLGPVAAVVLPSTGGEQALTV-DGLSTAVTRD</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">seq2</span>       MA-LLPGGPVLLPPLTGGEKAVTVRNGGLSTAVTRD</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">seq3</span>       MAVLVGGGPVALPSTGAQAVTVKNGGLSTAVTRDRD</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">seq4</span>       MKKVLVGPLAALVLPSTGKAVTKNDGLSTAVTRDRD</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>           <span class="ex">**</span> <span class="pp">*</span>  <span class="pp">**</span> <span class="pp">*</span>   <span class="pp">**</span> <span class="pp">*</span> <span class="pp">**</span> <span class="pp">*</span>  <span class="pp">*</span>  <span class="pp">******</span>  <span class="pp">**</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>«*» - звёздочка означает, что остатки в этом столбце идентичны во всех последовательностях в выравнивании.<br>
+«:» - двоеточие означает, что наблюдаются консервативные замены (слабо влияющие на функцию).<br>
+«.» - точка означает, что наблюдаются полуконсервативные замены.</p>
+</div>
+</div>
+<p>Последовательности представлены блоками по 60 остатков. В начале пишется нащвание, в конце номер последнего остатка.</p>
+</section>
+<section id="phylip-.phy" class="level2">
+<h2 class="anchored" data-anchor-id="phylip-.phy">phylip (.phy)</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">4</span> 42</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">seq1</span>       MAKVLLGPVA AVVLPSTGGEQ ALTV-DGLST AVTRD</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">seq2</span>       MAVLLPGGPV LLPPLTGGEKA VTVRNGGLST AVTRD</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">seq3</span>       MA-LVGGGPV ALPSTGAQAVT VKNGGLSTAV TRDRD</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">seq4</span>       MKKVLVGPLA ALVLPSTGKAV TKNDGLSTAV TRDRD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Сверху написаны количество последовательностей и длина выравнивания.</p>
+</section>
+<section id="nexus-.nxs" class="level2">
+<h2 class="anchored" data-anchor-id="nexus-.nxs">nexus (.nxs)</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#NEXUS</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">BEGIN</span> DATA<span class="kw">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">DIMENSIONS</span> NTAX=4 NCHAR=42<span class="kw">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">FORMAT</span> DATATYPE=PROTEIN GAP=- MISSING=<span class="pp">?</span><span class="kw">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">MATRIX</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">seq1</span>    MAKVLLGPVAAVVLPSTGGEQALTV-DGLSTAVTRD</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">seq2</span>    MA-LLPGGPVLLPPLTGGEKAVTVRNGGLSTAVTRD</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">seq3</span>    MAVLVGGGPVALPSTGAQAVTVKNGGLSTAVTRDRD</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">seq4</span>    MKKVLVGPLAALVLPSTGKAVTKNDGLSTAVTRDRD</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">END</span><span class="kw">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Самый информативный формат, но и самый “громоздкий”. Внутри сразу написано количество последовательностей с длиной выравнивания, а также какими символами обозначаются пропуски.</p>
+</section>
+<section id="fasta-.fas.fa.fasta.fna.faa" class="level2">
+<h2 class="anchored" data-anchor-id="fasta-.fas.fa.fasta.fna.faa">fasta (.fas/.fa/.fasta/.fna/.faa)</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>seq1</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">MAKVLLGPVAAVVLPSTGGEQALTV-DGLSTAVTRD</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>seq2</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">MA-LLPGGPVLLPPLTGGEKAVTVRNGGLSTAVTRD</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>seq3</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">MAVLVGGGPVALPSTGAQAVTVKNGGLSTAVTRDRD</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>seq4</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">MKKVLVGPLAALVLPSTGKAVTKNDGLSTAVTRDRD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Этот формат нам уже знаком, поэтому далее им и будем пользоваться.</p>
+</section>
+</section>
+<section id="практика-msa" class="level1">
+<h1>Практика MSA</h1>
+<p><strong>Данные: ССЫЛКА</strong></p>
+<section id="выравнивание-нуклеотидных-последовательностей" class="level2">
+<h2 class="anchored" data-anchor-id="выравнивание-нуклеотидных-последовательностей">Выравнивание нуклеотидных последовательностей</h2>
+<section id="данные" class="level3">
+<h3 class="anchored" data-anchor-id="данные">Данные</h3>
+<p>Мы будем использовать файлы из папки <code>nucleotide_msa</code>. Здесь находтся .fasta файлы с последовательностями генов 16S рРНК бактерий.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>16S рРНК — один из трёх основных типов рибосомальных РНК, образующих основу рибосом прокариот.</p>
+</div>
+</div>
+<p>Нам они интересны, потому что они имеют консервативные и вариабельные области (<strong>V1-9</strong>)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/16S_variableregions.png" class="img-fluid figure-img"></p>
+<figcaption>По оси ординат - значение, обозначающее разнообразие (вариабельность). По оси абцисс - номер нуклеотида в 16S рРНК <span class="citation" data-cites="johnson2019">(<a href="#ref-johnson2019" role="doc-biblioref">Johnson et al. 2019</a>)</span></figcaption>
+</figure>
+</div>
+<p>В теории, консервативные области 16S разных организмов должны хорошо выровняться, а вариабельные - нет. Проверим это на практике.</p>
+</section>
+<section id="запускаем-программы-для-выравнивания" class="level3">
+<h3 class="anchored" data-anchor-id="запускаем-программы-для-выравнивания">Запускаем программы для выравнивания</h3>
+<p>В директории есть файлы с около 600 последовательностями (<code>16s_complete.fna</code>) и с 30 (<code>16s_complete_30.fna</code>). Выбирайте тот, с которым справится ваш компьютер. Некоторые алгоритмы имеют стратегии для более быстрого обрабатывания больших данных, но некоторые будут тормозить. Здесь для наглядности мы будем использовать большой файл.</p>
+<p>Выбирайте любимый:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--auto</span> 16s_complete.fna <span class="op">&gt;</span> 16s.mafft.fa</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># версия muscle 5</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">muscle</span> <span class="at">-align</span> 16s_complete.fna <span class="at">-output</span> 16s.muscle.fa</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># версия muscle 3.8</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">muscle</span> <span class="at">-in</span> 16s_complete.fna <span class="at">-out</span> 16s.muscle.fa</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">clustalw</span> <span class="at">-INFILE</span><span class="op">=</span>16s_complete.fna <span class="at">-OUTPUT</span><span class="op">=</span>FASTA <span class="at">-OUTFILE</span><span class="op">=</span>16s.clustalw.fa</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">kalign</span> <span class="at">-i</span> 16s_complete.fna <span class="at">-o</span> 16s.kalign.fa</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ex">t_coffee</span> <span class="at">-infile</span><span class="op">=</span>16s_complete.fna <span class="at">-outfile</span><span class="op">=</span>16s.tcoffee.fa</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">prank</span> <span class="at">-d</span><span class="op">=</span>16s_complete.fna <span class="at">-o</span><span class="op">=</span>16s.prank.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>MAFFT</strong></p>
+<ul>
+<li><p>Параметр <code>--auto</code> говорит программе подобрать стратегию (скорость и точноть) автоматически взависимости от количества входных данных.</p></li>
+<li><p>Параметр <strong><code>--maxiteration</code></strong> по умолчанию равен 0. Это количесвто итераций улучшения выравнивания. Для улучшения результата рекомендуется использовать значение 1000. Но учтите, что при большом числе данных результат <u><strong>придется подождать</strong></u>.</p></li>
+<li><p>Можно выбрать стратегию самостоятельно. Для подробностей: <code>man mafft</code></p></li>
+</ul></li>
+<li><p><strong>ClustalW</strong> по-умолчанию даёт результат в формате .clustal, а не .fasta. Поэтому используется параметр <code>-OUTPUT=FASTA.</code></p></li>
+<li><p><strong>T-coffee</strong> и <strong>Prank -</strong> их работа может занять очень много времени!</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="визуализация" class="level3">
+<h3 class="anchored" data-anchor-id="визуализация">Визуализация</h3>
+<p>Для визуализации выравнивания и нахождения потенциальных проблем “на глаз” мы будем использовать <a href="http://ugene.net/ru/download-all.html"><strong>UGENE</strong></a> - биоинформатическиое ПО с графическм интерфейсом, разработанное в Новосибирске.</p>
+<p>Чтобы открыть файл выравнивания нажмём на желтую папку в верхнем левом углу и выберем там соответсвующий файл</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="_files/msa/images/ugene_1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="345"></p>
+</figure>
+</div>
+<p>После загрузки мы увидим примерно такую картинку:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/ugene_2.png" class="img-fluid figure-img" width="1652"></p>
+<figcaption>Результат работы MAFFT</figcaption>
+</figure>
+</div>
+<p>Посередине мы увидим непосредственно выровненные последовательности, где нуклеотиды закрашены каждый своим цветом, а пропуски обозначаются символом тире. Слева находятся имена каждой последовтаельности, которые участвовали в выравнивании.</p>
+<p>Сверху столцы и буквы (нуклеотиды) под ней отражают т.н. <u><strong>консенсусную последовательность</strong></u> - последовательность, содержащая в каждой позиции наиболее часто встречающийся остаток (букву). Таким образом, она представляет собой результат множественного выравнивания.<br>
+Высота столбцов соответствует частоте встречаемости самого частого в данной позиции остатка. Где-то столбцы довольны малы - пропуски в этой позиции составляют большинство. Самые высокие столбцы соответсвуют позициям с однозначным выравниванием - здесь вертикальная линия остатков будет, как правило, одного цвета.</p>
+<p>Снизу можно увидеть общую гистограмму таких частот. Об областях, где серая область достигает максимального значения, содно сказать, что они представлены одинаковыми остатками во всех последовательностях. То есть такие “горки” - это наиболее консервативные регионы. “Просадки серости” же говорят о большом количестве пропусков (почти полностью белые области) или высокой вариабельности (серая область пристутсвет, но меньше в несколько раз, чем в консервативных областях) в этом регионе.</p>
+</section>
+<section id="результат" class="level3">
+<h3 class="anchored" data-anchor-id="результат">Результат</h3>
+<p>Видны явно выраженные “горки” консервативных участков и “ямы” V1-V9 участков 16S рРНК. Насколько мы доверяем этому выравнванию? Об этом чуть позже (см. <a href="#качество-выравнивания">Качество выравнивания</a>).</p>
+</section>
+<section id="о-частых-ошибках" class="level3">
+<h3 class="anchored" data-anchor-id="о-частых-ошибках">О частых ошибках</h3>
+<section id="первый-капкан" class="level4">
+<h4 class="anchored" data-anchor-id="первый-капкан">Первый капкан</h4>
+<p>Запустим выравнивание для некоторых 10 последовтаельностей (файл <code>16s_complete_10.fna</code>)</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--auto</span> 16s_complete_10.fna <span class="op">&gt;</span> 16s.mafft.10.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>и визуализируем:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/ugene_revcomp.png" class="img-fluid figure-img" width="1400"></p>
+<figcaption>Что-то тут не так...</figcaption>
+</figure>
+</div>
+<p>Одна последовательность явно выбивается. Пролема на лицо. 9 последовательностей хорошо согласуются друг с другом, 1 из них - плохо, однако все 10 - это один тот же ген. Как такое возможно?</p>
+<p>Проблема проста донельзя: проблемная последовательность <u><strong>обратно-комплементарна</strong></u>. Чтобы вернуть ее “истинный вид” нажмие слева на имя проблемной последовательности, потом нажмите на неё правой кнопкой мыши (ПКМ), а затем в разделе <strong>Edit &gt;</strong> <strong>Replace selected rows with reverse-complement.</strong> Теперь осталось перевыровнять последовательности. О том, как это сделать прямо в UGENE будет позже (см. <a href="#выравнивание-не-выходя-из-ugene">Выравнивание не выходя из UGENE</a>).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Если у вас нет графического интерфеса, то, конечно, вы можете написать и маленький скриптик на питоне, чтобы создать обратно-комплементарную последовательность. Можно даже использовать базовые утилиты терминала:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> ACCTTGAAA <span class="kw">|</span> <span class="fu">tr</span> ACGTacgt TGCAtgca <span class="kw">|</span> <span class="fu">rev</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#TTTCAAGGT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Есть и полезные утилиты для работы с последовталеьностями (их надо скачивать отдельно):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> seq <span class="at">-r</span> seq.fasta <span class="op">&gt;</span> reverse_comp_seq.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="второй-капкан" class="level4">
+<h4 class="anchored" data-anchor-id="второй-капкан">Второй капкан</h4>
+<p>Запустим выравнивание c помощью ClustalW для некоторых 4 последовательностей (файл <code>16s_complete_4.fna</code>)</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">clustalw</span> <span class="at">-INFILE</span><span class="op">=</span>16s_complete_4.fna <span class="at">-OUTPUT</span><span class="op">=</span>FASTA <span class="at">-OUTFILE</span><span class="op">=</span>16s.clustalw.4.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Визуализируем…</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/ugene_puzzle.png" class="img-fluid figure-img"></p>
+<figcaption>Что это...?</figcaption>
+</figure>
+</div>
+<p>4 последовтаельности были выпотрошены и разбросаны по кускам. Но старым алгоритмам мы доверяем меньше… Попробуем <strong>MUSCLE:</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">muscle</span> <span class="at">-align</span> 16s_complete_4.fna <span class="at">-output</span> 16s.muscle.4.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/ugene_puzzle_muscle.png" class="img-fluid figure-img" width="1400"></p>
+<figcaption>MUSCLE справился лучше, но не без огрех</figcaption>
+</figure>
+</div>
+<p>MUSCLE тоже разорвал некоторые последовательности на куски, но не так сильно. Теперь нам ясно в чём проблема. <u><strong>Проблема в частичных вложенных последовательностях, с которыми, при маленьком количестве последовательностей, не все умеют работать.</strong></u>Такие последовательности обычно имеют приписку <strong>partial sequence</strong>, однако не всегда. Иногда некоторые ленятся уточнить это или считают, что ген был просеквеирован полностью, когда на самом деле лишь часть.</p>
+<p>Попробуем <strong>MAFFT</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--auto</span> 16s_complete_4.fna <span class="op">&gt;</span> 16s.mafft.4.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/ugene_puzzle_mafft.png" class="img-fluid figure-img" width="1400"></p>
+<figcaption>Отлично справился</figcaption>
+</figure>
+</div>
+<p>MAFFT справляется с такими случаями лучше всех. Заметка на будущее!</p>
+</section>
+</section>
+</section>
+<section id="выравнивание-аминокислотных-последовательностей" class="level2">
+<h2 class="anchored" data-anchor-id="выравнивание-аминокислотных-последовательностей">Выравнивание аминокислотных последовательностей</h2>
+<p>Принципиально процесс выравнивания аминокислотных последовательостей не отличается от нуклеотидных, поэтому сразу же приступим:</p>
+<section id="данные-1" class="level3">
+<h3 class="anchored" data-anchor-id="данные-1">Данные</h3>
+<p>Мы будем использовать последовталеьность миоглобина у приматов (файл <code>Myoglobin_primates.fna</code>).</p>
+<p><strong>Миоглобин -</strong> <u>гем</u>связывающий белок скелетных мышц и мышцы сердца. Миоглобин выполняет функцию кислородного резерва, который расходуется, восполняя временную нехватку кислорода при нагрузках.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/myoglob.png" class="img-fluid figure-img" width="1000"></p>
+<figcaption>Миоглобин. Оранжевым обозначен гем.</figcaption>
+</figure>
+</div>
+</section>
+<section id="запускаем-программы-для-выравнивания-1" class="level3">
+<h3 class="anchored" data-anchor-id="запускаем-программы-для-выравнивания-1">Запускаем программы для выравнивания</h3>
+<p>Выбирайте любимый:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--auto</span> Myoglobin_primates.fna <span class="op">&gt;</span> Myoglobin_primates.mafft.fa</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># версия muscle 5</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">muscle</span> <span class="at">-align</span> Myoglobin_primates.fna <span class="at">-output</span> Myoglobin_primates.muscle.fa</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># версия muscle 3.8</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">muscle</span> <span class="at">-in</span> Myoglobin_primates.fna <span class="at">-out</span> Myoglobin_primates.muscle.fa</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ex">clustalw</span> <span class="at">-INFILE</span><span class="op">=</span>Myoglobin_primates.fna <span class="at">-OUTPUT</span><span class="op">=</span>FASTA <span class="at">-OUTFILE</span><span class="op">=</span>Myoglobin_primates.clustalw.fa</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ex">kalign</span> <span class="at">-i</span> Myoglobin_primates.fna <span class="at">-o</span> Myoglobin_primates.kalign.fa</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="ex">t_coffee</span> <span class="at">-infile</span><span class="op">=</span>Myoglobin_primates.fna <span class="at">-outfile</span><span class="op">=</span>Myoglobin_primates.tcoffee.fa</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ex">prank</span> <span class="at">-d</span><span class="op">=</span>Myoglobin_primates.fna <span class="at">-o</span><span class="op">=</span>Myoglobin_primates.prank.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Комментарии по поводу алгоритмов те же, что и для нуклеотидных последовательностей.</p>
+</div>
+</div>
+</section>
+<section id="визуализизация" class="level3">
+<h3 class="anchored" data-anchor-id="визуализизация">Визуализизация</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/ugene_aa.png" class="img-fluid figure-img"></p>
+<figcaption>Результат работы MAFFT</figcaption>
+</figure>
+</div>
+<p>Миоглобин - жизненно необходимый белок и очевидно, что он достаточно конесрвативен, по карйней мере в тех учатсках, которые отвечают за связывание гема и кислорода. Один из таких участков выделен на изображении сверху - гистидин (<strong>H</strong>) в 94-й позиции (у человека). Чтобы белок мог выполнять свою непосредственную функцию область связывания гема должна быть строго постоянна - любое изменение здесь может повлечь серъезную болезнь или даже смерть. Так замена гистидина в 98-й позиции на тирозин (<strong>H -&gt; Y</strong>) приводит к <u><strong>миоглобинопатии</strong></u> - снижению связывания кислорода и склонности к образованию высокомолекулярных агрегатов <span class="citation" data-cites="hofbauer2022">(<a href="#ref-hofbauer2022" role="doc-biblioref">Hofbauer et al. 2022</a>)</span>.</p>
+<p><em>Кстати, а где последовательность человека?</em></p>
+</section>
+</section>
+</section>
+<section id="добавление-к-выравниванию-новых-последовательностей" class="level1">
+<h1><strong>Добавление к выравниванию новых последовательностей</strong></h1>
+<p>Бывает такое, что вы жади несколько часов, пока выровняется 1000+ последовательностей и тут, получив результат, к вам прибегает коллега и говорит, что (выберите любимый вариант):</p>
+<ul>
+<li><p>они нашли на компьютере забытые последовательности</p></li>
+<li><p>они только что отсекнировали еще несколько последовательностей</p></li>
+<li><p>кто-то выпустил статью с гомологичными последовательностями</p></li>
+</ul>
+<p>которые надо тоже включить в выравнивание… <em>И что теперь всё заново переделывать?!</em></p>
+<p><strong>К нам на помощь приходит возможность выравнивать последовательности/профили на готовый профиль.</strong> Это легко можно сделать в MUSCLE (<strong>только в версии 3.8</strong>) и MAFFT.</p>
+<p>Сначала, если у нас несколько последовательностей на добавление, нужно их выравнить друг на друга. В нашем случае мы хоти добавить в профиль выравнивания миоглобина приматов последовательности гориллы и человека (файл <code>Myoglobin_human_gorilla.fna</code>)</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--auto</span> Myoglobin_human_gorilla.fna <span class="op">&gt;</span> Myoglobin_human_gorilla.mafft.fa</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># или</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># версия muscle 3.8!</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">muscle</span> <span class="at">-in</span> Myoglobin_human_gorilla.fna <span class="at">-outMyoglobin_human_gorilla.muscle.fa</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Затем добавим в созданный ранее профиль новый профиль (горилла+человек)</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--add</span> Myoglobin_human_gorilla.mafft.fa Myoglobin_primates.mafft.fa <span class="op">&gt;</span> Myoglobin_full.mafft.fa</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># или</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># версия muscle 3.8!</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">muscle</span> <span class="at">-profile</span> <span class="at">-in1</span> Myoglobin_primates.muscle.fa <span class="at">-in2</span> Myoglobin_human_gorilla.muscle.fa <span class="at">-out</span> Myoglobin_full.muscle.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/ugene_gorilla_human.png" class="img-fluid figure-img" width="1400"></p>
+<figcaption>Вуаля!</figcaption>
+</figure>
+</div>
+<p>Снизу видно, что добавились наши две последовательности гориллы и человека!</p>
+</section>
+<section id="качество-выравнивания" class="level1">
+<h1>Качество выравнивания</h1>
+<p>Существуют ли формальные методы оценки качества выравнивания? И да, и нет. Есть метрики и даже алгоритмы, которые подсветят вам проблемыне области, однако <u><strong>последнее слово всё равно за вами</strong></u>. Вы можете опираться на формальные метрики, но в конце концов, набравшись опыта, вы легко и бытсро будете видеть проблемы своими глазами.</p>
+<ul>
+<li><a href="https://tcoffee.crg.eu/apps/tcoffee/do:core">TCS</a> - это веб приложение, которое оценивает ваше выравнивание и выводит цветную версию, отображающую локальную “надежность” выраванивания.</li>
+</ul>
+<p><img src="_files/msa/images/tcs_score.png" class="img-fluid" width="1100"></p>
+<ul>
+<li><a href="https://taux.evolseq.net/guidance">GUIDANCE2</a> - Измеряет качество выравнивания, оценивая устойчивость выравнивания к изменениям в направляющем дереве или при включении последовательностей. Выводит баллы доверия для отдельных столбцов и последовательностей.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/gudance_score.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ul>
+<li>Там же, на портале GUIDANCE2 можно выбрать и другой алгоритм - <strong>HoT (Heads or Tales)</strong>. Он оценивает качество выравнивания, оценивая чувствительность к включению или исключению терминальных областей.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Кстати, почему-то надежные выравнивания обозначаются красным…</p>
+</div>
+</div>
+</section>
+<section id="выравнивание-не-выходя-из-ugene" class="level1">
+<h1>Выравнивание не выходя из UGENE</h1>
+<p>Биологам, честно говоря, не очень хочется печтать команды в терминале, да и вообще они биологи, а не программисты… Разработчики <strong>UGENE</strong> сделали удобное ПО, которое включает в себя большой набор утилит, в том числе для построения MSA, которые можно запускать нажав пару кнопок.</p>
+<p>В самом верху экрана можно найти вкладку-копку <strong>Tools/Инструменты</strong>. В выпавшем окне выберите <strong>Multiple sequence alignment/Множественное выравнивание</strong>. Далее выберите инструмент</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/ugene_msa.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1100"></p>
+</figure>
+</div>
+<p>Есть вариант перевыровнять существующее выравнивнивание или добавит к нему последовательность,профиль. Для этого надо нажать ПКМ на область с уже стуществующим выравниванием и там нажать на <strong>Align/Выровнять.</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/ugene_realign.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1100"></p>
+</figure>
+</div>
+</section>
+<section id="перекидываем-мостик-к-построению-деревьев" class="level1">
+<h1>Перекидываем мостик к построению деревьев</h1>
+<p>Все замены, вставки и делеции несут важную эволюционную информацию для потроения филогенетических деревьев. Тем не менее, иногда итоговое выравнивание содержит последовательности разной длины, и тогда хвосты более длинных последовательностей “висят” или “торчат” среди пустой области. Такие регионы часто не несут никакой эволюционной информации, так как они находятся на концах, где другие последовтаельности не имеют остатков. При этом <u><strong>обращаем внимание(!)</strong></u>, что подобные области <strong>в середине выравнивания</strong> могут быть <u><strong>инсерцией</strong></u>, что является важной биологической информацией!</p>
+<p>Поэтому часто исследователи прибегают к обрезке концов (<em>триммингу</em>) профиля выравнивания, чтобы сохранить, только важную информацию для дальнейшего построения филогении. Для этого можно использовать утилиту <strong>trimAl:</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trimal</span> <span class="at">-in</span> Myoglobin_full.mafft.fa <span class="at">-out</span> Myoglobin_full.mafft.trim.fa <span class="at">-automated1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Чтобы произошла обрезка, нужно укзать хотя бы один параметр для обрезки (<code>-automated1</code> - автоматически подбирает параметры). Это сделано специально, так как эта утилита также может переводить выравнивания из одного формата в другой. Например, переведем <strong>fasta</strong> в <strong>phylip</strong></li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trimal</span> <span class="at">-in</span> Myoglobin_full.mafft.fa <span class="at">-out</span> Myoglobin_full.mafft.phy <span class="at">-phylip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Больше информации в <code>trimal -h</code></p>
+</div>
+</div>
+<p>Можно теперь визуализировать наше обрезанное выравнивание и посмотреть, что осталось.</p>
+</section>
+<section id="домашнее-задание" class="level1">
+<h1>Домашнее задание</h1>
+</section>
+<section id="литература" class="level1">
+
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Литература</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-edgar2004" class="csl-entry" role="listitem">
+Edgar, Robert C. 2004. <span>“MUSCLE: Multiple Sequence Alignment with High Accuracy and High Throughput.”</span> <em>Nucleic Acids Research</em> 32 (5): 1792–97. <a href="https://doi.org/10.1093/nar/gkh340">https://doi.org/10.1093/nar/gkh340</a>.
+</div>
+<div id="ref-hofbauer2022" class="csl-entry" role="listitem">
+Hofbauer, Stefan, Marcello Pignataro, Marco Borsari, Carlo Augusto Bortolotti, Giulia Di Rocco, Gianina Ravenscroft, Paul G. Furtmüller, Christian Obinger, Marco Sola, and Gianantonio Battistuzzi. 2022. <span>“Pseudoperoxidase Activity, Conformational Stability, and Aggregation Propensity of the His98Tyr Myoglobin Variant: Implications for the Onset of Myoglobinopathy.”</span> <em>The Febs Journal</em> 289 (4): 1105–17. <a href="https://doi.org/10.1111/febs.16235">https://doi.org/10.1111/febs.16235</a>.
+</div>
+<div id="ref-johnson2019" class="csl-entry" role="listitem">
+Johnson, Jethro S., Daniel J. Spakowicz, Bo-Young Hong, Lauren M. Petersen, Patrick Demkowicz, Lei Chen, Shana R. Leopold, et al. 2019. <span>“Evaluation of 16S rRNA Gene Sequencing for Species and Strain-Level Microbiome Analysis.”</span> <em>Nature Communications</em> 10 (1): 5029. <a href="https://doi.org/10.1038/s41467-019-13036-1">https://doi.org/10.1038/s41467-019-13036-1</a>.
+</div>
+<div id="ref-katoh2002" class="csl-entry" role="listitem">
+Katoh, Kazutaka, Kazuharu Misawa, Kei-ichi Kuma, and Takashi Miyata. 2002. <span>“MAFFT: A Novel Method for Rapid Multiple Sequence Alignment Based on Fast Fourier Transform.”</span> <em>Nucleic Acids Research</em> 30 (14): 3059–66. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC135756/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC135756/</a>.
+</div>
+<div id="ref-lassmann2005" class="csl-entry" role="listitem">
+Lassmann, Timo, and Erik LL Sonnhammer. 2005. <span>“Kalign <span></span> an Accurate and Fast Multiple Sequence Alignment Algorithm.”</span> <em>BMC Bioinformatics</em> 6 (1): 298. <a href="https://doi.org/10.1186/1471-2105-6-298">https://doi.org/10.1186/1471-2105-6-298</a>.
+</div>
+<div id="ref-löytynoja2014a" class="csl-entry" role="listitem">
+Löytynoja, Ari. 2014. <span>“Phylogeny-Aware Alignment with PRANK.”</span> In, edited by David J Russell, 155–70. Totowa, NJ: Humana Press. <a href="https://doi.org/10.1007/978-1-62703-646-7_10">https://doi.org/10.1007/978-1-62703-646-7_10</a>.
+</div>
+<div id="ref-notredame2000" class="csl-entry" role="listitem">
+Notredame, Cédric, Desmond G Higgins, and Jaap Heringa. 2000. <span>“T-Coffee: A Novel Method for Fast and Accurate Multiple Sequence Alignment1.”</span> <em>Journal of Molecular Biology</em> 302 (1): 205–17. <a href="https://doi.org/10.1006/jmbi.2000.4042">https://doi.org/10.1006/jmbi.2000.4042</a>.
+</div>
+<div id="ref-sievers2011" class="csl-entry" role="listitem">
+Sievers, Fabian, Andreas Wilm, David Dineen, Toby J Gibson, Kevin Karplus, Weizhong Li, Rodrigo Lopez, et al. 2011. <span>“Fast, Scalable Generation of High-Quality Protein Multiple Sequence Alignments Using Clustal Omega.”</span> <em>Molecular Systems Biology</em> 7 (October): 539. <a href="https://doi.org/10.1038/msb.2011.75">https://doi.org/10.1038/msb.2011.75</a>.
+</div>
+<div id="ref-thompson1994" class="csl-entry" role="listitem">
+Thompson, J D, D G Higgins, and T J Gibson. 1994. <span>“CLUSTAL w: Improving the Sensitivity of Progressive Multiple Sequence Alignment Through Sequence Weighting, Position-Specific Gap Penalties and Weight Matrix Choice.”</span> <em>Nucleic Acids Research</em> 22 (22): 4673–80. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC308517/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC308517/</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
