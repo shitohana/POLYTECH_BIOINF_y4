@@ -2,26 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shitohana.github.io/POLYTECH_BIOINF_y4/practices/seq.html</loc>
-    <lastmod>2024-09-27T11:36:23.331Z</lastmod>
+    <lastmod>2024-09-24T15:47:13.058Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shitohana.github.io/POLYTECH_BIOINF_y4/practices/hmm.html</loc>
+    <lastmod>2024-11-13T15:42:18.242Z</lastmod>
   </url>
   <url>
     <loc>https://shitohana.github.io/POLYTECH_BIOINF_y4/practices/msa.html</loc>
-    <lastmod>2024-10-09T02:16:09.471Z</lastmod>
+    <lastmod>2024-11-10T22:47:20.305Z</lastmod>
   </url>
   <url>
     <loc>https://shitohana.github.io/POLYTECH_BIOINF_y4/practices/linux.html</loc>
-    <lastmod>2024-09-30T11:04:18.269Z</lastmod>
+    <lastmod>2024-09-30T10:36:05.067Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shitohana.github.io/POLYTECH_BIOINF_y4/practices/hmm — копия.html</loc>
+    <lastmod>2024-11-11T14:42:16.354Z</lastmod>
   </url>
   <url>
     <loc>https://shitohana.github.io/POLYTECH_BIOINF_y4/index.html</loc>
-    <lastmod>2024-10-09T01:56:21.330Z</lastmod>
+    <lastmod>2024-11-10T22:47:20.266Z</lastmod>
   </url>
   <url>
     <loc>https://shitohana.github.io/POLYTECH_BIOINF_y4/practices/blast.html</loc>
-    <lastmod>2024-10-04T17:27:12.102Z</lastmod>
+    <lastmod>2024-10-05T11:27:44.456Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shitohana.github.io/POLYTECH_BIOINF_y4/practices/server-help.html</loc>
+    <lastmod>2024-10-05T11:42:19.781Z</lastmod>
   </url>
   <url>
     <loc>https://shitohana.github.io/POLYTECH_BIOINF_y4/practices/db.html</loc>
-    <lastmod>2024-10-07T10:23:09.622Z</lastmod>
+    <lastmod>2024-09-25T16:46:40.420Z</lastmod>
   </url>
 </urlset>
