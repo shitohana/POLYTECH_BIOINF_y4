@@ -104,88 +104,28 @@ stateDiagram-v2
 
 Пример имплементации алгоритма (псевдокод)
 
+### Входные данные:
+
+-   $O = {o_1, o_2, \dots, o_N}$: Пространство наблюдений
+-   $S = {s_1, s_2, \dots, s_K}$: Пространство состояний
+-   $Y = {y_1, y_2, \dots, y_T}$: Последовательность наблюдений
+-   $A$: Матрица переходов из $i$-го состояния в $j$-е, размером $K \times K$
+-   $B$: Матрица эмиссии размера $K \times N$, определяющая вероятность наблюдения $o_j$ из состояния $s_i$
+-   $\pi$: Массив начальных вероятностей размером $K$, показывающий вероятность того, что начальное состояние --- $s_i$
+
 ```{r, eval = FALSE}
-# --------------------- Initial model setup ---------------
-# Define states and observations
-states = ['CpG', 'Non-CpG']
-observations = ['A', 'T', 'G', 'C']
-map_state_to_index = {CpG: 0, Non-CpG: 1}
-map_obs_to_index = {A: 0, T: 1, G: 2, C: 3}
-
-# Define transition probability matrix between states
-transition_probabilities = [
-    
-    # Complete this part yourself for each state
-    
-]
-
-# Define emission probability matrix from states to 
-# observations
-emission_probabilities = [
-    
-    # Complete this part yourself for each state
-    
-]
-
-
-# --------------------- Reading setup ---------------------
-# Observed sequence (e.g., 'Obs1', 'Obs2', ...)
-observed_sequence = read sequence
-# Convert observed sequence to indices
-observed_index_sequence = [map_obs_to_index[obs] for obs in observed_sequence]
-
-# Initialize parameters for Viterbi algorithm
-number_of_states = length of states
-sequence_length = length of observed_sequence
-
-# Viterbi matrix to store highest probabilities
-Viterbi_matrix = matrix of zeros with dimensions (number_of_states, sequence_length)
-
-# Backpointer matrix to store best paths
-backpointer_matrix = matrix of zeros (integer type) with dimensions (number_of_states, sequence_length)
-
-
-# --------------------- Applying model --------------------
-# Initialization step: Populate the first column of Viterbi 
-# and backpointer matrices
-for each state s:
-    Viterbi_matrix[s, 0] = emission_probabilities[s][observed_index_sequence[0]]
-    backpointer_matrix[s, 0] = 0
-
-# Iteration over each position in observed sequence
-for each position t from 1 to sequence_length - 1:
-    for each state s:
-        # Calculate maximum probability of reaching state 
-        # s from previous states
-        transition_probs = [Viterbi_matrix[prev_state, t - 1] * transition_probabilities[prev_state][s]
-                            for each previous state]
-        max_transition_prob = maximum value of transition_probs
-        Viterbi_matrix[s, t] = max_transition_prob * emission_probabilities[s][observed_index_sequence[t]]
-        backpointer_matrix[s, t] = index of max_transition_prob
-
-# Termination step: Identify best last state
-last_state = index of maximum value in last column of Viterbi_matrix
-best_path = [last_state]
-
-# Backtrack to construct the optimal state path
-for each position t from sequence_length - 1 down to 1:
-    last_state = backpointer_matrix[last_state][t]
-    append last_state to best_path
-
-# Reverse best_path to get the correct order
-best_path = reverse of best_path
-
-
-# --------------------- Finishing -------------------------
-# Map indices in best_path back to state names
-most_probable_states = [
-    states[state_index] for each state_index in best_path
-    ]
-
-# Output the result
-print("Most probable sequence of states:")
-print(most_probable_states)
-
+Viterbi(O, S, P, Y, A, B) 
+    for j = 1 to K
+        TState[j, 1] = P[j] * B[j, Y[1]]
+        TIndex[j, 1] = 0
+    for i = 2 to T
+        for j = 1 to K
+            TIndex[j, i] = argmax_k_in_K (TState[k, i-1] * A[k, j] * B[j, Y[i]])
+            TState[j, i] = TState[TIndex[j, i], i-1] * A[TIndex[j, i], j] * B[j, Y[i]]
+    X[T] = argmax_1 <= k <= K (TState[k, T]) 
+    for i = T downto 2
+        X[i-1] = TIndex[X[i], i]
+    return X
 ```
 
 # Оценка эффективности модели
