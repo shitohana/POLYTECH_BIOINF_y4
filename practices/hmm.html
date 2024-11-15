@@ -186,7 +186,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#как-подготовить-hmm.-частный-случай." id="toc-как-подготовить-hmm.-частный-случай." class="nav-link" data-scroll-target="#как-подготовить-hmm.-частный-случай.">Как подготовить HMM. Частный случай.</a></li>
   </ul></li>
-  <li><a href="#имплементация-алгоритма" id="toc-имплементация-алгоритма" class="nav-link" data-scroll-target="#имплементация-алгоритма">Имплементация алгоритма</a></li>
+  <li><a href="#имплементация-алгоритма" id="toc-имплементация-алгоритма" class="nav-link" data-scroll-target="#имплементация-алгоритма">Имплементация алгоритма</a>
+  <ul class="collapse">
+  <li><a href="#входные-данные" id="toc-входные-данные" class="nav-link" data-scroll-target="#входные-данные">Входные данные:</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#оценка-эффективности-модели" id="toc-оценка-эффективности-модели" class="nav-link" data-scroll-target="#оценка-эффективности-модели">Оценка эффективности модели</a>
   <ul class="collapse">
@@ -320,88 +323,31 @@ window.Quarto = {
 <p>Выбор конечного состояния: В последней колонке матрицы V определяется состояние с наивысшей вероятностью, которое считается конечной точкой на наиболее вероятном пути.</p>
 <p>Обратный проход (backtracking): Начиная с выбранного конечного состояния, матрица указателей используется для «обратного прохода» через последовательность, чтобы восстановить наиболее вероятный путь скрытых состояний. Этот процесс позволяет точно определить участки, такие как CpG-островки, в анализируемой последовательности.</p>
 <p>Пример имплементации алгоритма (псевдокод)</p>
+<section id="входные-данные" class="level3">
+<h3 class="anchored" data-anchor-id="входные-данные">Входные данные:</h3>
+<ul>
+<li><span class="math inline">\(O = {o_1, o_2, \dots, o_N}\)</span>: Пространство наблюдений</li>
+<li><span class="math inline">\(S = {s_1, s_2, \dots, s_K}\)</span>: Пространство состояний</li>
+<li><span class="math inline">\(Y = {y_1, y_2, \dots, y_T}\)</span>: Последовательность наблюдений</li>
+<li><span class="math inline">\(A\)</span>: Матрица переходов из <span class="math inline">\(i\)</span>-го состояния в <span class="math inline">\(j\)</span>-е, размером <span class="math inline">\(K \times K\)</span></li>
+<li><span class="math inline">\(B\)</span>: Матрица эмиссии размера <span class="math inline">\(K \times N\)</span>, определяющая вероятность наблюдения <span class="math inline">\(o_j\)</span> из состояния <span class="math inline">\(s_i\)</span></li>
+<li><span class="math inline">\(\pi\)</span>: Массив начальных вероятностей размером <span class="math inline">\(K\)</span>, показывающий вероятность того, что начальное состояние — <span class="math inline">\(s_i\)</span></li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------- Initial model setup ---------------</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define states and observations</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>states <span class="ot">=</span> [<span class="st">'CpG'</span>, <span class="st">'Non-CpG'</span>]</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>observations <span class="ot">=</span> [<span class="st">'A'</span>, <span class="st">'T'</span>, <span class="st">'G'</span>, <span class="st">'C'</span>]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>map_state_to_index <span class="ot">=</span> {CpG<span class="sc">:</span> <span class="dv">0</span>, Non<span class="sc">-</span>CpG<span class="sc">:</span> <span class="dv">1</span>}</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>map_obs_to_index <span class="ot">=</span> {A<span class="sc">:</span> <span class="dv">0</span>, T<span class="sc">:</span> <span class="dv">1</span>, G<span class="sc">:</span> <span class="dv">2</span>, C<span class="sc">:</span> <span class="dv">3</span>}</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define transition probability matrix between states</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>transition_probabilities <span class="ot">=</span> [</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Complete this part yourself for each state</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Define emission probability matrix from states to </span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># observations</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>emission_probabilities <span class="ot">=</span> [</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Complete this part yourself for each state</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------- Reading setup ---------------------</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Observed sequence (e.g., 'Obs1', 'Obs2', ...)</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>observed_sequence <span class="ot">=</span> read sequence</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert observed sequence to indices</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>observed_index_sequence <span class="ot">=</span> [map_obs_to_index[obs] <span class="cf">for</span> obs <span class="cf">in</span> observed_sequence]</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize parameters for Viterbi algorithm</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>number_of_states <span class="ot">=</span> length of states</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>sequence_length <span class="ot">=</span> length of observed_sequence</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Viterbi matrix to store highest probabilities</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Viterbi_matrix <span class="ot">=</span> matrix of zeros with <span class="fu">dimensions</span> (number_of_states, sequence_length)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Backpointer matrix to store best paths</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>backpointer_matrix <span class="ot">=</span> matrix of <span class="fu">zeros</span> (integer type) with <span class="fu">dimensions</span> (number_of_states, sequence_length)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------- Applying model --------------------</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialization step: Populate the first column of Viterbi </span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># and backpointer matrices</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> each state s<span class="sc">:</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    Viterbi_matrix[s, <span class="dv">0</span>] <span class="ot">=</span> emission_probabilities[s][observed_index_sequence[<span class="dv">0</span>]]</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    backpointer_matrix[s, <span class="dv">0</span>] <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Iteration over each position in observed sequence</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> each position t from <span class="dv">1</span> to sequence_length <span class="sc">-</span> <span class="dv">1</span><span class="sc">:</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> each state s<span class="sc">:</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate maximum probability of reaching state </span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># s from previous states</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        transition_probs <span class="ot">=</span> [Viterbi_matrix[prev_state, t <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">*</span> transition_probabilities[prev_state][s]</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>                            <span class="cf">for</span> each previous state]</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>        max_transition_prob <span class="ot">=</span> maximum value of transition_probs</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        Viterbi_matrix[s, t] <span class="ot">=</span> max_transition_prob <span class="sc">*</span> emission_probabilities[s][observed_index_sequence[t]]</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        backpointer_matrix[s, t] <span class="ot">=</span> index of max_transition_prob</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Termination step: Identify best last state</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>last_state <span class="ot">=</span> index of maximum value <span class="cf">in</span> last column of Viterbi_matrix</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>best_path <span class="ot">=</span> [last_state]</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Backtrack to construct the optimal state path</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> each position t from sequence_length <span class="sc">-</span> <span class="dv">1</span> down to <span class="dv">1</span><span class="sc">:</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    last_state <span class="ot">=</span> backpointer_matrix[last_state][t]</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    append last_state to best_path</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse best_path to get the correct order</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>best_path <span class="ot">=</span> reverse of best_path</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------- Finishing -------------------------</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Map indices in best_path back to state names</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>most_probable_states <span class="ot">=</span> [</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    states[state_index] <span class="cf">for</span> each state_index <span class="cf">in</span> best_path</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the result</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Most probable sequence of states:"</span>)</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(most_probable_states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Viterbi</span>(O, S, P, Y, A, B) </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="ot">=</span> <span class="dv">1</span> to K</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        TState[j, <span class="dv">1</span>] <span class="ot">=</span> P[j] <span class="sc">*</span> B[j, Y[<span class="dv">1</span>]]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        TIndex[j, <span class="dv">1</span>] <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="ot">=</span> <span class="dv">2</span> to T</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="ot">=</span> <span class="dv">1</span> to K</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            TIndex[j, i] <span class="ot">=</span> <span class="fu">argmax_k_in_K</span> (TState[k, i<span class="dv">-1</span>] <span class="sc">*</span> A[k, j] <span class="sc">*</span> B[j, Y[i]])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            TState[j, i] <span class="ot">=</span> TState[TIndex[j, i], i<span class="dv">-1</span>] <span class="sc">*</span> A[TIndex[j, i], j] <span class="sc">*</span> B[j, Y[i]]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    X[T] <span class="ot">=</span> argmax_1 <span class="sc">&lt;=</span> k <span class="sc">&lt;=</span> <span class="fu">K</span> (TState[k, T]) </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="ot">=</span> T downto <span class="dv">2</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        X[i<span class="dv">-1</span>] <span class="ot">=</span> TIndex[X[i], i]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    return X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
 </section>
 </section>
 <section id="оценка-эффективности-модели" class="level1">
