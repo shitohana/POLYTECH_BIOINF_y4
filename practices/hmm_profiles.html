@@ -496,10 +496,10 @@ Important
 <p>Архитектура, описанная сверху, со своими весами (вероятностями) переходов и эмиссий - это и есть HMM-профиль. Чтобы получить такой профиль нужно обучить нашу модель на наших последовательностях. Да, с помощью алгоритма Баума-Вэлша или…</p>
 <p><strong><em>С помощью уже написанных для этого программ.</em></strong></p>
 <p><strong>Будем баловаться с последовательностями домена протеин-киназы C.</strong></p>
+<p><a href="https://github.com/polytech-bioinformatics/hmm_profiles_practice/tree/main/lecture_data">ССЫЛКА НА ДАННЫЕ</a></p>
 <section id="msa" class="level2">
 <h2 class="anchored" data-anchor-id="msa">MSA</h2>
 <p>На <a href="../practices/msa.html">практике по MSA</a> с помощью разных алгоритмов мы создавали профили выравнивания, которые даже затем выравнивали друг с другом и создавали новый профиль (см. раздел <em>“Добавление к выравниванию новых последовательностей”</em>). Значит, <strong>мы уже косвенно знакомы с созданием профилей.</strong> То был профиль выравнивания - по сути набор последовательностей одной длины, которые содержат основания и пропуски. <strong>Однако нам нужен профиль, который отражает некоторые вероятностные характеристики последовательности.</strong></p>
-<!--# Данные для для практики: ССЫЛКА вставить ссылку -->
 <p>Каждый “столбик” (<span class="math inline">\(M_i\ I_i\ D_i\)</span>) в графе, как на <a href="#fig-hmm_seq_3" class="quarto-xref">Figure&nbsp;4</a>, должен соответствовать столбику множественного выравнивания. .Выполним его:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> pkce.fasta <span class="op">&gt;</span> pkce.aln.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
@@ -929,7 +929,7 @@ Important
 <section id="готовые-hmm-профили-где-взять" class="level2">
 <h2 class="anchored" data-anchor-id="готовые-hmm-профили-где-взять">Готовые HMM-профили (где взять?)</h2>
 <ul>
-<li><p><a href="https://www.ebi.ac.uk/interpro/entry/InterPro/">PFAM</a> (входит в InterPro) - белки</p></li>
+<li><p><a href="https://www.ebi.ac.uk/interpro/entry/pfam/">PFAM</a> (входит в InterPro) - белки</p></li>
 <li><p><a href="https://dfam.org/browse">DFAM</a> - мобильные элементы и повторы</p></li>
 </ul>
 </section>
@@ -942,7 +942,7 @@ Important
 </section>
 <section id="домашнее-задание" class="level1">
 <h1>Домашнее задание</h1>
-<p>ССЫЛКА НА ДАННЫЕ <!--#  --></p>
+<p><a href="https://github.com/polytech-bioinformatics/hmm_profiles_practice/tree/main/variants">ССЫЛКА НА ДАННЫЕ</a></p>
 <p>Мы собрали геном <strong>Cheburashka apelsinus</strong> и предсказали его протеом - <code>cheb_apel_proteome.fasta</code>.</p>
 <p><strong>Ваши задачи:</strong></p>
 <ol type="1">
