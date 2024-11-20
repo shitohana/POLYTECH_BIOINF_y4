@@ -212,7 +212,7 @@ window.Quarto = {
   <li><a href="#варианты" id="toc-варианты" class="nav-link" data-scroll-target="#варианты">Варианты:</a></li>
   <li><a href="#как-вытащить-последовательности-из-протеома-по-id" id="toc-как-вытащить-последовательности-из-протеома-по-id" class="nav-link" data-scroll-target="#как-вытащить-последовательности-из-протеома-по-id">Как вытащить последовательности из протеома по id</a>
   <ul class="collapse">
-  <li><a href="#через-biopython" id="toc-через-biopython" class="nav-link" data-scroll-target="#через-biopython">Через <strong>biopython</strong></a></li>
+  <li><a href="#через-biopython" id="toc-через-biopython" class="nav-link" data-scroll-target="#через-biopython">Через biopython</a></li>
   <li><a href="#утилита-seqkit" id="toc-утилита-seqkit" class="nav-link" data-scroll-target="#утилита-seqkit">Утилита seqkit</a></li>
   <li><a href="#приступим" id="toc-приступим" class="nav-link" data-scroll-target="#приступим">Приступим</a></li>
   </ul></li>
@@ -727,7 +727,7 @@ HMM          A        C        D        E        F        G        H        I   
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>   pkce.hmm danio_rerio_proteins.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p><code>--tblout &lt;file&gt;</code> - записать <strong>лучший результат для каждого белка</strong> в виде таблицы в <code>&lt;file&gt;</code>.</p></li>
-<li><p><code>--domtblout``&lt;file&gt;</code> - записать результаты поиска <strong>для каждого домена (то есть все найденные домены в белке)</strong> в виде таблицы в <code>&lt;file&gt;</code>.</p></li>
+<li><p><code>--domtblout &lt;file&gt;</code> - записать результаты поиска <strong>для каждого домена (то есть все найденные домены в белке)</strong> в виде таблицы в <code>&lt;file&gt;</code>.</p></li>
 <li><p><code>-A &lt;file&gt;</code> - вывести выравнивание найденного домена с белками в <code>&lt;file&gt;</code></p></li>
 <li><p><code>--cpu &lt;n&gt;</code> - для паралелизации <em>(здесь можно не указывать)</em></p></li>
 </ul>
@@ -972,7 +972,7 @@ Important
 <section id="как-вытащить-последовательности-из-протеома-по-id" class="level2">
 <h2 class="anchored" data-anchor-id="как-вытащить-последовательности-из-протеома-по-id">Как вытащить последовательности из протеома по id</h2>
 <section id="через-biopython" class="level3">
-<h3 class="anchored" data-anchor-id="через-biopython">Через <strong>biopython</strong></h3>
+<h3 class="anchored" data-anchor-id="через-biopython">Через biopython</h3>
 <p>Самостоятельно :)</p>
 </section>
 <section id="утилита-seqkit" class="level3">
@@ -985,9 +985,9 @@ Important
 </section>
 <section id="linux" class="level4">
 <h4 class="anchored" data-anchor-id="linux">Linux</h4>
-<pre><code>wget https://github.com/shenwei356/seqkit/releases/download/v2.9.0/seqkit_linux_amd64.tar.gz
-gunzip seqkit_linux_amd64.tar.gz
-cp seqkit /usr/local/bin</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/shenwei356/seqkit/releases/download/v2.9.0/seqkit_linux_amd64.tar.gz</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> seqkit_linux_amd64.tar.gz</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> seqkit /usr/local/bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="приступим" class="level3">

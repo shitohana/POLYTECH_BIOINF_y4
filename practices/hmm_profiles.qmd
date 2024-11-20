@@ -454,7 +454,7 @@ hmmsearch --tblout pkce.tbl.txt \
 
 -   `--tblout <file>` - записать **лучший результат для каждого белка** в виде таблицы в `<file>`.
 
--   ``` --domtblout``<file> ``` - записать результаты поиска **для каждого домена (то есть все найденные домены в белке)** в виде таблицы в `<file>`.
+-   `--domtblout <file>` - записать результаты поиска **для каждого домена (то есть все найденные домены в белке)** в виде таблицы в `<file>`.
 
 -   `-A <file>` - вывести выравнивание найденного домена с белками в `<file>`
 
@@ -687,7 +687,7 @@ FYVE_2               PF02318.21 ENSDARP00000149617.1 -               0.78   10.2
 
 ## Как вытащить последовательности из протеома по id
 
-### Через **biopython**
+### Через biopython
 
 Самостоятельно :)
 
@@ -705,7 +705,7 @@ brew install seqkit
 
 #### Linux
 
-```         
+``` bash
 wget https://github.com/shenwei356/seqkit/releases/download/v2.9.0/seqkit_linux_amd64.tar.gz
 gunzip seqkit_linux_amd64.tar.gz
 cp seqkit /usr/local/bin
