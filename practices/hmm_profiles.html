@@ -259,7 +259,7 @@ window.Quarto = {
 <p>Как мы с вами убедились на <a href="../practices/msa.html">парктике по MSA</a>, последовательности могут содержать в себе консервативные и вариативные сайты. Замена некоторых оснований может привести к потере функции, а замена других - не приведёт ни к чему. При выравнивании мы чётко видели и те и другие основания рядом друг с другом.</p>
 <p>Пусть мы хотим найти место связи транскрипционного фактора (<strong>ТФ</strong>) с мотивом <strong>GCCAT</strong> в длинной последовательности ДНК. Но вот незадача: ТФ успешно (но реже) связывается и с мотивами <u><strong>С</strong></u>CCAT, G<u><strong>G</strong></u>CAT, GC<u><strong>A</strong></u>AT, но никогда не связывается с <u><strong>A</strong></u>CCAT, GCC<u><strong>C</strong></u>T, GC<u><strong>G</strong></u>AT.</p>
 <p>Мы умеем пользоваться <strong>BLAST!</strong> Просто поищем <strong>GCCAT</strong> в большей последовательности. Проблема в том, что обычный BLAST не учитывает то, что какие-то похожи последовательности нам не нужны, а какие-то более полезны, но не так сильно, как другие.</p>
-<p>Проще говоря, определенным основаниям нужно установить вес или вероятность нахождения в конкретном месте последовательности. То есть, если мы знаем, что ТФ не сзывается с <u><strong>A</strong></u>CCAT, то аденину на первом месте мотива мы ставим вес = 0 <em>(но не будем торопиться с таким жёстким ограничением - об этом далее)</em>.</p>
+<p>Проще говоря, определенным нуклеотидам/аминокислотам нужно установить вес или вероятность нахождения в конкретном месте последовательности. То есть, если мы знаем, что ТФ не связывается с <u><strong>A</strong></u>CCAT, то аденину на первом месте мотива мы ставим вес = 0 <em>(но не будем торопиться с таким жёстким ограничением - об этом далее)</em>.</p>
 </section>
 <section id="pssm" class="level1">
 <h1>PSSM</h1>
@@ -506,7 +506,7 @@ Important
 <section id="построение-профиля" class="level2">
 <h2 class="anchored" data-anchor-id="построение-профиля">Построение профиля</h2>
 <p>Для работы с HMM-профилями мы будем пользоваться программой <strong>HMMER3</strong>.</p>
-<p>Сконструируем профиль и скомпрессируем его</p>
+<p>Сконструируем профиль</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hmmbuild</span> pkce.hmm pkce.aln.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Давайте осмотрим посмотрим, что из себя представляет профиль: <code>cat profile.hmm</code> (разверни):</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -929,8 +929,10 @@ Important
 <section id="готовые-hmm-профили-где-взять" class="level2">
 <h2 class="anchored" data-anchor-id="готовые-hmm-профили-где-взять">Готовые HMM-профили (где взять?)</h2>
 <ul>
-<li><p><a href="https://www.ebi.ac.uk/interpro/entry/pfam/">PFAM</a> (входит в InterPro) - белки</p></li>
-<li><p><a href="https://dfam.org/browse">DFAM</a> - мобильные элементы и повторы</p></li>
+<li><p><a href="https://www.ebi.ac.uk/interpro/entry/pfam/"><u>Pfam</u></a> (входит в InterPro) - белки</p></li>
+<li><p>TIGRFAM (стала частью в <a href="https://www.ncbi.nlm.nih.gov/protfam/">NCBI collection of Protein Family Models</a>) - тоже белки</p></li>
+<li><p><a href="https://rfam.org/">Rfam</a> - РНК</p></li>
+<li><p><a href="https://dfam.org/browse">Dfam</a> - мобильные элементы и повторы</p></li>
 </ul>
 </section>
 <section id="logo" class="level2">
