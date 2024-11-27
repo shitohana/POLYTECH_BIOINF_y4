@@ -249,28 +249,196 @@
     "href": "index.html",
     "title": "Дополнительные главы биоинформатики. 4 Курс.",
     "section": "",
-    "text": "Практика 1. Биологические базы данных.\nПрактика 2. GNU/Linux.\nПрактика 3. BLAST\nПрактика 4. Множественное выравнивание последовательностей (MSA)\nПрактика 8. Скрытые марковские модели\nПрактика 9. HMM-профили\n\nДополнительно:\nQ&A по виртуальной машине для практики 2."
+    "text": "Практика 1. Биологические базы данных.\nПрактика 2. GNU/Linux.\nПрактика 3. BLAST\nПрактика 4. Множественное выравнивание последовательностей (MSA)\nПрактика 8. Скрытые марковские модели\nПрактика 9. HMM-профили\nПрактика 10. Предсказание генов\n\nДополнительно:\nQ&A по виртуальной машине для практики 2."
+  },
+  {
+    "objectID": "practices/gene_prediction.html#данные",
+    "href": "practices/gene_prediction.html#данные",
+    "title": "Gene Prediction",
+    "section": "Данные",
+    "text": "Данные\nСегодня будем всячески аннотировать хромосому непатогенного гриба Fusarium oxysporum Fo47.\n\nФайл chr_fo47.fasta"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#перед-идентификацией-генов-поговорим-о-чём-помельче",
+    "href": "practices/gene_prediction.html#перед-идентификацией-генов-поговорим-о-чём-помельче",
+    "title": "Gene Prediction",
+    "section": "Перед идентификацией генов поговорим о чём помельче…",
+    "text": "Перед идентификацией генов поговорим о чём помельче…"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#repeats-and-transposons",
+    "href": "practices/gene_prediction.html#repeats-and-transposons",
+    "title": "Gene Prediction",
+    "section": "Repeats and transposons",
+    "text": "Repeats and transposons"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#repeats-and-transposons-1",
+    "href": "practices/gene_prediction.html#repeats-and-transposons-1",
+    "title": "Gene Prediction",
+    "section": "Repeats and transposons",
+    "text": "Repeats and transposons\nПовторы могут мешать при аннотации генома, пораждая ложные гены и открытые рамки.\n\nПоэтому мы их замаскируем - поменяем на NNNNN"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#repeatmasker",
+    "href": "practices/gene_prediction.html#repeatmasker",
+    "title": "Gene Prediction",
+    "section": "RepeatMasker",
+    "text": "RepeatMasker\nНа основе известных последовательностей\nСамый простой способ:\nRepeatMasker &lt;fasta-file&gt;\n--xsmall для softmasking\n\n\nУдалит и малые РНК - осторожно!\nМожно использовать базу Dfam (8.9Gb), предсказывать более прицельно - осторожно!\nПредсказывать транспозоны ab initio: Repeatmodeler"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#trna",
+    "href": "practices/gene_prediction.html#trna",
+    "title": "Gene Prediction",
+    "section": "tRNA",
+    "text": "tRNA\ntRNAScan-SE\ntrnascan-se -E &lt;input fasta&gt; -o &lt;output&gt;\n\n-E - обозначает поиск эукариотических тРНК"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#trna-1",
+    "href": "practices/gene_prediction.html#trna-1",
+    "title": "Gene Prediction",
+    "section": "tRNA",
+    "text": "tRNA\ntRNAScan-SE\n  -E         : search for eukaryotic tRNAs (default)\n  -B         : search for bacterial tRNAs\n  -A         : search for archaeal tRNAs\n  -M &lt;model&gt; : search for mitochondrial tRNAs\n                 options: mammal, vert\n  -O         : search for other organellar tRNAs\n  -G         : use general tRNA model (cytoslic tRNAs from all 3 domains included)"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#rrna",
+    "href": "practices/gene_prediction.html#rrna",
+    "title": "Gene Prediction",
+    "section": "rRNA",
+    "text": "rRNA\nbarrnap\nbarrnap --kingdom euk &lt;fasta file&gt;\n--kingdom euk - чтобы искать 28S, 18S, 5.8S, 5S\n\n--kingdom [X] Kingdom: euk, bac, arc, mito (default ‘bac’)"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#rna-from-rfam-via-hmmer3",
+    "href": "practices/gene_prediction.html#rna-from-rfam-via-hmmer3",
+    "title": "Gene Prediction",
+    "section": "RNA from Rfam via HMMER3",
+    "text": "RNA from Rfam via HMMER3\nwget https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.seed.gz\ngunzip -k Rfam.seed.gz\n\nhmmbuld Rfam.seed.hmm Rfam.seed\nhmmpress Rfam.seed.hmm\nnhmmscan Rfam.seed.hmm &lt;fasta file&gt; \nКстати, Rfam.seed - не FASTA!"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#подбираемся-к-белок-кодирующим-генам",
+    "href": "practices/gene_prediction.html#подбираемся-к-белок-кодирующим-генам",
+    "title": "Gene Prediction",
+    "section": "Подбираемся к белок-кодирующим генам",
+    "text": "Подбираемся к белок-кодирующим генам"
   },
   {
     "objectID": "practices/gene_prediction.html#open-reading-frame",
     "href": "practices/gene_prediction.html#open-reading-frame",
     "title": "Gene Prediction",
     "section": "Open reading frame",
-    "text": "Open reading frame\ntext"
+    "text": "Open reading frame"
   },
   {
-    "objectID": "practices/gene_prediction.html#orfinder",
-    "href": "practices/gene_prediction.html#orfinder",
+    "objectID": "practices/gene_prediction.html#open-reading-frame-1",
+    "href": "practices/gene_prediction.html#open-reading-frame-1",
     "title": "Gene Prediction",
-    "section": "ORFinder",
-    "text": "ORFinder\ntext"
+    "section": "Open reading frame",
+    "text": "Open reading frame\n\nСамое простое представление гена (но неверное):\nПоследовательность триплетов от старт- до стоп-кодона"
   },
   {
-    "objectID": "practices/gene_prediction.html#slide-2",
-    "href": "practices/gene_prediction.html#slide-2",
+    "objectID": "practices/gene_prediction.html#coding-sequence-cds",
+    "href": "practices/gene_prediction.html#coding-sequence-cds",
     "title": "Gene Prediction",
-    "section": "Slide 2",
-    "text": "Slide 2\nfrom Bio.Seq import Seq\nfrom Bio import motifs\n\nseqs = [Seq(\"GCCAT\"), Seq(\"GCCAT\"), Seq(\"GCCAT\"), Seq(\"GCCAT\"), Seq(\"GCCAT\"), \n        Seq(\"GCCAT\"), Seq(\"GCCAT\"), Seq(\"GCCAT\"), Seq(\"GCCAT\"), Seq(\"GCCAT\"),\n        Seq(\"GCCAT\"), Seq(\"GCCAT\"), Seq(\"GCCAT\"), Seq(\"GCCAT\"), Seq(\"GCCAT\"),\n        Seq(\"CGCAT\"), Seq(\"CGATT\"), Seq(\"CCAAT\"), Seq(\"CCTAT\"), Seq(\"TCCAC\")]\n\nmotif = motifs.create(seqs)\n\nprint(motif.consensus)  # напечатаем консенсусную последовательность\nprint(motif.counts)   # напечатаем матрицу каунтов"
+    "section": "Coding sequence (CDS)",
+    "text": "Coding sequence (CDS)"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#coding-sequence-cds-1",
+    "href": "practices/gene_prediction.html#coding-sequence-cds-1",
+    "title": "Gene Prediction",
+    "section": "Coding sequence (CDS)",
+    "text": "Coding sequence (CDS)\nОтражает кодирующие области гена (экзоны без UTR) и альтреанативный сплайсинг."
+  },
+  {
+    "objectID": "practices/gene_prediction.html#coding-sequence-cds-2",
+    "href": "practices/gene_prediction.html#coding-sequence-cds-2",
+    "title": "Gene Prediction",
+    "section": "Coding sequence (CDS)",
+    "text": "Coding sequence (CDS)\nОтражает кодирующие области гена (экзоны без UTR) и альтреанативный сплайсинг.\n\n(Синие области - CDS)"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#genemark",
+    "href": "practices/gene_prediction.html#genemark",
+    "title": "Gene Prediction",
+    "section": "GeneMark",
+    "text": "GeneMark\n\n\n\nGeneMark.hmm\n\nпрокариоты\nэукариоты\nметагеномы\n\n\n\n\nGeneMark-S2 - self-training и только прокариоты, археи\n\nВсе версии ТУТ, включая новейшие standalone версии"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#augustus",
+    "href": "practices/gene_prediction.html#augustus",
+    "title": "Gene Prediction",
+    "section": "Augustus",
+    "text": "Augustus\naugustus \\\n   --gff3=on \\ # результат в. формате GFF\n   --protein=on \\ # предсказать кодируемые белки\n   --hintsfile=&lt;gff-file&gt; \\ # \"подсказки\"-гены\n   --genemodel=complete \\ # только полные гены\n   --species=human &lt;fasta-file&gt; &gt; output.gff\nСписок параметров и доступных species: документация\nГотовые подсказки - это gff-файл, где часть структур уже размечено"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#augustus-1",
+    "href": "practices/gene_prediction.html#augustus-1",
+    "title": "Gene Prediction",
+    "section": "Augustus",
+    "text": "Augustus\nЕсли вашего species нету, то можно обучить Augustus, используя известные гены родственного организма. Например, из ENSEMBL или даже с сайта Augustus\nТуториал"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#augustus-2",
+    "href": "practices/gene_prediction.html#augustus-2",
+    "title": "Gene Prediction",
+    "section": "Augustus",
+    "text": "Augustus\nСодержит в себе много полезных скриптов, например\ngetAnnoFasta.pl &lt;augustus.gff&gt;\nСоздает FASTA с предсказанными Augustus белками"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#busco",
+    "href": "practices/gene_prediction.html#busco",
+    "title": "Gene Prediction",
+    "section": "BUSCO",
+    "text": "BUSCO\nBenchmarking Universal Single-Copy Orthologs\nbusco --in &lt;fasta file&gt; \\\n   -m &lt;genome/protein&gt; \\\n   -l &lt;lineage&gt; \\\n   --cpu 8 \\\n   -o &lt;output directory&gt;\n\nЭто работает только с VPN"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#busco-1",
+    "href": "practices/gene_prediction.html#busco-1",
+    "title": "Gene Prediction",
+    "section": "BUSCO",
+    "text": "BUSCO\nДля запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:\nbusco_downloads/\n├── file_versions.tsv\n└── lineages\n    ├── ascomycota_odb10\n    ├── fungi_odb10\n    └── hypocreales_odb10\nбазы odb надо скачать… с VPN… отсюда"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#busco-2",
+    "href": "practices/gene_prediction.html#busco-2",
+    "title": "Gene Prediction",
+    "section": "BUSCO",
+    "text": "BUSCO\nЗапускаем оффлайн\nbusco --in &lt;fasta file&gt; \\\n   -m &lt;genome/protein&gt; \\\n   -l &lt;lineage&gt; \\\n   --offline \\\n   --download_path &lt;path/to/directory&gt; \\\n   --cpu 8 \\\n   -o &lt;output directory&gt;"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#busco-3",
+    "href": "practices/gene_prediction.html#busco-3",
+    "title": "Gene Prediction",
+    "section": "BUSCO",
+    "text": "BUSCO\nBenchmarking Universal Single-Copy Orthologs\nbusco --in &lt;fasta file&gt; \\\n   -m &lt;genome/protein&gt; \\\n   --auto-lineage \\ # если не уверены какой lineage\n   --cpu 8 \\\n   -o &lt;output directory&gt;\nНо это не панацея - он ошибается\n\n\n--auto-lineage-euk - среди эукариот\n--auto-lineage-prok- среди прокариот"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#deep-learning-approaches",
+    "href": "practices/gene_prediction.html#deep-learning-approaches",
+    "title": "Gene Prediction",
+    "section": "Deep Learning approaches",
+    "text": "Deep Learning approaches"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#deep-learning-approaches-1",
+    "href": "practices/gene_prediction.html#deep-learning-approaches-1",
+    "title": "Gene Prediction",
+    "section": "Deep Learning approaches",
+    "text": "Deep Learning approaches\nИспользуют нейронные сети (обычно свёрточные) и машинное обучение для предсказания\n\n\nTberius\n\nHelixer"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#deep-learning-approaches-2",
+    "href": "practices/gene_prediction.html#deep-learning-approaches-2",
+    "title": "Gene Prediction",
+    "section": "Deep Learning approaches",
+    "text": "Deep Learning approaches\n\n\nTberius\n\n\n\n\n\n\nHelixer"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#homework",
+    "href": "practices/gene_prediction.html#homework",
+    "title": "Gene Prediction",
+    "section": "Homework",
+    "text": "Homework\nАннотировать хромосомы пивных дрожжей"
   },
   {
     "objectID": "practices/blast.html",
