@@ -312,7 +312,7 @@ busco --in <fasta file> \
 ::: {.column width="50%"}
 **Helixer**
 
-![](_files/gene_prediction/helixer.png){fig-align="center"}
+![](_files/gene_prediction/helixer.png){fig-align="center" width="1500"}
 :::
 :::
 
