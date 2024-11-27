@@ -304,7 +304,7 @@ busco --in <fasta file> \
 
 ::: columns
 ::: {.column width="50%"}
-**Tberius**
+**Tiberius**
 
 ![](_files/gene_prediction/tiberius.png){fig-align="center"}
 :::
