@@ -1,0 +1,331 @@
+---
+title: "Gene Prediction"
+format: 
+   revealjs:
+      theme: style.scss
+      center: true
+      # fontsize: 40px
+      #  
+       #center-title-slide: false
+# incremental: true 
+author:
+- Владислав Станин
+date: 11/22/2024
+---
+
+## Данные
+
+Сегодня будем всячески аннотировать хромосому непатогенного гриба **Fusarium oxysporum Fo47.**
+
+::: {.fragment .fade-in}
+Файл `chr_fo47.fasta`
+:::
+
+## Перед идентификацией генов поговорим о чём помельче... {transition="slide-out"}
+
+## Repeats and transposons {auto-animate="true" style="text-align: center"}
+
+## Repeats and transposons {auto-animate="true" style="text-align: center"}
+
+Повторы могут мешать при аннотации генома, пораждая **ложные гены и открытые рамки**.
+
+::: {.fragment .fade-in}
+Поэтому мы их замаскируем - поменяем на `NNNNN`
+:::
+
+## RepeatMasker
+
+На основе известных последовательностей
+
+*Самый простой способ:*
+
+``` bash
+RepeatMasker <fasta-file>
+```
+
+`--xsmall` для *softmasking*
+
+::: {.fragment .fade-in}
+-   **Удалит и малые РНК** - осторожно!
+-   Можно использовать базу Dfam (8.9Gb), предсказывать более прицельно - осторожно!
+-   Предсказывать транспозоны *ab initio*: **Repeatmodeler**
+:::
+
+## tRNA {auto-animate="true"}
+
+**tRNAScan-SE**
+
+``` bash
+trnascan-se -E <input fasta> -o <output>
+```
+
+-   `-E` - обозначает поиск эукариотических тРНК
+
+## tRNA {auto-animate="true"}
+
+**tRNAScan-SE**
+
+```         
+  -E         : search for eukaryotic tRNAs (default)
+  -B         : search for bacterial tRNAs
+  -A         : search for archaeal tRNAs
+  -M <model> : search for mitochondrial tRNAs
+                 options: mammal, vert
+  -O         : search for other organellar tRNAs
+  -G         : use general tRNA model (cytoslic tRNAs from all 3 domains included)
+```
+
+## rRNA
+
+**barrnap**
+
+``` bash
+barrnap --kingdom euk <fasta file>
+```
+
+`--kingdom euk` - чтобы искать **28S, 18S, 5.8S, 5S**
+
+::: {.fragment .fade-in}
+`--kingdom [X]` Kingdom: *euk, bac, arc, mito* **(default 'bac')**
+:::
+
+## RNA from Rfam via HMMER3
+
+``` {.bash code-line-numbers="|4|5|6|"}
+wget https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.seed.gz
+gunzip -k Rfam.seed.gz
+
+hmmbuld Rfam.seed.hmm Rfam.seed
+hmmpress Rfam.seed.hmm
+nhmmscan Rfam.seed.hmm <fasta file> 
+```
+
+Кстати, `Rfam.seed` - не FASTA!
+
+## Подбираемся к белок-кодирующим генам {style="text-align: center" transition="slide-out"}
+
+## Open reading frame {auto-animate="true" style="text-align: center"}
+
+## Open reading frame {auto-animate="true" style="text-align: center"}
+
+![](_files/gene_prediction/orf.jpeg){fig-align="center" width="750"}
+
+Самое простое представление гена (но неверное):\
+**Последовательность триплетов от старт- до стоп-кодона**
+
+------------------------------------------------------------------------
+
+### NCBI online tool
+
+[**ORFfinder**](https://www.ncbi.nlm.nih.gov/orffinder/)
+
+### Utilities from EMBOSS:
+
+**getorf**
+
+``` bash
+getorf -sequence <inputfile> -outseq <outputfile>
+```
+
+::: {.fragment .fade-in}
+Longest ORF (3 штуки):
+
+``` bash
+seqkit fx2tab --length <orf fasta file> | \
+   sort -t $'\t' -k4,4nr | \
+   head -n 3 | seqkit tab2fx > longest_orf.fasta
+```
+:::
+
+<!-- #### **transeq** -->
+
+<!-- ``` bash -->
+
+<!-- transeq -sequence <input ORF file> \ -->
+
+<!--    -outseq <outputfile> -->
+
+<!-- ``` -->
+
+------------------------------------------------------------------------
+
+-   [**ORF - не ген, а просто открытая рамка, которая может найтись даже случано**]{.underline}
+
+-   **Не учитывает интроны** в ДНК (плох для эукариот)
+
+-   Важно выбрать специфический **генетический код**
+
+-   Можно использовать для мРНК (нет интронов, но проблемы с UTR)
+
+## Coding sequence (CDS) {auto-animate="true" style="text-align: center"}
+
+## Coding sequence (CDS) {auto-animate="true" style="text-align: center"}
+
+Отражает кодирующие области гена (экзоны без UTR) и альтреанативный сплайсинг.
+
+## Coding sequence (CDS) {auto-animate="true" style="text-align: center"}
+
+Отражает кодирующие области гена (экзоны без UTR) и альтреанативный сплайсинг.
+
+![](_files/gene_prediction/gene_struct.jpg){fig-align="center" width="1400"}
+
+(Синие области - **CDS**)
+
+## GeneMark
+
+::: columns
+::: {.column width="38%"}
+1.  **GeneMark.hmm**
+
+    -   [прокариоты](https://genemark.bme.gatech.edu/GeneMark/gmhmmp.cgi)
+    -   [эукариоты](https://genemark.bme.gatech.edu/GeneMark/gmhmme.cgi)
+    -   [*метагеномы*](https://genemark.bme.gatech.edu/GeneMark/meta_gmhmmp.cgi)
+:::
+
+::: {.column width="62%"}
+2.  [**GeneMark-S2**](https://genemark.bme.gatech.edu/GeneMark/genemarks2.cgi) - *self-training* и только прокариоты, археи
+
+Все версии [ТУТ](https://genemark.bme.gatech.edu/GeneMark/), включая новейшие standalone версии
+:::
+:::
+
+## Augustus {auto-animate="true"}
+
+``` {.bash code-line-numbers="1,6|2|3|4|5|"}
+augustus \
+   --gff3=on \ # результат в. формате GFF
+   --protein=on \ # предсказать кодируемые белки
+   --hintsfile=<gff-file> \ # "подсказки"-гены
+   --genemodel=complete \ # только полные гены
+   --species=human <fasta-file> > output.gff
+```
+
+Список параметров и доступных species: [документация](https://github.com/Gaius-Augustus/Augustus/blob/master/docs/RUNNING-AUGUSTUS.md#basic-usage)
+
+Готовые подсказки - это gff-файл, где часть структур уже размечено
+
+## Augustus
+
+Если вашего species нету, то можно **обучить** Augustus, используя известные гены родственного организма. Например, из ENSEMBL или даже с [сайта Augustus](http://bioinf.uni-greifswald.de/augustus/datasets/)
+
+[**Туториал**](https://bioinf.uni-greifswald.de/augustus/binaries/tutorial/training.html)
+
+## Augustus
+
+Содержит в себе много полезных скриптов, например
+
+``` bash
+getAnnoFasta.pl <augustus.gff>
+```
+
+Создает FASTA с предсказанными Augustus белками
+
+## BUSCO {auto-animate="true"}
+
+Benchmarking Universal **Single-Copy Orthologs**
+
+``` {.bash code-line-numbers="|1|2|3|4|"}
+busco --in <fasta file> \
+   -m <genome/protein> \
+   -l <lineage> \
+   --cpu 8 \
+   -o <output directory>
+```
+
+::: {.fragment .fade-in}
+**Это работает только с VPN**
+:::
+
+## BUSCO {auto-animate="true"}
+
+Для запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:
+
+```         
+busco_downloads/
+├── file_versions.tsv
+└── lineages
+    ├── ascomycota_odb10
+    ├── fungi_odb10
+    └── hypocreales_odb10
+```
+
+базы odb надо скачать... с VPN... [**отсюда**](https://busco-data.ezlab.org/v5/data/)
+
+## BUSCO {auto-animate="true"}
+
+Запускаем оффлайн
+
+``` {.bash code-line-numbers="4,5|f"}
+busco --in <fasta file> \
+   -m <genome/protein> \
+   -l <lineage> \
+   --offline \
+   --download_path <path/to/directory> \
+   --cpu 8 \
+   -o <output directory>
+```
+
+## BUSCO {transition="fade-out"}
+
+Benchmarking Universal **Single-Copy Orthologs**
+
+``` {.bash code-line-numbers="3"}
+busco --in <fasta file> \
+   -m <genome/protein> \
+   --auto-lineage \ # если не уверены какой lineage
+   --cpu 8 \
+   -o <output directory>
+```
+
+Но это не панацея - **он ошибается**
+
+::: {.fragment .fade-in}
+-   `--auto-lineage-euk` - среди эукариот
+-   `--auto-lineage-prok`- среди прокариот
+:::
+
+## Deep Learning approaches {auto-animate="true" style="text-align: center"}
+
+## Deep Learning approaches {auto-animate="true" style="text-align: center"}
+
+Используют нейронные сети (обычно свёрточные) и машинное обучение для предсказания
+
+::: columns
+::: {.column width="50%"}
+**Tberius**
+:::
+
+::: {.column width="50%"}
+**Helixer**
+:::
+:::
+
+## Deep Learning approaches {auto-animate="true" style="text-align: center"}
+
+::: columns
+::: {.column width="50%"}
+**Tberius**
+
+![](_files/gene_prediction/tiberius.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+**Helixer**
+
+![](_files/gene_prediction/helixer.png){fig-align="center"}
+:::
+:::
+
+## Homework {auto-animate="true" style="text-align: center"}
+
+Аннотировать хромосомы пивных дрожжей
+
+::: columns
+::: {.column width="50%"}
+![](_files/gene_prediction/kvas.jpg){width="570"}
+:::
+
+::: {.column width="50%"}
+![](_files/gene_prediction/yeasts.jpg){width="612"}
+:::
+:::
