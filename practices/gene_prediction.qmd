@@ -292,7 +292,7 @@ busco --in <fasta file> \
 
 ::: columns
 ::: {.column width="50%"}
-**Tberius**
+**Tiberius**
 :::
 
 ::: {.column width="50%"}
@@ -316,7 +316,7 @@ busco --in <fasta file> \
 :::
 :::
 
-## Homework {auto-animate="true" style="text-align: center"}
+## Homework 
 
 Аннотировать хромосомы пивных дрожжей
 
