@@ -109,7 +109,7 @@ gunzip -k Rfam.seed.gz
 
 hmmbuild Rfam.seed.hmm Rfam.seed
 hmmpress Rfam.seed.hmm
-nhmmscan Rfam.seed.hmm <fasta file> 
+nhmmscan --tblout rnas_result.txt Rfam.seed.hmm <fasta file> 
 ```
 
 Кстати, `Rfam.seed` - не FASTA!
