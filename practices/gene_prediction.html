@@ -429,6 +429,8 @@
 <p>На основе известных последовательностей</p>
 <p><em>Самый простой способ:</em></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">RepeatMasker</span> <span class="op">&lt;</span>fasta-file<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>или (смотря откуда скачивали)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">repeatmasker</span> <span class="op">&lt;</span>fasta-file<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>--xsmall</code> для <em>softmasking</em></p>
 <div class="fragment fade-in">
 <ul>
@@ -441,10 +443,10 @@
 <section id="trna" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">tRNA</h2>
 <p><strong>tRNAScan-SE</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb2-1" class="hljs-ln-code"><a></a><span class="ex">trnascan-se</span> <span class="at">-E</span> <span class="op">&lt;</span>input fasta<span class="op">&gt;</span> -o <span class="op">&lt;</span>output<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><code>-E</code> - обозначает поиск эукариотических тРНК</li>
-</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="ex">trnascan-se</span> <span class="at">-E</span> <span class="op">&lt;</span>input fasta<span class="op">&gt;</span> -o <span class="op">&lt;</span>output<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>или</strong> (смотря откуда вы скачивали)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="ex">tRNAscan-SE</span> <span class="at">-E</span> <span class="op">&lt;</span>input fasta<span class="op">&gt;</span> -o <span class="op">&lt;</span>output<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>-E</code> - обозначает поиск эукариотических тРНК</p>
 </section>
 <section id="trna-1" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">tRNA</h2>
@@ -460,7 +462,7 @@
 <section id="rrna" class="slide level2 center">
 <h2>rRNA</h2>
 <p><strong>barrnap</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="ex">barrnap</span> <span class="at">--kingdom</span> euk <span class="op">&lt;</span>fasta file<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="ex">barrnap</span> <span class="at">--kingdom</span> euk <span class="op">&lt;</span>fasta file<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>--kingdom euk</code> - чтобы искать <strong>28S, 18S, 5.8S, 5S</strong></p>
 <div class="fragment fade-in">
 <p><code>--kingdom [X]</code> Kingdom: <em>euk, bac, arc, mito</em> <strong>(default ‘bac’)</strong></p>
@@ -468,12 +470,12 @@
 </section>
 <section id="rna-from-rfam-via-hmmer3" class="slide level2 center">
 <h2>RNA from Rfam via HMMER3</h2>
-<div class="sourceCode" id="cb5" data-code-line-numbers="|4|5|6|"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a><span class="fu">wget</span> https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.seed.gz</span>
-<span id="cb5-2"><a></a><span class="fu">gunzip</span> <span class="at">-k</span> Rfam.seed.gz</span>
-<span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a><span class="ex">hmmbuld</span> Rfam.seed.hmm Rfam.seed</span>
-<span id="cb5-5"><a></a><span class="ex">hmmpress</span> Rfam.seed.hmm</span>
-<span id="cb5-6"><a></a><span class="ex">nhmmscan</span> Rfam.seed.hmm <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-code-line-numbers="|4|5|6|"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a><span class="fu">wget</span> https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.seed.gz</span>
+<span id="cb7-2"><a></a><span class="fu">gunzip</span> <span class="at">-k</span> Rfam.seed.gz</span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="ex">hmmbuild</span> Rfam.seed.hmm Rfam.seed</span>
+<span id="cb7-5"><a></a><span class="ex">hmmpress</span> Rfam.seed.hmm</span>
+<span id="cb7-6"><a></a><span class="ex">nhmmscan</span> Rfam.seed.hmm <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Кстати, <code>Rfam.seed</code> - не FASTA!</p>
 </section>
 <section id="подбираемся-к-белок-кодирующим-генам" class="slide level2 center" style="text-align: center" data-transition="slide-out">
@@ -494,12 +496,12 @@
 <p><a href="https://www.ncbi.nlm.nih.gov/orffinder/"><strong>ORFfinder</strong></a></p>
 <h3 id="utilities-from-emboss">Utilities from EMBOSS:</h3>
 <p><strong>getorf</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="ex">getorf</span> <span class="at">-sequence</span> <span class="op">&lt;</span>inputfile<span class="op">&gt;</span> -outseq <span class="op">&lt;</span>outputfile<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="ex">getorf</span> <span class="at">-sequence</span> <span class="op">&lt;</span>inputfile<span class="op">&gt;</span> -outseq <span class="op">&lt;</span>outputfile<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment fade-in">
 <p>Longest ORF (3 штуки):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a><span class="ex">seqkit</span> fx2tab <span class="at">--length</span> <span class="op">&lt;</span>orf fasta file<span class="op">&gt;</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb7-2"><a></a>   <span class="fu">sort</span> <span class="at">-t</span> <span class="st">$'</span><span class="dt">\t</span><span class="st">'</span> <span class="at">-k4,4nr</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb7-3"><a></a>   <span class="fu">head</span> <span class="at">-n</span> 3 <span class="kw">|</span> <span class="ex">seqkit</span> tab2fx <span class="op">&gt;</span> longest_orf.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="ex">seqkit</span> fx2tab <span class="at">--length</span> <span class="op">&lt;</span>orf fasta file<span class="op">&gt;</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb9-2"><a></a>   <span class="fu">sort</span> <span class="at">-t</span> <span class="st">$'</span><span class="dt">\t</span><span class="st">'</span> <span class="at">-k4,4nr</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb9-3"><a></a>   <span class="fu">head</span> <span class="at">-n</span> 3 <span class="kw">|</span> <span class="ex">seqkit</span> tab2fx <span class="op">&gt;</span> longest_orf.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- #### **transeq** -->
 <!-- ``` bash -->
@@ -531,6 +533,7 @@
 </section>
 <section id="genemark" class="slide level2 center">
 <h2>GeneMark</h2>
+<p>Семейство программ для разметки генов.</p>
 <div class="columns">
 <div class="column" style="width:38%;">
 <ol type="1">
@@ -547,71 +550,73 @@
 </ol>
 <p>Все версии <a href="https://genemark.bme.gatech.edu/GeneMark/">ТУТ</a>, включая новейшие standalone версии</p>
 </div></div>
+<p><strong>Важно выбрать модель организма наиболее близкого к вашему</strong></p>
 </section>
 <section id="augustus" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Augustus</h2>
-<div class="sourceCode" id="cb8" data-code-line-numbers="1,6|2|3|4|5|"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb8-1" class="hljs-ln-code"><a></a><span class="ex">augustus</span> <span class="dt">\</span></span>
-<span id="cb8-2" class="hljs-ln-code"><a></a>   <span class="at">--gff3</span><span class="op">=</span>on <span class="dt">\ </span># результат в. формате GFF</span>
-<span id="cb8-3" class="hljs-ln-code"><a></a>   <span class="ex">--protein=on</span> <span class="dt">\ </span># предсказать кодируемые белки</span>
-<span id="cb8-4" class="hljs-ln-code"><a></a>   <span class="ex">--hintsfile=</span><span class="op">&lt;</span>gff-file<span class="op">&gt;</span> <span class="dt">\ </span># <span class="st">"подсказки"</span>-гены</span>
-<span id="cb8-5" class="hljs-ln-code"><a></a>   <span class="ex">--genemodel=complete</span> <span class="dt">\ </span># только полные гены</span>
-<span id="cb8-6" class="hljs-ln-code"><a></a>   <span class="ex">--species=human</span> <span class="op">&lt;</span>fasta-file<span class="op">&gt;</span> <span class="op">&gt;</span> output.gff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-code-line-numbers="1,7|2|3|4|5|6|"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb10-1" class="hljs-ln-code"><a></a><span class="ex">augustus</span> <span class="dt">\</span></span>
+<span id="cb10-2" class="hljs-ln-code"><a></a>   <span class="at">--protein</span><span class="op">=</span>on <span class="dt">\ </span># предсказать кодируемые белки</span>
+<span id="cb10-3" class="hljs-ln-code"><a></a>   <span class="ex">--hintsfile=</span><span class="op">&lt;</span>gff-file<span class="op">&gt;</span> <span class="dt">\ </span># <span class="st">"подсказки"</span>-гены</span>
+<span id="cb10-4" class="hljs-ln-code"><a></a>   <span class="ex">--genemodel=complete</span> <span class="dt">\ </span># только полные гены</span>
+<span id="cb10-5" class="hljs-ln-code"><a></a>   <span class="ex">--species=human</span> <span class="dt">\ </span># надо выбрать species!</span>
+<span id="cb10-6" class="hljs-ln-code"><a></a>   <span class="ex">fasta.file</span> <span class="op">&gt;</span> output.gff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Список параметров и доступных species: <a href="https://github.com/Gaius-Augustus/Augustus/blob/master/docs/RUNNING-AUGUSTUS.md#basic-usage">документация</a></p>
-<p>Готовые подсказки - это gff-файл, где часть структур уже размечено</p>
+<p>Готовые подсказки - это gff-файл, где часть структур уже размечено (optional)</p>
+<p><code>--genemodel</code> по умолчанию <strong>partial</strong> - находит даже частичные гены</p>
 </section>
-<section id="augustus-1" class="slide level2 center">
-<h2>Augustus</h2>
+<section id="augustus-1" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Augustus</h2>
 <p>Если вашего species нету, то можно <strong>обучить</strong> Augustus, используя известные гены родственного организма. Например, из ENSEMBL или даже с <a href="http://bioinf.uni-greifswald.de/augustus/datasets/">сайта Augustus</a></p>
 <p><a href="https://bioinf.uni-greifswald.de/augustus/binaries/tutorial/training.html"><strong>Туториал</strong></a></p>
 </section>
-<section id="augustus-2" class="slide level2 center">
-<h2>Augustus</h2>
+<section id="augustus-2" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Augustus</h2>
 <p>Содержит в себе много полезных скриптов, например</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="ex">getAnnoFasta.pl</span> <span class="op">&lt;</span>augustus.gff<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Создает FASTA с предсказанными Augustus белками</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb11-1" class="hljs-ln-code"><a></a><span class="ex">getAnnoFasta.pl</span> <span class="op">&lt;</span>augustus.gff<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>создает FASTA с предсказанными Augustus белками</p>
 </section>
-<section id="busco" class="slide level2 center" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">BUSCO</h2>
-<p>Benchmarking Universal <strong>Single-Copy Orthologs</strong></p>
-<div class="sourceCode" id="cb10" data-code-line-numbers="|1|2|3|4|"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb10-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="at">--in</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb10-2" class="hljs-ln-code"><a></a>   <span class="at">-m</span> <span class="op">&lt;</span>genome/protein<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb10-3" class="hljs-ln-code"><a></a>   <span class="at">-l</span> <span class="op">&lt;</span>lineage<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb10-4" class="hljs-ln-code"><a></a>   <span class="at">--cpu</span> 8 <span class="dt">\</span></span>
-<span id="cb10-5" class="hljs-ln-code"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment fade-in">
-<p><strong>Это работает только с VPN</strong></p>
-</div>
+<section id="busco" class="slide level2 center">
+<h2>BUSCO</h2>
+<p>Benchmarking Universal <strong>Single-Copy Orthologs</strong> - база данных с говорящим названием. Чаще используется для оценки “полноты” <strong>полного генома</strong></p>
+<div class="sourceCode" id="cb12" data-code-line-numbers="|1|2|3|4|"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a></a><span class="ex">busco</span> <span class="at">-i</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb12-2"><a></a>   <span class="at">-m</span> genome <span class="dt">\</span></span>
+<span id="cb12-3"><a></a>   <span class="at">-l</span> <span class="op">&lt;</span>lineage<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb12-4"><a></a>   <span class="at">--cpu</span> 8 <span class="dt">\</span></span>
+<span id="cb12-5"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>-m</code> - можно указать <strong>protein</strong> - тогда аннотация будет не по геному, а протеому, однако тогда для <code>-i</code> надо указать <em>файл-fasta</em> с белками</p>
+<p><strong>НО такой вариант работает только с VPN или уже скачанными базами lineage</strong></p>
 </section>
 <section id="busco-1" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">BUSCO</h2>
-<p>Для запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:</p>
+<p>При первых запусках новые lineage будут скачиваться локально. Но этого не проивойдет без VPN… Для запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:</p>
 <pre><code>busco_downloads/
 ├── file_versions.tsv
 └── lineages
     ├── ascomycota_odb10
     ├── fungi_odb10
     └── hypocreales_odb10</code></pre>
-<p>базы odb надо скачать… с VPN… <a href="https://busco-data.ezlab.org/v5/data/"><strong>отсюда</strong></a></p>
+<p>базы odb надо скачать… с VPN… <a href="https://busco-data.ezlab.org/v5/data/"><strong>отсюда</strong></a> или попросить у товарища</p>
 </section>
 <section id="busco-2" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">BUSCO</h2>
 <p>Запускаем оффлайн</p>
-<div class="sourceCode" id="cb12" data-code-line-numbers="4,5|f"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb12-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="at">--in</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb12-2" class="hljs-ln-code"><a></a>   <span class="at">-m</span> <span class="op">&lt;</span>genome/protein<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb12-3" class="hljs-ln-code"><a></a>   <span class="at">-l</span> <span class="op">&lt;</span>lineage<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb12-4" class="hljs-ln-code"><a></a>   <span class="at">--offline</span> <span class="dt">\</span></span>
-<span id="cb12-5" class="hljs-ln-code"><a></a>   <span class="at">--download_path</span> <span class="op">&lt;</span>path/to/directory<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb12-6" class="hljs-ln-code"><a></a>   <span class="at">--cpu</span> 8 <span class="dt">\</span></span>
-<span id="cb12-7" class="hljs-ln-code"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14" data-code-line-numbers="4,5|f"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb14-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="at">-i</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb14-2" class="hljs-ln-code"><a></a>   <span class="at">-m</span> genome <span class="dt">\</span></span>
+<span id="cb14-3" class="hljs-ln-code"><a></a>   <span class="at">-l</span> <span class="op">&lt;</span>lineage<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb14-4" class="hljs-ln-code"><a></a>   <span class="at">--offline</span> <span class="dt">\</span></span>
+<span id="cb14-5" class="hljs-ln-code"><a></a>   <span class="at">--download_path</span> <span class="op">&lt;</span>path/to/directory<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb14-6" class="hljs-ln-code"><a></a>   <span class="at">--cpu</span> 8 <span class="dt">\</span></span>
+<span id="cb14-7" class="hljs-ln-code"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Скачанный lineage лучше указывать не как <strong>fusarium</strong>, а как <strong>fusarium_odb10</strong> - то есть навзание папки, так как версии lineage могут отличаться.</p>
 </section>
 <section id="busco-3" class="slide level2 center" data-transition="fade-out">
 <h2>BUSCO</h2>
 <p>Benchmarking Universal <strong>Single-Copy Orthologs</strong></p>
-<div class="sourceCode" id="cb13" data-code-line-numbers="3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a></a><span class="ex">busco</span> <span class="at">--in</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb13-2"><a></a>   <span class="at">-m</span> <span class="op">&lt;</span>genome/protein<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb13-3"><a></a>   <span class="at">--auto-lineage</span> <span class="dt">\ </span># если не уверены какой lineage</span>
-<span id="cb13-4"><a></a>   <span class="ex">--cpu</span> 8 <span class="dt">\</span></span>
-<span id="cb13-5"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15" data-code-line-numbers="3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a><span class="ex">busco</span> <span class="at">-i</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb15-2"><a></a>   <span class="at">-m</span> <span class="op">&lt;</span>genome/protein<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb15-3"><a></a>   <span class="at">--auto-lineage</span> <span class="dt">\ </span># если не уверены какой lineage</span>
+<span id="cb15-4"><a></a>   <span class="ex">--cpu</span> 8 <span class="dt">\</span></span>
+<span id="cb15-5"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Но это не панацея - <strong>он ошибается</strong></p>
 <div class="fragment fade-in">
 <ul>

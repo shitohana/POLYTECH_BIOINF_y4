@@ -284,14 +284,14 @@
     "href": "practices/gene_prediction.html#repeatmasker",
     "title": "Gene Prediction",
     "section": "RepeatMasker",
-    "text": "RepeatMasker\nНа основе известных последовательностей\nСамый простой способ:\nRepeatMasker &lt;fasta-file&gt;\n--xsmall для softmasking\n\n\nУдалит и малые РНК - осторожно!\nМожно использовать базу Dfam (8.9Gb), предсказывать более прицельно - осторожно!\nПредсказывать транспозоны ab initio: Repeatmodeler"
+    "text": "RepeatMasker\nНа основе известных последовательностей\nСамый простой способ:\nRepeatMasker &lt;fasta-file&gt;\nили (смотря откуда скачивали)\nrepeatmasker &lt;fasta-file&gt;\n--xsmall для softmasking\n\n\nУдалит и малые РНК - осторожно!\nМожно использовать базу Dfam (8.9Gb), предсказывать более прицельно - осторожно!\nПредсказывать транспозоны ab initio: Repeatmodeler"
   },
   {
     "objectID": "practices/gene_prediction.html#trna",
     "href": "practices/gene_prediction.html#trna",
     "title": "Gene Prediction",
     "section": "tRNA",
-    "text": "tRNA\ntRNAScan-SE\ntrnascan-se -E &lt;input fasta&gt; -o &lt;output&gt;\n\n-E - обозначает поиск эукариотических тРНК"
+    "text": "tRNA\ntRNAScan-SE\ntrnascan-se -E &lt;input fasta&gt; -o &lt;output&gt;\nили (смотря откуда вы скачивали)\ntRNAscan-SE -E &lt;input fasta&gt; -o &lt;output&gt;\n-E - обозначает поиск эукариотических тРНК"
   },
   {
     "objectID": "practices/gene_prediction.html#trna-1",
@@ -312,7 +312,7 @@
     "href": "practices/gene_prediction.html#rna-from-rfam-via-hmmer3",
     "title": "Gene Prediction",
     "section": "RNA from Rfam via HMMER3",
-    "text": "RNA from Rfam via HMMER3\nwget https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.seed.gz\ngunzip -k Rfam.seed.gz\n\nhmmbuld Rfam.seed.hmm Rfam.seed\nhmmpress Rfam.seed.hmm\nnhmmscan Rfam.seed.hmm &lt;fasta file&gt; \nКстати, Rfam.seed - не FASTA!"
+    "text": "RNA from Rfam via HMMER3\nwget https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.seed.gz\ngunzip -k Rfam.seed.gz\n\nhmmbuild Rfam.seed.hmm Rfam.seed\nhmmpress Rfam.seed.hmm\nnhmmscan Rfam.seed.hmm &lt;fasta file&gt; \nКстати, Rfam.seed - не FASTA!"
   },
   {
     "objectID": "practices/gene_prediction.html#подбираемся-к-белок-кодирующим-генам",
@@ -361,14 +361,14 @@
     "href": "practices/gene_prediction.html#genemark",
     "title": "Gene Prediction",
     "section": "GeneMark",
-    "text": "GeneMark\n\n\n\nGeneMark.hmm\n\nпрокариоты\nэукариоты\nметагеномы\n\n\n\n\nGeneMark-S2 - self-training и только прокариоты, археи\n\nВсе версии ТУТ, включая новейшие standalone версии"
+    "text": "GeneMark\nСемейство программ для разметки генов.\n\n\n\nGeneMark.hmm\n\nпрокариоты\nэукариоты\nметагеномы\n\n\n\n\nGeneMark-S2 - self-training и только прокариоты, археи\n\nВсе версии ТУТ, включая новейшие standalone версии\n\nВажно выбрать модель организма наиболее близкого к вашему"
   },
   {
     "objectID": "practices/gene_prediction.html#augustus",
     "href": "practices/gene_prediction.html#augustus",
     "title": "Gene Prediction",
     "section": "Augustus",
-    "text": "Augustus\naugustus \\\n   --gff3=on \\ # результат в. формате GFF\n   --protein=on \\ # предсказать кодируемые белки\n   --hintsfile=&lt;gff-file&gt; \\ # \"подсказки\"-гены\n   --genemodel=complete \\ # только полные гены\n   --species=human &lt;fasta-file&gt; &gt; output.gff\nСписок параметров и доступных species: документация\nГотовые подсказки - это gff-файл, где часть структур уже размечено"
+    "text": "Augustus\naugustus \\\n   --protein=on \\ # предсказать кодируемые белки\n   --hintsfile=&lt;gff-file&gt; \\ # \"подсказки\"-гены\n   --genemodel=complete \\ # только полные гены\n   --species=human \\ # надо выбрать species!\n   fasta.file &gt; output.gff\nСписок параметров и доступных species: документация\nГотовые подсказки - это gff-файл, где часть структур уже размечено (optional)\n--genemodel по умолчанию partial - находит даже частичные гены"
   },
   {
     "objectID": "practices/gene_prediction.html#augustus-1",
@@ -382,35 +382,35 @@
     "href": "practices/gene_prediction.html#augustus-2",
     "title": "Gene Prediction",
     "section": "Augustus",
-    "text": "Augustus\nСодержит в себе много полезных скриптов, например\ngetAnnoFasta.pl &lt;augustus.gff&gt;\nСоздает FASTA с предсказанными Augustus белками"
+    "text": "Augustus\nСодержит в себе много полезных скриптов, например\ngetAnnoFasta.pl &lt;augustus.gff&gt;\nсоздает FASTA с предсказанными Augustus белками"
   },
   {
     "objectID": "practices/gene_prediction.html#busco",
     "href": "practices/gene_prediction.html#busco",
     "title": "Gene Prediction",
     "section": "BUSCO",
-    "text": "BUSCO\nBenchmarking Universal Single-Copy Orthologs\nbusco --in &lt;fasta file&gt; \\\n   -m &lt;genome/protein&gt; \\\n   -l &lt;lineage&gt; \\\n   --cpu 8 \\\n   -o &lt;output directory&gt;\n\nЭто работает только с VPN"
+    "text": "BUSCO\nBenchmarking Universal Single-Copy Orthologs - база данных с говорящим названием. Чаще используется для оценки “полноты” полного генома\nbusco -i &lt;fasta file&gt; \\\n   -m genome \\\n   -l &lt;lineage&gt; \\\n   --cpu 8 \\\n   -o &lt;output directory&gt;\n-m - можно указать protein - тогда аннотация будет не по геному, а протеому, однако тогда для -i надо указать файл-fasta с белками\nНО такой вариант работает только с VPN или уже скачанными базами lineage"
   },
   {
     "objectID": "practices/gene_prediction.html#busco-1",
     "href": "practices/gene_prediction.html#busco-1",
     "title": "Gene Prediction",
     "section": "BUSCO",
-    "text": "BUSCO\nДля запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:\nbusco_downloads/\n├── file_versions.tsv\n└── lineages\n    ├── ascomycota_odb10\n    ├── fungi_odb10\n    └── hypocreales_odb10\nбазы odb надо скачать… с VPN… отсюда"
+    "text": "BUSCO\nПри первых запусках новые lineage будут скачиваться локально. Но этого не проивойдет без VPN… Для запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:\nbusco_downloads/\n├── file_versions.tsv\n└── lineages\n    ├── ascomycota_odb10\n    ├── fungi_odb10\n    └── hypocreales_odb10\nбазы odb надо скачать… с VPN… отсюда или попросить у товарища"
   },
   {
     "objectID": "practices/gene_prediction.html#busco-2",
     "href": "practices/gene_prediction.html#busco-2",
     "title": "Gene Prediction",
     "section": "BUSCO",
-    "text": "BUSCO\nЗапускаем оффлайн\nbusco --in &lt;fasta file&gt; \\\n   -m &lt;genome/protein&gt; \\\n   -l &lt;lineage&gt; \\\n   --offline \\\n   --download_path &lt;path/to/directory&gt; \\\n   --cpu 8 \\\n   -o &lt;output directory&gt;"
+    "text": "BUSCO\nЗапускаем оффлайн\nbusco -i &lt;fasta file&gt; \\\n   -m genome \\\n   -l &lt;lineage&gt; \\\n   --offline \\\n   --download_path &lt;path/to/directory&gt; \\\n   --cpu 8 \\\n   -o &lt;output directory&gt;\nСкачанный lineage лучше указывать не как fusarium, а как fusarium_odb10 - то есть навзание папки, так как версии lineage могут отличаться."
   },
   {
     "objectID": "practices/gene_prediction.html#busco-3",
     "href": "practices/gene_prediction.html#busco-3",
     "title": "Gene Prediction",
     "section": "BUSCO",
-    "text": "BUSCO\nBenchmarking Universal Single-Copy Orthologs\nbusco --in &lt;fasta file&gt; \\\n   -m &lt;genome/protein&gt; \\\n   --auto-lineage \\ # если не уверены какой lineage\n   --cpu 8 \\\n   -o &lt;output directory&gt;\nНо это не панацея - он ошибается\n\n\n--auto-lineage-euk - среди эукариот\n--auto-lineage-prok- среди прокариот"
+    "text": "BUSCO\nBenchmarking Universal Single-Copy Orthologs\nbusco -i &lt;fasta file&gt; \\\n   -m &lt;genome/protein&gt; \\\n   --auto-lineage \\ # если не уверены какой lineage\n   --cpu 8 \\\n   -o &lt;output directory&gt;\nНо это не панацея - он ошибается\n\n\n--auto-lineage-euk - среди эукариот\n--auto-lineage-prok- среди прокариот"
   },
   {
     "objectID": "practices/gene_prediction.html#deep-learning-approaches",
