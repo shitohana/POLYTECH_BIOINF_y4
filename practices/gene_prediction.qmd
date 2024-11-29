@@ -306,6 +306,61 @@ busco -i <fasta file> \
 -   `--auto-lineage-prok`- среди прокариот
 :::
 
+## BUSCO output {auto-animate="true"}
+
+Пусть команда была:
+
+```bash
+busco -i chr_fo47.fasta -l fungi_odb10 --offline \
+   --download_path busco_downloads \
+   -m genome -o busco_output_fungi
+```
+
+Папка `busco_output_fungi/run_fungi_odb10/`:
+```
+busco_output_fungi/run_fungi_odb10/
+├── busco_sequences
+├── full_table.tsv
+├── hmmer_output
+├── miniprot_output
+├── missing_busco_list.tsv
+├── short_summary.json
+└── short_summary.txt
+```
+
+## BUSCO output {auto-animate="true"}
+
+Папка `busco_output_fungi/run_fungi_odb10/`:
+```
+busco_output_fungi/run_fungi_odb10/
+├── busco_sequences
+├── full_table.tsv
+├── hmmer_output
+├── miniprot_output
+├── missing_busco_list.tsv
+├── short_summary.json
+└── short_summary.txt
+```
+
+Интереснее всего в *full_table.tsv* - тут аннотация генов и *short_summary.txt* - тут общая статистика и **completeness**
+
+
+## BUSCO output {auto-animate="true"}
+
+
+Интереснее всего в *full_table.tsv* - тут аннотация генов и *short_summary.txt* - тут общая статистика и **completeness** 
+
+Пример одной и строчек *short_summary.txt*:
+
+```text
+***** Results: *****
+
+C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%
+```
+
+C:11.2% - **completeness** (потому что мы аннотируем одну из хромосом)
+
+
 ## Deep Learning approaches {auto-animate="true" style="text-align: center"}
 
 ## Deep Learning approaches {auto-animate="true" style="text-align: center"}

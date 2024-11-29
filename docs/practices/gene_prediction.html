@@ -625,6 +625,44 @@
 </ul>
 </div>
 </section>
+<section id="busco-output" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">BUSCO output</h2>
+<p>Пусть команда была:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb16-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="at">-i</span> chr_fo47.fasta <span class="at">-l</span> fungi_odb10 <span class="at">--offline</span> <span class="dt">\</span></span>
+<span id="cb16-2" class="hljs-ln-code"><a></a>   <span class="at">--download_path</span> busco_downloads <span class="dt">\</span></span>
+<span id="cb16-3" class="hljs-ln-code"><a></a>   <span class="at">-m</span> genome <span class="at">-o</span> busco_output_fungi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Папка <code>busco_output_fungi/run_fungi_odb10/</code>:</p>
+<pre><code>busco_output_fungi/run_fungi_odb10/
+├── busco_sequences
+├── full_table.tsv
+├── hmmer_output
+├── miniprot_output
+├── missing_busco_list.tsv
+├── short_summary.json
+└── short_summary.txt</code></pre>
+</section>
+<section id="busco-output-1" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">BUSCO output</h2>
+<p>Папка <code>busco_output_fungi/run_fungi_odb10/</code>:</p>
+<pre><code>busco_output_fungi/run_fungi_odb10/
+├── busco_sequences
+├── full_table.tsv
+├── hmmer_output
+├── miniprot_output
+├── missing_busco_list.tsv
+├── short_summary.json
+└── short_summary.txt</code></pre>
+<p>Интереснее всего в <em>full_table.tsv</em> - тут аннотация генов и <em>short_summary.txt</em> - тут общая статистика и <strong>completeness</strong></p>
+</section>
+<section id="busco-output-2" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">BUSCO output</h2>
+<p>Интереснее всего в <em>full_table.tsv</em> - тут аннотация генов и <em>short_summary.txt</em> - тут общая статистика и <strong>completeness</strong></p>
+<p>Пример одной и строчек <em>short_summary.txt</em>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb19-1" class="hljs-ln-code"><a></a>***** Results: *****</span>
+<span id="cb19-2" class="hljs-ln-code"><a></a></span>
+<span id="cb19-3" class="hljs-ln-code"><a></a>C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>C:11.2% - <strong>completeness</strong> (потому что мы аннотируем одну из хромосом)</p>
+</section>
 <section id="deep-learning-approaches" class="slide level2 center" data-auto-animate="true" style="text-align: center">
 <h2 data-id="quarto-animate-title">Deep Learning approaches</h2>
 </section>
