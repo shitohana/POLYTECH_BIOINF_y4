@@ -43,6 +43,12 @@ date: 11/22/2024
 RepeatMasker <fasta-file>
 ```
 
+или (смотря откуда скачивали)
+
+``` bash
+repeatmasker <fasta-file>
+```
+
 `--xsmall` для *softmasking*
 
 ::: {.fragment .fade-in}
@@ -59,7 +65,13 @@ RepeatMasker <fasta-file>
 trnascan-se -E <input fasta> -o <output>
 ```
 
--   `-E` - обозначает поиск эукариотических тРНК
+**или** (смотря откуда вы скачивали)
+
+``` bash
+tRNAscan-SE -E <input fasta> -o <output>
+```
+
+ `-E` - обозначает поиск эукариотических тРНК
 
 ## tRNA {auto-animate="true"}
 
@@ -95,7 +107,7 @@ barrnap --kingdom euk <fasta file>
 wget https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.seed.gz
 gunzip -k Rfam.seed.gz
 
-hmmbuld Rfam.seed.hmm Rfam.seed
+hmmbuild Rfam.seed.hmm Rfam.seed
 hmmpress Rfam.seed.hmm
 nhmmscan Rfam.seed.hmm <fasta file> 
 ```
@@ -173,6 +185,8 @@ seqkit fx2tab --length <orf fasta file> | \
 
 ## GeneMark
 
+Семейство программ для разметки генов.
+
 ::: columns
 ::: {.column width="38%"}
 1.  **GeneMark.hmm**
@@ -189,28 +203,32 @@ seqkit fx2tab --length <orf fasta file> | \
 :::
 :::
 
+**Важно выбрать модель организма наиболее близкого к вашему**
+
 ## Augustus {auto-animate="true"}
 
-``` {.bash code-line-numbers="1,6|2|3|4|5|"}
+``` {.bash code-line-numbers="1,7|2|3|4|5|6|"}
 augustus \
-   --gff3=on \ # результат в. формате GFF
    --protein=on \ # предсказать кодируемые белки
    --hintsfile=<gff-file> \ # "подсказки"-гены
    --genemodel=complete \ # только полные гены
-   --species=human <fasta-file> > output.gff
+   --species=human \ # надо выбрать species!
+   fasta.file > output.gff
 ```
 
 Список параметров и доступных species: [документация](https://github.com/Gaius-Augustus/Augustus/blob/master/docs/RUNNING-AUGUSTUS.md#basic-usage)
 
-Готовые подсказки - это gff-файл, где часть структур уже размечено
+Готовые подсказки - это gff-файл, где часть структур уже размечено (optional)
 
-## Augustus
+`--genemodel` по умолчанию **partial** - находит даже частичные гены
+
+## Augustus {auto-animate="true"}
 
 Если вашего species нету, то можно **обучить** Augustus, используя известные гены родственного организма. Например, из ENSEMBL или даже с [сайта Augustus](http://bioinf.uni-greifswald.de/augustus/datasets/)
 
 [**Туториал**](https://bioinf.uni-greifswald.de/augustus/binaries/tutorial/training.html)
 
-## Augustus
+## Augustus {auto-animate="true"}
 
 Содержит в себе много полезных скриптов, например
 
@@ -218,26 +236,28 @@ augustus \
 getAnnoFasta.pl <augustus.gff>
 ```
 
-Создает FASTA с предсказанными Augustus белками
+создает FASTA с предсказанными Augustus белками
 
-## BUSCO {auto-animate="true"}
+## BUSCO 
 
-Benchmarking Universal **Single-Copy Orthologs**
+Benchmarking Universal **Single-Copy Orthologs** - база данных с говорящим названием. Чаще используется для оценки "полноты" **полного генома**
 
 ``` {.bash code-line-numbers="|1|2|3|4|"}
-busco --in <fasta file> \
-   -m <genome/protein> \
+busco -i <fasta file> \
+   -m genome \
    -l <lineage> \
    --cpu 8 \
    -o <output directory>
 ```
 
-::: {.fragment .fade-in}
-**Это работает только с VPN**
-:::
+`-m` - можно указать **protein** - тогда аннотация будет не по геному, а протеому, однако тогда для `-i` надо указать *файл-fasta* с белками
+
+**НО такой вариант работает только с VPN или уже скачанными базами lineage**
+
 
 ## BUSCO {auto-animate="true"}
 
+При первых запусках новые lineage будут скачиваться локально. Но этого не проивойдет без VPN...
 Для запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:
 
 ```         
@@ -249,15 +269,15 @@ busco_downloads/
     └── hypocreales_odb10
 ```
 
-базы odb надо скачать... с VPN... [**отсюда**](https://busco-data.ezlab.org/v5/data/)
+базы odb надо скачать... с VPN... [**отсюда**](https://busco-data.ezlab.org/v5/data/) или попросить у товарища
 
 ## BUSCO {auto-animate="true"}
 
 Запускаем оффлайн
 
 ``` {.bash code-line-numbers="4,5|f"}
-busco --in <fasta file> \
-   -m <genome/protein> \
+busco -i <fasta file> \
+   -m genome \
    -l <lineage> \
    --offline \
    --download_path <path/to/directory> \
@@ -265,12 +285,14 @@ busco --in <fasta file> \
    -o <output directory>
 ```
 
+Скачанный lineage лучше указывать не как **fusarium**, а как **fusarium_odb10** - то есть навзание папки, так как версии lineage могут отличаться.
+
 ## BUSCO {transition="fade-out"}
 
 Benchmarking Universal **Single-Copy Orthologs**
 
 ``` {.bash code-line-numbers="3"}
-busco --in <fasta file> \
+busco -i <fasta file> \
    -m <genome/protein> \
    --auto-lineage \ # если не уверены какой lineage
    --cpu 8 \
