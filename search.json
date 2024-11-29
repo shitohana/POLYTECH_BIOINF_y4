@@ -312,7 +312,7 @@
     "href": "practices/gene_prediction.html#rna-from-rfam-via-hmmer3",
     "title": "Gene Prediction",
     "section": "RNA from Rfam via HMMER3",
-    "text": "RNA from Rfam via HMMER3\nwget https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.seed.gz\ngunzip -k Rfam.seed.gz\n\nhmmbuild Rfam.seed.hmm Rfam.seed\nhmmpress Rfam.seed.hmm\nnhmmscan Rfam.seed.hmm &lt;fasta file&gt; \nКстати, Rfam.seed - не FASTA!"
+    "text": "RNA from Rfam via HMMER3\nwget https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.seed.gz\ngunzip -k Rfam.seed.gz\n\nhmmbuild Rfam.seed.hmm Rfam.seed\nhmmpress Rfam.seed.hmm\nnhmmscan --tblout rnas_result.txt Rfam.seed.hmm &lt;fasta file&gt; \nКстати, Rfam.seed - не FASTA!"
   },
   {
     "objectID": "practices/gene_prediction.html#подбираемся-к-белок-кодирующим-генам",
