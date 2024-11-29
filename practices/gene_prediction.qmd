@@ -53,7 +53,7 @@ repeatmasker <fasta-file>
 
 ::: {.fragment .fade-in}
 -   **Удалит и малые РНК** - осторожно!
--   Можно использовать базу Dfam (8.9Gb), предсказывать более прицельно - осторожно!
+-   Можно использовать базу Dfam цкликом (8.9Gb)
 -   Предсказывать транспозоны *ab initio*: **Repeatmodeler**
 :::
 
@@ -250,9 +250,9 @@ busco -i <fasta file> \
    -o <output directory>
 ```
 
-`-m` - можно указать **protein** - тогда аннотация будет не по геному, а протеому, однако тогда для `-i` надо указать *файл-fasta* с белками
+`-m` - можно указать **protein** - аннотация будет по протеому - тогда для `-i` надо указать *fasta* с белками
 
-**НО такой вариант работает только с VPN или уже скачанными базами lineage**
+**Работает только с VPN или локально скачанными базами lineage**
 
 
 ## BUSCO {auto-animate="true"}
@@ -353,12 +353,14 @@ busco_output_fungi/run_fungi_odb10/
 Пример одной и строчек *short_summary.txt*:
 
 ```text
-***** Results: *****
-
 C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%
 ```
 
-C:11.2% - **completeness** (потому что мы аннотируем одну из хромосом)
++ C:11.2% - **completeness** 
++ [S:11.2%,D:0.0%] - однокопийных 11.2% и 0% дупликатов
++ F:0.4% - Fragmented
++ M:88.4% - Missed
+
 
 
 ## Deep Learning approaches {auto-animate="true" style="text-align: center"}
