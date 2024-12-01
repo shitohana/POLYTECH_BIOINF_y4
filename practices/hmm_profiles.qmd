@@ -719,7 +719,7 @@ cp seqkit /usr/local/bin
 ``` bash
 hmmsearch --tblout result.txt profile.hmm proteome.fasta  # Проводим поиск
 
-grep -v "#" result.txt | awk '{print $3}' > proteins_w_domain.txt  # извлекаем имена белков
+grep -v "#" result.txt | awk '{print $1}' > proteins_w_domain.txt  # извлекаем имена белков
 
 seqkit grep -f proteins_w_domain.txt proteome.fasta > protens_w_domain.fasta # получили белки, в которых мы нашли домены
 ```

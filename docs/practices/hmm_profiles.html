@@ -996,7 +996,7 @@ Important
 <h3 class="anchored" data-anchor-id="приступим">Приступим</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hmmsearch</span> <span class="at">--tblout</span> result.txt profile.hmm proteome.fasta  <span class="co"># Проводим поиск</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"#"</span> result.txt <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $3}'</span> <span class="op">&gt;</span> proteins_w_domain.txt  <span class="co"># извлекаем имена белков</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"#"</span> result.txt <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $1}'</span> <span class="op">&gt;</span> proteins_w_domain.txt  <span class="co"># извлекаем имена белков</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> grep <span class="at">-f</span> proteins_w_domain.txt proteome.fasta <span class="op">&gt;</span> protens_w_domain.fasta <span class="co"># получили белки, в которых мы нашли домены</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
