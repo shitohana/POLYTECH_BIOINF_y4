@@ -284,7 +284,7 @@
     "href": "practices/gene_prediction.html#repeatmasker",
     "title": "Gene Prediction",
     "section": "RepeatMasker",
-    "text": "RepeatMasker\nНа основе известных последовательностей\nСамый простой способ:\nRepeatMasker &lt;fasta-file&gt;\nили (смотря откуда скачивали)\nrepeatmasker &lt;fasta-file&gt;\n--xsmall для softmasking\n\n\nУдалит и малые РНК - осторожно!\nМожно использовать базу Dfam (8.9Gb), предсказывать более прицельно - осторожно!\nПредсказывать транспозоны ab initio: Repeatmodeler"
+    "text": "RepeatMasker\nНа основе известных последовательностей\nСамый простой способ:\nRepeatMasker &lt;fasta-file&gt;\nили (смотря откуда скачивали)\nrepeatmasker &lt;fasta-file&gt;\n--xsmall для softmasking\n\n\nУдалит и малые РНК - осторожно!\nМожно использовать базу Dfam цкликом (8.9Gb)\nПредсказывать транспозоны ab initio: Repeatmodeler"
   },
   {
     "objectID": "practices/gene_prediction.html#trna",
@@ -389,7 +389,7 @@
     "href": "practices/gene_prediction.html#busco",
     "title": "Gene Prediction",
     "section": "BUSCO",
-    "text": "BUSCO\nBenchmarking Universal Single-Copy Orthologs - база данных с говорящим названием. Чаще используется для оценки “полноты” полного генома\nbusco -i &lt;fasta file&gt; \\\n   -m genome \\\n   -l &lt;lineage&gt; \\\n   --cpu 8 \\\n   -o &lt;output directory&gt;\n-m - можно указать protein - тогда аннотация будет не по геному, а протеому, однако тогда для -i надо указать файл-fasta с белками\nНО такой вариант работает только с VPN или уже скачанными базами lineage"
+    "text": "BUSCO\nBenchmarking Universal Single-Copy Orthologs - база данных с говорящим названием. Чаще используется для оценки “полноты” полного генома\nbusco -i &lt;fasta file&gt; \\\n   -m genome \\\n   -l &lt;lineage&gt; \\\n   --cpu 8 \\\n   -o &lt;output directory&gt;\n-m - можно указать protein - аннотация будет по протеому - тогда для -i надо указать fasta с белками\nРаботает только с VPN или локально скачанными базами lineage"
   },
   {
     "objectID": "practices/gene_prediction.html#busco-1",
@@ -411,6 +411,27 @@
     "title": "Gene Prediction",
     "section": "BUSCO",
     "text": "BUSCO\nBenchmarking Universal Single-Copy Orthologs\nbusco -i &lt;fasta file&gt; \\\n   -m &lt;genome/protein&gt; \\\n   --auto-lineage \\ # если не уверены какой lineage\n   --cpu 8 \\\n   -o &lt;output directory&gt;\nНо это не панацея - он ошибается\n\n\n--auto-lineage-euk - среди эукариот\n--auto-lineage-prok- среди прокариот"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#busco-output",
+    "href": "practices/gene_prediction.html#busco-output",
+    "title": "Gene Prediction",
+    "section": "BUSCO output",
+    "text": "BUSCO output\nПусть команда была:\nbusco -i chr_fo47.fasta -l fungi_odb10 --offline \\\n   --download_path busco_downloads \\\n   -m genome -o busco_output_fungi\nПапка busco_output_fungi/run_fungi_odb10/:\nbusco_output_fungi/run_fungi_odb10/\n├── busco_sequences\n├── full_table.tsv\n├── hmmer_output\n├── miniprot_output\n├── missing_busco_list.tsv\n├── short_summary.json\n└── short_summary.txt"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#busco-output-1",
+    "href": "practices/gene_prediction.html#busco-output-1",
+    "title": "Gene Prediction",
+    "section": "BUSCO output",
+    "text": "BUSCO output\nПапка busco_output_fungi/run_fungi_odb10/:\nbusco_output_fungi/run_fungi_odb10/\n├── busco_sequences\n├── full_table.tsv\n├── hmmer_output\n├── miniprot_output\n├── missing_busco_list.tsv\n├── short_summary.json\n└── short_summary.txt\nИнтереснее всего в full_table.tsv - тут аннотация генов и short_summary.txt - тут общая статистика и completeness"
+  },
+  {
+    "objectID": "practices/gene_prediction.html#busco-output-2",
+    "href": "practices/gene_prediction.html#busco-output-2",
+    "title": "Gene Prediction",
+    "section": "BUSCO output",
+    "text": "BUSCO output\nИнтереснее всего в full_table.tsv - тут аннотация генов и short_summary.txt - тут общая статистика и completeness\nПример одной и строчек short_summary.txt:\nC:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%\n\nC:11.2% - completeness\n[S:11.2%,D:0.0%] - однокопийных 11.2% и 0% дупликатов\nF:0.4% - Fragmented\nM:88.4% - Missed"
   },
   {
     "objectID": "practices/gene_prediction.html#deep-learning-approaches",
@@ -648,6 +669,6 @@
     "href": "practices/hmm_profiles.html#как-вытащить-последовательности-из-протеома-по-id",
     "title": "HMM-профили",
     "section": "Как вытащить последовательности из протеома по id",
-    "text": "Как вытащить последовательности из протеома по id\n\nЧерез biopython\nСамостоятельно :)\n\n\nУтилита seqkit\nили установить утилиту seqkit. Эта программа значительно упрощает работу с fasta/q-файлами.\nМожно и через конду, если вы с ней знакомы или:\n\nMac OS\nbrew install seqkit\n\n\nLinux\nwget https://github.com/shenwei356/seqkit/releases/download/v2.9.0/seqkit_linux_amd64.tar.gz\ngunzip seqkit_linux_amd64.tar.gz\ncp seqkit /usr/local/bin\n\n\n\nПриступим\nhmmsearch --tblout result.txt profile.hmm proteome.fasta  # Проводим поиск\n\ngrep -v \"#\" result.txt | awk '{print $3}' &gt; proteins_w_domain.txt  # извлекаем имена белков\n\nseqkit grep -f proteins_w_domain.txt proteome.fasta &gt; protens_w_domain.fasta # получили белки, в которых мы нашли домены"
+    "text": "Как вытащить последовательности из протеома по id\n\nЧерез biopython\nСамостоятельно :)\n\n\nУтилита seqkit\nили установить утилиту seqkit. Эта программа значительно упрощает работу с fasta/q-файлами.\nМожно и через конду, если вы с ней знакомы или:\n\nMac OS\nbrew install seqkit\n\n\nLinux\nwget https://github.com/shenwei356/seqkit/releases/download/v2.9.0/seqkit_linux_amd64.tar.gz\ngunzip seqkit_linux_amd64.tar.gz\ncp seqkit /usr/local/bin\n\n\n\nПриступим\nhmmsearch --tblout result.txt profile.hmm proteome.fasta  # Проводим поиск\n\ngrep -v \"#\" result.txt | awk '{print $1}' &gt; proteins_w_domain.txt  # извлекаем имена белков\n\nseqkit grep -f proteins_w_domain.txt proteome.fasta &gt; protens_w_domain.fasta # получили белки, в которых мы нашли домены"
   }
 ]

@@ -441,7 +441,7 @@ Note
 <h2 class="anchored" data-anchor-id="hmm-профиль">HMM-профиль</h2>
 <p>Итак, <strong>скрытая марковская модель</strong> оперирует вероятностями переходов между скрытыми состояниями и вероятностями эмиссии. Что в данном случае скрытое состояние? <strong>Ответ прост - позиция в последовательности.</strong> <em>И какая тогда вероятность перехода от одного нуклеотида к другому…?</em> <u><strong>Да-да, кажется, она равна 1.<br>
 </strong></u></p>
-<div id="fig-hmm_seq_1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="1000">
+<div id="fig-hmm_seq_1" class="quarto-float quarto-figure quarto-figure-center anchored" width="1000" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hmm_seq_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="_files/hmm_profiles/hmmseq1.png" id="fig-hmm_seq_1" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" width="1000">
@@ -453,7 +453,7 @@ Figure&nbsp;2
 </div>
 <p>Матрица эмиссий будет выглядеть так же, как матрица в середине на <a href="#fig-pssm" class="quarto-xref">Figure&nbsp;1</a>. Но в чём тогда преимущество над PSSM? Как я и говорил, HMM может легко учитывать вставки и делеции.</p>
 <p><em>Не будем теперь рисовать эмиссии, но будем их подразумевать.</em></p>
-<div id="fig-hmm_seq_2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="1000">
+<div id="fig-hmm_seq_2" class="quarto-float quarto-figure quarto-figure-center anchored" width="1000" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hmm_seq_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="_files/hmm_profiles/hmmseq2.png" id="fig-hmm_seq_2" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" width="1000">
@@ -464,7 +464,7 @@ Figure&nbsp;3
 </figure>
 </div>
 <p>Теперь наша модель учитывает делеции. Видно, что в данной позиции последовательности может быть либо делеция либо нуклеотид. <strong>Теперь переходы между</strong> <span class="math inline">\(M_i\)</span> <strong>могут иметь вес меньше 1</strong>. Что делать с инсерциями? В отличие от делеций инсерции могут идти друг за другом сколь угодно долго (почти).</p>
-<div id="fig-hmm_seq_3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="1000">
+<div id="fig-hmm_seq_3" class="quarto-float quarto-figure quarto-figure-center anchored" width="1000" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hmm_seq_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="_files/hmm_profiles/hmmseq3.png" id="fig-hmm_seq_3" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" width="1000">
@@ -996,7 +996,7 @@ Important
 <h3 class="anchored" data-anchor-id="приступим">Приступим</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hmmsearch</span> <span class="at">--tblout</span> result.txt profile.hmm proteome.fasta  <span class="co"># Проводим поиск</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"#"</span> result.txt <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $3}'</span> <span class="op">&gt;</span> proteins_w_domain.txt  <span class="co"># извлекаем имена белков</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"#"</span> result.txt <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $1}'</span> <span class="op">&gt;</span> proteins_w_domain.txt  <span class="co"># извлекаем имена белков</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> grep <span class="at">-f</span> proteins_w_domain.txt proteome.fasta <span class="op">&gt;</span> protens_w_domain.fasta <span class="co"># получили белки, в которых мы нашли домены</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 

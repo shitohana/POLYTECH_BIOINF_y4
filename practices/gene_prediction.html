@@ -435,7 +435,7 @@
 <div class="fragment fade-in">
 <ul>
 <li><strong>Удалит и малые РНК</strong> - осторожно!</li>
-<li>Можно использовать базу Dfam (8.9Gb), предсказывать более прицельно - осторожно!</li>
+<li>Можно использовать базу Dfam цкликом (8.9Gb)</li>
 <li>Предсказывать транспозоны <em>ab initio</em>: <strong>Repeatmodeler</strong></li>
 </ul>
 </div>
@@ -583,8 +583,8 @@
 <span id="cb12-3"><a></a>   <span class="at">-l</span> <span class="op">&lt;</span>lineage<span class="op">&gt;</span> <span class="dt">\</span></span>
 <span id="cb12-4"><a></a>   <span class="at">--cpu</span> 8 <span class="dt">\</span></span>
 <span id="cb12-5"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>-m</code> - можно указать <strong>protein</strong> - тогда аннотация будет не по геному, а протеому, однако тогда для <code>-i</code> надо указать <em>файл-fasta</em> с белками</p>
-<p><strong>НО такой вариант работает только с VPN или уже скачанными базами lineage</strong></p>
+<p><code>-m</code> - можно указать <strong>protein</strong> - аннотация будет по протеому - тогда для <code>-i</code> надо указать <em>fasta</em> с белками</p>
+<p><strong>Работает только с VPN или локально скачанными базами lineage</strong></p>
 </section>
 <section id="busco-1" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">BUSCO</h2>
@@ -624,6 +624,47 @@
 <li><code>--auto-lineage-prok</code>- среди прокариот</li>
 </ul>
 </div>
+</section>
+<section id="busco-output" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">BUSCO output</h2>
+<p>Пусть команда была:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb16-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="at">-i</span> chr_fo47.fasta <span class="at">-l</span> fungi_odb10 <span class="at">--offline</span> <span class="dt">\</span></span>
+<span id="cb16-2" class="hljs-ln-code"><a></a>   <span class="at">--download_path</span> busco_downloads <span class="dt">\</span></span>
+<span id="cb16-3" class="hljs-ln-code"><a></a>   <span class="at">-m</span> genome <span class="at">-o</span> busco_output_fungi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Папка <code>busco_output_fungi/run_fungi_odb10/</code>:</p>
+<pre><code>busco_output_fungi/run_fungi_odb10/
+├── busco_sequences
+├── full_table.tsv
+├── hmmer_output
+├── miniprot_output
+├── missing_busco_list.tsv
+├── short_summary.json
+└── short_summary.txt</code></pre>
+</section>
+<section id="busco-output-1" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">BUSCO output</h2>
+<p>Папка <code>busco_output_fungi/run_fungi_odb10/</code>:</p>
+<pre><code>busco_output_fungi/run_fungi_odb10/
+├── busco_sequences
+├── full_table.tsv
+├── hmmer_output
+├── miniprot_output
+├── missing_busco_list.tsv
+├── short_summary.json
+└── short_summary.txt</code></pre>
+<p>Интереснее всего в <em>full_table.tsv</em> - тут аннотация генов и <em>short_summary.txt</em> - тут общая статистика и <strong>completeness</strong></p>
+</section>
+<section id="busco-output-2" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">BUSCO output</h2>
+<p>Интереснее всего в <em>full_table.tsv</em> - тут аннотация генов и <em>short_summary.txt</em> - тут общая статистика и <strong>completeness</strong></p>
+<p>Пример одной и строчек <em>short_summary.txt</em>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb19-1" class="hljs-ln-code"><a></a>C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>C:11.2% - <strong>completeness</strong></li>
+<li>[S:11.2%,D:0.0%] - однокопийных 11.2% и 0% дупликатов</li>
+<li>F:0.4% - Fragmented</li>
+<li>M:88.4% - Missed</li>
+</ul>
 </section>
 <section id="deep-learning-approaches" class="slide level2 center" data-auto-animate="true" style="text-align: center">
 <h2 data-id="quarto-animate-title">Deep Learning approaches</h2>
