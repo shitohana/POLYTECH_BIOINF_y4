@@ -4,10 +4,12 @@ title: "Дополнительные главы биоинформатики. 4 
 
 -   [Практика 1. Биологические базы данных.](practices/db.qmd)
 -   [Практика 2. GNU/Linux.](practices/linux.qmd)
--   [Практика 3. BLAST](practices/blast.qmd)
--   [Практика 4. Множественное выравнивание последовательностей (MSA)](practices/msa.qmd)
--   [Практика 8. Скрытые марковские модели](practices/hmm.qmd)
--   [Практика 9. HMM-профили](practices/hmm_profiles.qmd)
+-   [Практика 3. ](practices/blast.qmd)[BLAST.](practices/blast.qmd)
+-   [Практика 4. Множественное выравнивание последовательностей (MSA).](practices/msa.qmd)
+-   [Практика 8. Скрытые марковские модели.](practices/hmm.qmd)
+-   [Практика 9. HMM-профили.](practices/hmm_profiles.qmd)
+-   [Практика 10. Предсказание генов.](practices/gene_prediction.qmd)
+-   [Практика 11. Онтологии](practices/ontology.qmd)
 
 Дополнительно:
 

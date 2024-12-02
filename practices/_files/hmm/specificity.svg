@@ -1,0 +1,303 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="87.007ex" height="7.843ex" style="vertical-align: -3.338ex;" viewBox="0 -1939.5 37461.3 3376.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">{\displaystyle {\text{Чувствительность}}={\frac {\color {Green}{\text{число больных, выявленных данным тестом}}}{\color {navy}{\text{истинное число больных среди протестированных}}}}}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">Ч</text>
+<g transform="translate(609,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">у</text>
+</g>
+<g transform="translate(1219,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">в</text>
+</g>
+<g transform="translate(1829,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">с</text>
+</g>
+<g transform="translate(2439,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">т</text>
+</g>
+<g transform="translate(3049,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">в</text>
+</g>
+<g transform="translate(3659,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">и</text>
+</g>
+<g transform="translate(4269,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">т</text>
+</g>
+<g transform="translate(4879,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">е</text>
+</g>
+<g transform="translate(5489,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">л</text>
+</g>
+<g transform="translate(6099,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ь</text>
+</g>
+<g transform="translate(6709,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(7319,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">о</text>
+</g>
+<g transform="translate(7929,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">с</text>
+</g>
+<g transform="translate(8539,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">т</text>
+</g>
+<g transform="translate(9149,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ь</text>
+</g>
+ <use xlink:href="#E1-MJMAIN-3D" x="10037" y="0"></use>
+<g transform="translate(11093,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="26128" height="60" x="0" y="220"></rect>
+<g fill="#008000" stroke="#008000" transform="translate(2055,949)">
+<g fill="#008000" stroke="#008000">
+<g fill="#008000" stroke="#008000">
+<g fill="#008000" stroke="#008000">
+<g fill="#008000" stroke="#008000">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ч</text>
+<g transform="translate(609,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">и</text>
+</g>
+<g transform="translate(1219,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">с</text>
+</g>
+<g transform="translate(1829,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">л</text>
+</g>
+<g transform="translate(2439,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">о</text>
+</g>
+<g transform="translate(3299,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">б</text>
+</g>
+<g transform="translate(3909,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">о</text>
+</g>
+<g transform="translate(4519,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">л</text>
+</g>
+<g transform="translate(5129,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ь</text>
+</g>
+<g transform="translate(5739,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(6349,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ы</text>
+</g>
+<g transform="translate(6959,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">х</text>
+</g>
+ <use xlink:href="#E1-MJMAIN-2C" x="7569" y="0"></use>
+<g transform="translate(8097,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">в</text>
+</g>
+<g transform="translate(8707,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ы</text>
+</g>
+<g transform="translate(9317,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">я</text>
+</g>
+<g transform="translate(9927,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">в</text>
+</g>
+<g transform="translate(10537,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">л</text>
+</g>
+<g transform="translate(11147,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">е</text>
+</g>
+<g transform="translate(11757,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(12367,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(12977,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ы</text>
+</g>
+<g transform="translate(13587,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">х</text>
+</g>
+<g transform="translate(14447,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">д</text>
+</g>
+<g transform="translate(15057,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">а</text>
+</g>
+<g transform="translate(15667,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(16277,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(16887,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ы</text>
+</g>
+<g transform="translate(17497,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">м</text>
+</g>
+<g transform="translate(18357,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">т</text>
+</g>
+<g transform="translate(18967,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">е</text>
+</g>
+<g transform="translate(19577,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">с</text>
+</g>
+<g transform="translate(20186,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">т</text>
+</g>
+<g transform="translate(20796,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">о</text>
+</g>
+<g transform="translate(21406,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">м</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill="navy" stroke="navy" transform="translate(60,-881)">
+<g fill="navy" stroke="navy">
+<g fill="navy" stroke="navy">
+<g fill="navy" stroke="navy">
+<g fill="navy" stroke="navy">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">и</text>
+<g transform="translate(609,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">с</text>
+</g>
+<g transform="translate(1219,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">т</text>
+</g>
+<g transform="translate(1829,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">и</text>
+</g>
+<g transform="translate(2439,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(3049,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(3659,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">о</text>
+</g>
+<g transform="translate(4269,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">е</text>
+</g>
+<g transform="translate(5129,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ч</text>
+</g>
+<g transform="translate(5739,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">и</text>
+</g>
+<g transform="translate(6349,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">с</text>
+</g>
+<g transform="translate(6959,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">л</text>
+</g>
+<g transform="translate(7569,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">о</text>
+</g>
+<g transform="translate(8429,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">б</text>
+</g>
+<g transform="translate(9039,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">о</text>
+</g>
+<g transform="translate(9649,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">л</text>
+</g>
+<g transform="translate(10259,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ь</text>
+</g>
+<g transform="translate(10869,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(11479,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ы</text>
+</g>
+<g transform="translate(12089,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">х</text>
+</g>
+<g transform="translate(12949,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">с</text>
+</g>
+<g transform="translate(13558,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">р</text>
+</g>
+<g transform="translate(14168,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">е</text>
+</g>
+<g transform="translate(14778,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">д</text>
+</g>
+<g transform="translate(15388,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">и</text>
+</g>
+<g transform="translate(16248,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">п</text>
+</g>
+<g transform="translate(16858,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">р</text>
+</g>
+<g transform="translate(17468,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">о</text>
+</g>
+<g transform="translate(18078,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">т</text>
+</g>
+<g transform="translate(18688,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">е</text>
+</g>
+<g transform="translate(19298,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">с</text>
+</g>
+<g transform="translate(19908,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">т</text>
+</g>
+<g transform="translate(20518,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">и</text>
+</g>
+<g transform="translate(21128,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">р</text>
+</g>
+<g transform="translate(21738,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">о</text>
+</g>
+<g transform="translate(22348,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">в</text>
+</g>
+<g transform="translate(22958,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">а</text>
+</g>
+<g transform="translate(23568,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(24178,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">н</text>
+</g>
+<g transform="translate(24788,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">ы</text>
+</g>
+<g transform="translate(25398,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">х</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
