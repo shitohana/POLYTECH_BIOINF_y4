@@ -4,8 +4,13 @@ format:
    revealjs:
       theme: style.scss
       center: true
+      controls: true
+      # controlsLayout: 'bottom-left'
+      slide-number: true
+      show-slide-number: all
       # fontsize: 40px
-      #  
+      progress: true
+      
        #center-title-slide: false
 # incremental: true 
 author:
