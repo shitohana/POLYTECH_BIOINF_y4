@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -441,7 +441,7 @@ Note
 <h2 class="anchored" data-anchor-id="hmm-профиль">HMM-профиль</h2>
 <p>Итак, <strong>скрытая марковская модель</strong> оперирует вероятностями переходов между скрытыми состояниями и вероятностями эмиссии. Что в данном случае скрытое состояние? <strong>Ответ прост - позиция в последовательности.</strong> <em>И какая тогда вероятность перехода от одного нуклеотида к другому…?</em> <u><strong>Да-да, кажется, она равна 1.<br>
 </strong></u></p>
-<div id="fig-hmm_seq_1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="1000">
+<div id="fig-hmm_seq_1" class="quarto-float quarto-figure quarto-figure-center anchored" width="1000" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hmm_seq_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="_files/hmm_profiles/hmmseq1.png" id="fig-hmm_seq_1" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" width="1000">
@@ -453,7 +453,7 @@ Figure&nbsp;2
 </div>
 <p>Матрица эмиссий будет выглядеть так же, как матрица в середине на <a href="#fig-pssm" class="quarto-xref">Figure&nbsp;1</a>. Но в чём тогда преимущество над PSSM? Как я и говорил, HMM может легко учитывать вставки и делеции.</p>
 <p><em>Не будем теперь рисовать эмиссии, но будем их подразумевать.</em></p>
-<div id="fig-hmm_seq_2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="1000">
+<div id="fig-hmm_seq_2" class="quarto-float quarto-figure quarto-figure-center anchored" width="1000" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hmm_seq_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="_files/hmm_profiles/hmmseq2.png" id="fig-hmm_seq_2" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" width="1000">
@@ -464,7 +464,7 @@ Figure&nbsp;3
 </figure>
 </div>
 <p>Теперь наша модель учитывает делеции. Видно, что в данной позиции последовательности может быть либо делеция либо нуклеотид. <strong>Теперь переходы между</strong> <span class="math inline">\(M_i\)</span> <strong>могут иметь вес меньше 1</strong>. Что делать с инсерциями? В отличие от делеций инсерции могут идти друг за другом сколь угодно долго (почти).</p>
-<div id="fig-hmm_seq_3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="1000">
+<div id="fig-hmm_seq_3" class="quarto-float quarto-figure quarto-figure-center anchored" width="1000" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hmm_seq_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="_files/hmm_profiles/hmmseq3.png" id="fig-hmm_seq_3" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" width="1000">
