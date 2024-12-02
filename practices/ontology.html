@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Константин Юдыцкий">
+<meta name="dcterms.date" content="2024-01-01">
+
+<title>Биологические базы данных – POLYTECH_BIOINF_y4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">POLYTECH_BIOINF_y4</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul class="collapse">
+  <li><a href="#онтология.-введение." id="toc-онтология.-введение." class="nav-link active" data-scroll-target="#онтология.-введение."><span class="header-section-number">1</span> Онтология. Введение.</a></li>
+  <li><a href="#базы-данных-функциональных-аннотаций" id="toc-базы-данных-функциональных-аннотаций" class="nav-link" data-scroll-target="#базы-данных-функциональных-аннотаций"><span class="header-section-number">2</span> Базы данных функциональных аннотаций</a>
+  <ul class="collapse">
+  <li><a href="#онтология-геновontology-1-go" id="toc-онтология-геновontology-1-go" class="nav-link" data-scroll-target="#онтология-геновontology-1-go"><span class="header-section-number">2.1</span> Онтология генов (GO)</a></li>
+  <li><a href="#kegg-pathwaysontology-2" id="toc-kegg-pathwaysontology-2" class="nav-link" data-scroll-target="#kegg-pathwaysontology-2"><span class="header-section-number">2.2</span> KEGG Pathways</a></li>
+  <li><a href="#reactomeontology-3" id="toc-reactomeontology-3" class="nav-link" data-scroll-target="#reactomeontology-3"><span class="header-section-number">2.3</span> Reactome</a></li>
+  <li><a href="#uniprotontology-4" id="toc-uniprotontology-4" class="nav-link" data-scroll-target="#uniprotontology-4"><span class="header-section-number">2.4</span> UniProt</a></li>
+  <li><a href="#pfamontology-5-и-interproontology-6" id="toc-pfamontology-5-и-interproontology-6" class="nav-link" data-scroll-target="#pfamontology-5-и-interproontology-6"><span class="header-section-number">2.5</span> Pfam и InterPro</a></li>
+  <li><a href="#система-классификации-pantherontology-7" id="toc-система-классификации-pantherontology-7" class="nav-link" data-scroll-target="#система-классификации-pantherontology-7"><span class="header-section-number">2.6</span> Система классификации PANTHER</a></li>
+  <li><a href="#онтология-фенотипов-человекаontology-8" id="toc-онтология-фенотипов-человекаontology-8" class="nav-link" data-scroll-target="#онтология-фенотипов-человекаontology-8"><span class="header-section-number">2.7</span> Онтология фенотипов человека</a></li>
+  </ul></li>
+  <li><a href="#методы-анализа-избыточной-представленности-и-обогащенности" id="toc-методы-анализа-избыточной-представленности-и-обогащенности" class="nav-link" data-scroll-target="#методы-анализа-избыточной-представленности-и-обогащенности"><span class="header-section-number">3</span> Методы анализа избыточной представленности и обогащенности</a>
+  <ul class="collapse">
+  <li><a href="#анализ-избыточной-представленности-over-representation-analysis---ora" id="toc-анализ-избыточной-представленности-over-representation-analysis---ora" class="nav-link" data-scroll-target="#анализ-избыточной-представленности-over-representation-analysis---ora"><span class="header-section-number">3.1</span> Анализ избыточной представленности (Over-Representation Analysis - ORA)</a></li>
+  <li><a href="#functional-class-scoring-fcs" id="toc-functional-class-scoring-fcs" class="nav-link" data-scroll-target="#functional-class-scoring-fcs"><span class="header-section-number">3.2</span> Functional Class Scoring (FCS)</a></li>
+  <li><a href="#методы-основанные-на-топологии-путей." id="toc-методы-основанные-на-топологии-путей." class="nav-link" data-scroll-target="#методы-основанные-на-топологии-путей."><span class="header-section-number">3.3</span> Методы, основанные на топологии путей.</a></li>
+  <li><a href="#визуализационные-методы" id="toc-визуализационные-методы" class="nav-link" data-scroll-target="#визуализационные-методы"><span class="header-section-number">3.4</span> Визуализационные методы</a></li>
+  </ul></li>
+  <li><a href="#r-и-онтологии." id="toc-r-и-онтологии." class="nav-link" data-scroll-target="#r-и-онтологии."><span class="header-section-number">4</span> R и онтологии.</a>
+  <ul class="collapse">
+  <li><a href="#clusterprofilerontology-9" id="toc-clusterprofilerontology-9" class="nav-link" data-scroll-target="#clusterprofilerontology-9"><span class="header-section-number">4.1</span> clusterProfiler</a></li>
+  <li><a href="#topgoontology-10" id="toc-topgoontology-10" class="nav-link" data-scroll-target="#topgoontology-10"><span class="header-section-number">4.2</span> topGO</a></li>
+  <li><a href="#reactomepaontology-11" id="toc-reactomepaontology-11" class="nav-link" data-scroll-target="#reactomepaontology-11"><span class="header-section-number">4.3</span> ReactomePA</a></li>
+  <li><a href="#gostatsontology-12" id="toc-gostatsontology-12" class="nav-link" data-scroll-target="#gostatsontology-12"><span class="header-section-number">4.4</span> GOstats</a></li>
+  <li><a href="#gseabaseontology-13" id="toc-gseabaseontology-13" class="nav-link" data-scroll-target="#gseabaseontology-13"><span class="header-section-number">4.5</span> GSEABase</a></li>
+  <li><a href="#biomartontology-14" id="toc-biomartontology-14" class="nav-link" data-scroll-target="#biomartontology-14"><span class="header-section-number">4.6</span> biomaRt</a></li>
+  <li><a href="#annotationdbiontology-15-и-orgdb" id="toc-annotationdbiontology-15-и-orgdb" class="nav-link" data-scroll-target="#annotationdbiontology-15-и-orgdb"><span class="header-section-number">4.7</span> AnnotationDbi и OrgDb</a></li>
+  <li><a href="#pathviewontology-16" id="toc-pathviewontology-16" class="nav-link" data-scroll-target="#pathviewontology-16"><span class="header-section-number">4.8</span> pathview</a></li>
+  <li><a href="#doseontology-17" id="toc-doseontology-17" class="nav-link" data-scroll-target="#doseontology-17"><span class="header-section-number">4.9</span> DOSE</a></li>
+  <li><a href="#enrichplotontology-18" id="toc-enrichplotontology-18" class="nav-link" data-scroll-target="#enrichplotontology-18"><span class="header-section-number">4.10</span> enrichplot</a></li>
+  </ul></li>
+  <li><a href="#домашнее-задание" id="toc-домашнее-задание" class="nav-link" data-scroll-target="#домашнее-задание"><span class="header-section-number">5</span> Домашнее задание</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Биологические базы данных</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Константин Юдыцкий </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 1, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="онтология.-введение." class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Онтология. Введение.</h1>
+<p>В области философии онтология - изучение бытия и существования, которое включает категоризацию сущностей и их взаимоотношений. Так, онтология в биоинформатике - это формальная, явная спецификация общей концептуализации. Она представляет знания как набор концепций в рамках области и отношений между этими концепциями. Онтологии используются для моделирования знаний о группе элементов в структурированном и машиночитаемом виде, что облегчает обмен и анализ данных.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/ontology_pic.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>Области применения в биоинформатике:</p>
+<ul>
+<li>Стандартизация терминологии: Биологические данные обширны и неоднородны. Онтологии обеспечивают контролируемый “словарь”, который стандартизирует термины в различных базах данных и исследованиях, обеспечивая согласованность.</li>
+<li>Обмен данными: Использование общих онтологических основ позволяет легко интегрировать данные из различных источников. Такая совместимость крайне важна при всестороннем анализе данных.</li>
+<li>Вычислительное обоснование: Онтологии позволяют проводить автоматические “рассуждения” над биологическими данными. Они позволяют выводить новую информацию из существующих данных на основе определенных взаимосвязей.</li>
+<li>Облегчение анализа: Онтологии позволяют проводить комплексные анализы, учитывающие иерархическую и реляционную природу биологических концепций.</li>
+</ul>
+<p>Примеры биологических онтологий:</p>
+<ul>
+<li>Онтология генов (Gene Ontology - GO): Обеспечивает стандартищированную классификацию функций генов у разных видов, структурированную по трем основным категориям: молекулярная функция, биологический процесс и клеточный компартмент.</li>
+<li>Онтология болезней (Disease Ontology - DO): Предоставляет стандартизированную онтологию для терминов человеческих болезней, обеспечивая последовательное описание и облегчая аннотирование болезней и биомедицинские исследвования.</li>
+<li>Онтология последовательностей (Sequence Ontology - SO): Определяет термины и отношения, используемые для описания характеристик и атрибутов биологических последовательностей, упрощая аннотирование генома.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/bio_ontology.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</section>
+<section id="базы-данных-функциональных-аннотаций" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Базы данных функциональных аннотаций</h1>
+<section id="онтология-геновontology-1-go" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="онтология-геновontology-1-go"><span class="header-section-number">2.1</span> Онтология генов<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (GO)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/go.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>Онтология генов – одна из наиболее широко используемых онтологий в биоинформатике.</p>
+<p>Онтология компонентов состоит из трех компонентов:</p>
+<ul>
+<li>Молекулярная функция (Molecular Function - MF): Функции продуктов генов, происходящие на молекулярном уровне, такие как “связывание ДНК” или “ферментативная активность”</li>
+<li>Биологический процесс (Biological Process - BP): Более комплексные процессы, состоящие из множества индивидуальных молекулярных процессов, например “регуляция клеточного цикла” или “передача сигнала”.</li>
+<li>Клеточный компонент (Cellular Component - CC): Локализация на уровне субклеточных структур и макромолекулярных комплексов, таких как “ядро” или “рибосома”.</li>
+</ul>
+<section id="структура" class="level3">
+<h3 class="anchored" data-anchor-id="структура">Структура</h3>
+<p>Термины GO организованы в направленный ациклический граф (DAG), где каждый термин может иметь несколько родительских и дочерних терминов, что необходимо для целостного описания биологических систем.</p>
+<p>Возможны такие отношения между терминами, как:</p>
+<ul>
+<li>“is-a” - обозначает отношения подкласса.</li>
+<li>“part-of” - указывает на то, что один термин является компонентом другого. Причем, если B part-of A - существование процесса B гарантирует существование процесс A, а существование процесса A - не гарантирует существование B. Фактически, в математике это можно было бы записать, как <span class="math inline">\(B\Rightarrow A\)</span>.</li>
+<li>“has part” - указывает на то, что термин A всегда будет иметь часть B, но не все части B указывают на существование процесса A.</li>
+<li>“regulates” - указывает на то, что один процесс напрямую влияет на наблюдение и характер другого процесса или характеристики.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/go_example.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="kegg-pathwaysontology-2" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="kegg-pathwaysontology-2"><span class="header-section-number">2.2</span> KEGG Pathways<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/ontology/kegg.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>Киотская энциклопедия генов и геномов (Kyoto Encyclopedia of Genes and Genomes - KEGG) – это коллекция баз данных, посвященным геномам, биологическим путям, заболеваниям, лекарствам и химическим веществам.</p>
+<p>Функционал KEGG Pathways включает в себя предоставление карт биологических путей, объединяющих геномную, химическую и системную функциональную информацию. Пути охватывают метаболические процессы, обработку генетической информации, обработку информации из окружающей среды, клеточные процессы и системы организма.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/kegg_image.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</section>
+<section id="reactomeontology-3" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="reactomeontology-3"><span class="header-section-number">2.3</span> Reactome<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/reactome.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>Reactome – это курируемая база данных путей и реакций в биологии человека, распостранающаяся на другие организмы с помощью ортологических сравнений.</p>
+<p>Особенностями базы данных Reactome является акцент на подробных аннотациях молекулярных событий, включая сигнальные и метаболические пути. Каждая реакция проверяется и подтверждается литературой, что обеспечивает высокое качество данных.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/reactome_example.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</section>
+<section id="uniprotontology-4" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="uniprotontology-4"><span class="header-section-number">2.4</span> UniProt<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/uniprot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>Universal Protein Resource (UniProt) - это всеобъемлющий ресурс для данных о последовательностях белков и их биологических аннотаций. UniProt состоит из следующих компонентов:</p>
+<ul>
+<li>UniProtKB/Swiss-Prot: Вручную курируемые записи.</li>
+<li>UnoProtKB/TrEMBL: Компьютерно анализируемые записи, ожидающие полной ручной аннотации.</li>
+</ul>
+<p>Аннотации в UniProt включают функциональную информацию, доменную структуру, посттрансляционные модификации, генетические варианты и многое другое.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/uniprot_image.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</section>
+<section id="pfamontology-5-и-interproontology-6" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="pfamontology-5-и-interproontology-6"><span class="header-section-number">2.5</span> Pfam<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> и InterPro<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/interpro.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>Pfam – база данных семейств и доментов белков, представленных в виде множественных выравниваний последовательностей и скрытых марковских моделей (HMM).</p>
+<p>InterPro – объединяет несколько баз данных белковых сигнатур, включая Pfam, для классификации белков по семействам и прогнозирования наличия доменов и важных сайтов.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/interpro_image.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</section>
+<section id="система-классификации-pantherontology-7" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="система-классификации-pantherontology-7"><span class="header-section-number">2.6</span> Система классификации PANTHER<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></h2>
+<p>Система классификации PANTHER (protein analysis through evolutionary relationships) предоставляет информацию о семействах, подсемействах, путях и онтологиях белков. Особенностями являются: использование СММ для классификации белков, наличие статистических инструментов для анализа крупномасштабных геномных и протеомных данных.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/panther.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</section>
+<section id="онтология-фенотипов-человекаontology-8" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="онтология-фенотипов-человекаontology-8"><span class="header-section-number">2.7</span> Онтология фенотипов человека<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/hpo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>Онтология фенотипов человека (Human Phenotype Ontology - HPO) - стандартизированный словарь фенотипических отклонений, встречающихся при человеческих заболеваниях. Применяется для дифференциальной диагностики на основе фенотипов. Также HPO поддерживает геномную диагностику, связывая фенотипы с генетическими данными.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_files/ontology/hpo_example.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="методы-анализа-избыточной-представленности-и-обогащенности" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Методы анализа избыточной представленности и обогащенности</h1>
+<p>Целью анализа обогащения является определение того, демонстрируют ли заранее определенные наборы генов статистически значимые различия между двумя биологическими состояниями. Он помогает интерпретировать высокопроизводительные экспериментальные данные, такие как профили экспрессии генов, связывая гены с функциональными аннотациями.</p>
+<section id="анализ-избыточной-представленности-over-representation-analysis---ora" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="анализ-избыточной-представленности-over-representation-analysis---ora"><span class="header-section-number">3.1</span> Анализ избыточной представленности (Over-Representation Analysis - ORA)</h2>
+<p>Концепция: сравнивает долю интересующих генов, связанных с определенной категорией, с долей, ожидаемой случайно.</p>
+<p>Статистические тесты:</p>
+<ol type="1">
+<li>Точный тест Фишера: тест, используемый при небольшом объеме выборки для определения наличия неслучайных ассоциаций между двумя категориальными переменными.</li>
+<li>Гипергеометрический тест: вычисляет вероятность k успехов в n розыгрышах без замены из конечной популяции. В случае набора генов, гипергеометрический тест определяет вероятность принадлежности k генов из группы к определенной группе из онтологии.</li>
+</ol>
+<p>Ограничения ORA:</p>
+<ul>
+<li>Не учитывает уровни экспрессии генов и величину изменений.</li>
+<li>Чувствителен к выбору списка генов.</li>
+<li>Может пропустить слабые, но согласованные изменения в наборе генов.</li>
+</ul>
+</section>
+<section id="functional-class-scoring-fcs" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="functional-class-scoring-fcs"><span class="header-section-number">3.2</span> Functional Class Scoring (FCS)</h2>
+<p>Анализ обогащения набора генов (Gene Set Enrichment Analysis - GSEA) - вычислительный метод, определяющий существуют ли различия между априори определенный набор генов в двух биологических состояниях (фенотипах)</p>
+<p>Концепция: Ранжирует все гены в наборе данных на основе метрик дифференциальной экспрессии (например, fold change, t-статистика). Оценивается, распределены ли члены набора генов случайным образом по всему ранжированному списку или находятся преимущественно в верхней или нижней части.</p>
+<p>Преимущества:</p>
+<ul>
+<li>Обнаруживает слабые, но согласованные изменения в экспрессии генов внутри набора.</li>
+<li>Не требует произвольных пороговых значений для определения дифференциально экспрессируемых генов.</li>
+</ul>
+</section>
+<section id="методы-основанные-на-топологии-путей." class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="методы-основанные-на-топологии-путей."><span class="header-section-number">3.3</span> Методы, основанные на топологии путей.</h2>
+<p>Концепция: Включают информацию о взаимодействиях и связах между генами в рамкаъ путей.</p>
+<p>Примеры:</p>
+<ul>
+<li><p>Анализ влияния сигнальных путей (Signal Pathway Impact Analysis - SPIA): Сочетает ORA с топологией путей для выявления путей, на которые влияют изменения экспрессии генов. Учитывается, как перепредставленность дифференциально экспрессируемых генов, так и искажание пути в результате этих изменений.</p></li>
+<li><p>Динамический анализ обогащения путей (Dinamycal Enrichment Analysis of Pathways - DEAP): Использует данные о временных интервалах или условиях. Учитывает динамическую природу биологических процессов.</p></li>
+</ul>
+</section>
+<section id="визуализационные-методы" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="визуализационные-методы"><span class="header-section-number">3.4</span> Визуализационные методы</h2>
+<ul>
+<li><p>Графики обогащения - визуальное представление результатов обогащения набора генов. Показывает текущий балл обогащения и место генов в наборе в ранжированном списке.</p></li>
+<li><p>Сети и карты путей - иллюстрируют взаимодействие между генами/белками в рамках биологических путей. Можно выделить ключевые узлы, которые могут иметь решающее знгачение в биологическом процессе.</p></li>
+</ul>
+</section>
+</section>
+<section id="r-и-онтологии." class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> R и онтологии.</h1>
+<section id="clusterprofilerontology-9" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="clusterprofilerontology-9"><span class="header-section-number">4.1</span> clusterProfiler<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/ontology/clusterProfiler.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<p>Предоставляет методы для статистического анализа и визуализации функциональных профилей генов и генных кластеров. Поддерживает различные онтологии и базы данных путей, включая GO, KEGG и Reactome.</p>
+<p>Функции:</p>
+<ul>
+<li><code>enrichGO()</code>: выполняет анализ обошагащения GO терминами.</li>
+<li><code>gseGO()</code>: Проводит GSEA с использованием терминов GO.</li>
+<li><code>enrichKEGG()</code>, <code>gseKEGG()</code>: Аналогичные функции для путей KEGG.</li>
+</ul>
+<p>Преимущества:</p>
+<ul>
+<li>Поддерживает несколько типов генных идентификаторов и методов аннотации.</li>
+<li>Предоставляет функции для визуализации результатов обогащения.</li>
+</ul>
+</section>
+<section id="topgoontology-10" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="topgoontology-10"><span class="header-section-number">4.2</span> topGO<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></h2>
+<p>Предназначен для анализа обогащения GO с учетом иерархической структуры отношений между терминами. Параметры Elim и Weight корректируют иерархическую структуру, уменьшая влияние родительских менее значимых терминов.</p>
+<p>Преимущества:</p>
+<ul>
+<li>Устраняет зависимость между терминами GO, обусловленную структурой DAG.</li>
+<li>Уменьшает количество ложных идентификаций, возникающих из-за взаимосвязи терминов.</li>
+</ul>
+</section>
+<section id="reactomepaontology-11" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="reactomepaontology-11"><span class="header-section-number">4.3</span> ReactomePA<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></h2>
+<p>Предоставляет функции для анализа обогащения путей на основе базы данных Reactome.</p>
+<p>Функции:</p>
+<ul>
+<li><code>enrichPathway()</code>: Выполняет ORA для путей Reactome.</li>
+<li><code>gsePathway()</code>: Проводит GSEA для путей Reactome.</li>
+</ul>
+<p>ReactomePA может быть легко интегрирован с clusterProfiler.</p>
+</section>
+<section id="gostatsontology-12" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="gostatsontology-12"><span class="header-section-number">4.4</span> GOstats<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></h2>
+<p>Предлагает инструменты для проверки избыточной представленности терминов GO и иных категорий.</p>
+<p>Функции:</p>
+<ul>
+<li><code>hyperGTest()</code>: выполняет гипергеометрические тесты на избыточную представленность</li>
+</ul>
+<p>Преимущества:</p>
+<ul>
+<li>Позволяет пользователям указывать условный параметр для корректировки иерархии GO.</li>
+<li>Позволяет использовать сторонние наборы терминов.</li>
+</ul>
+</section>
+<section id="gseabaseontology-13" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="gseabaseontology-13"><span class="header-section-number">4.5</span> GSEABase<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></h2>
+<p>Предоставляет структуры данных и методы для поддержки GSEA. Определяет классы для наборов генов и данных об экспрессии. Облегчает интеграцию определений наборов генов в рабочие процессы анализа.</p>
+</section>
+<section id="biomartontology-14" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="biomartontology-14"><span class="header-section-number">4.6</span> biomaRt<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></h2>
+<p>Предоставляет интерфейс к базам данных BioMart, таким как Ensembl. Позволяет извлекать геномные аннотации, последовательности генов, связывать идентификаторы из различных баз данных.</p>
+</section>
+<section id="annotationdbiontology-15-и-orgdb" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="annotationdbiontology-15-и-orgdb"><span class="header-section-number">4.7</span> AnnotationDbi<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> и OrgDb</h2>
+<p>Предоставляют основу для хранения и поиска данных аннотаций. Позволяют производить сопоставление идентфиикаторов генов с терминами GO, путями и друними аннотациями. Поддерживают запросы к аннотациям на основе списков генов.</p>
+</section>
+<section id="pathviewontology-16" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="pathviewontology-16"><span class="header-section-number">4.8</span> pathview<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></h2>
+<p>Предоставляет медтоды для визуализации данных об экспрессии генов на картах путей KEGG. Автоматически интегрируется с данными о путях KEGG. Генерирует диаграммы путей с наложенными значениями экспрессии генов.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/ontology/pathview.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</section>
+<section id="doseontology-17" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="doseontology-17"><span class="header-section-number">4.9</span> DOSE<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></h2>
+<p>Ориентирован на анализ семантики и обогащения онтологии болезней. Выполняет анализ обогащения наборов генов, связанных с болезнью. Поддерживает меры семантического сходства между терминами болезней.</p>
+</section>
+<section id="enrichplotontology-18" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="enrichplotontology-18"><span class="header-section-number">4.10</span> enrichplot<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></h2>
+<p>Предоставляет обширные методы визуализации результатов анализа обогащения. Генерирует точечные диаграммы, гистограммы, карты обогащения и другие графики.</p>
+</section>
+</section>
+<section id="домашнее-задание" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Домашнее задание</h1>
+<p>Вам будет представлен список генных идентификаторов, а так же результат анализа дифференциальной экспрессии, для которых вам потребуется выполнить следующие шаги:</p>
+<ol type="1">
+<li>Проаннотировать список генов с помощью идентификаторов других баз данных, таких ENTREZ, ENSEMBL и т.д., создать таблицу с полными названиями и описаниями группы генов.</li>
+<li>Произвести GO обогащение и GSEA, сравнить результаты.</li>
+<li>Произвести обогащение с помощью Pfam, выявить, существуют ли группы генов со схожими доменами. Объяснить, согласуются ли результаты с пунктом 2.</li>
+<li>Произвести обогащение с помощью KEGG Pathways, сравнить результаты с GO.</li>
+<li>Сделать предположение о том, какой биологический процесс исследовался в данном эксперименте, данные которого вы получили. Какие выводы можно сделать из полученных Вами результатов?</li>
+</ol>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://geneontology.org" class="uri">https://geneontology.org</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://www.genome.jp/kegg/pathway.html" class="uri">https://www.genome.jp/kegg/pathway.html</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://reactome.org" class="uri">https://reactome.org</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://www.uniprot.org" class="uri">https://www.uniprot.org</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="http://pfam.xfam.org" class="uri">http://pfam.xfam.org</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://www.ebi.ac.uk/interpro/" class="uri">https://www.ebi.ac.uk/interpro/</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><a href="http://www.pantherdb.org/" class="uri">http://www.pantherdb.org/</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><a href="https://hpo.jax.org" class="uri">https://hpo.jax.org</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a href="https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html" class="uri">https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><a href="https://bioconductor.org/packages/release/bioc/html/topGO.html" class="uri">https://bioconductor.org/packages/release/bioc/html/topGO.html</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><a href="https://bioconductor.org/packages/release/bioc/html/ReactomePA.html" class="uri">https://bioconductor.org/packages/release/bioc/html/ReactomePA.html</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p><a href="https://bioconductor.org/packages/release/bioc/html/GOstats.html" class="uri">https://bioconductor.org/packages/release/bioc/html/GOstats.html</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p><a href="https://bioconductor.org/packages/release/bioc/html/GSEABase.html" class="uri">https://bioconductor.org/packages/release/bioc/html/GSEABase.html</a><a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p><a href="https://bioconductor.org/packages/release/bioc/html/biomaRt.html" class="uri">https://bioconductor.org/packages/release/bioc/html/biomaRt.html</a><a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p><a href="https://bioconductor.org/packages/release/bioc/html/AnnotationDbi.html" class="uri">https://bioconductor.org/packages/release/bioc/html/AnnotationDbi.html</a><a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p><a href="https://bioconductor.org/packages/release/bioc/html/pathview.html" class="uri">https://bioconductor.org/packages/release/bioc/html/pathview.html</a><a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p><a href="https://bioconductor.org/packages/release/bioc/html/DOSE.html" class="uri">https://bioconductor.org/packages/release/bioc/html/DOSE.html</a><a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p><a href="https://bioconductor.org/packages/release/bioc/html/enrichplot.html" class="uri">https://bioconductor.org/packages/release/bioc/html/enrichplot.html</a><a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/shitohana\.github\.io\/POLYTECH_BIOINF_y4\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
