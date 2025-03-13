@@ -907,25 +907,18 @@
     "href": "practices/genome_assembly.html#busco-2",
     "title": "Genome Assembly",
     "section": "BUSCO",
-    "text": "BUSCO\nЗапускаем оффлайн\nbusco -i &lt;fasta file&gt; \\\n   -m genome \\\n   -l &lt;lineage&gt; \\\n   --offline \\\n   --download_path &lt;path/to/directory&gt; \\\n   --cpu 8 \\\n   -o &lt;output directory&gt;\nСкачанный lineage лучше указывать не как fusarium, а как fusarium_odb10 - то есть навзание папки, так как версии lineage могут отличаться."
+    "text": "BUSCO\nbusco \\\n  -i spades_test_out/scaffolds.fasta \\\n  -l enterobacterales_odb10 \\\n  --offline \\\n  --download_path busco_downloads \\\n   -m genome \\\n   -o busco_output"
   },
   {
     "objectID": "practices/genome_assembly.html#busco-3",
     "href": "practices/genome_assembly.html#busco-3",
     "title": "Genome Assembly",
     "section": "BUSCO",
-    "text": "BUSCO\nbusco \\\n  -i chr_fo47.fasta \\\n  -l fungi_odb10 \\\n  --offline \\\n  --download_path busco_downloads \\\n   -m genome \\\n   -o busco_output"
+    "text": "BUSCO\nOutput\nПапка busco_output/run_fungi_odb10/:\nbusco_output_fungi/run_fungi_odb10/\n├── busco_sequences\n├── full_table.tsv\n├── hmmer_output\n├── miniprot_output\n├── missing_busco_list.tsv\n├── short_summary.json\n└── short_summary.txt\nИнтереснее всего в full_table.tsv - тут аннотация генов и short_summary.txt - тут общая статистика и completeness"
   },
   {
     "objectID": "practices/genome_assembly.html#busco-4",
     "href": "practices/genome_assembly.html#busco-4",
-    "title": "Genome Assembly",
-    "section": "BUSCO",
-    "text": "BUSCO\nOutput\nПапка busco_output/run_fungi_odb10/:\nbusco_output_fungi/run_fungi_odb10/\n├── busco_sequences\n├── full_table.tsv\n├── hmmer_output\n├── miniprot_output\n├── missing_busco_list.tsv\n├── short_summary.json\n└── short_summary.txt\nИнтереснее всего в full_table.tsv - тут аннотация генов и short_summary.txt - тут общая статистика и completeness"
-  },
-  {
-    "objectID": "practices/genome_assembly.html#busco-5",
-    "href": "practices/genome_assembly.html#busco-5",
     "title": "Genome Assembly",
     "section": "BUSCO",
     "text": "BUSCO\nshort_summary.txt:\n------------------------------------------------\n|Results from dataset enterobacterales_odb10   |\n------------------------------------------------\n|C:100.0%[S:99.5%,D:0.5%],F:0.0%,M:0.0%,n:440  |\n|440    Complete BUSCOs (C)                    |\n|438    Complete and single-copy BUSCOs (S)    |\n|2    Complete and duplicated BUSCOs (D)       |\n|0    Fragmented BUSCOs (F)                    |\n|0    Missing BUSCOs (M)                       |\n|440    Total BUSCO groups searched            |\n------------------------------------------------"

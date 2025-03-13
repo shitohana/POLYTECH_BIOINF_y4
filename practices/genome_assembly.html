@@ -653,27 +653,15 @@ Vladislav Stanin
 </section>
 <section id="busco-2" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">BUSCO</h2>
-<p>Запускаем оффлайн</p>
-<div class="sourceCode" id="cb8" data-code-line-numbers="4,5|f"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb8-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="at">-i</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb8-2" class="hljs-ln-code"><a></a>   <span class="at">-m</span> genome <span class="dt">\</span></span>
-<span id="cb8-3" class="hljs-ln-code"><a></a>   <span class="at">-l</span> <span class="op">&lt;</span>lineage<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb8-4" class="hljs-ln-code"><a></a>   <span class="at">--offline</span> <span class="dt">\</span></span>
-<span id="cb8-5" class="hljs-ln-code"><a></a>   <span class="at">--download_path</span> <span class="op">&lt;</span>path/to/directory<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb8-6" class="hljs-ln-code"><a></a>   <span class="at">--cpu</span> 8 <span class="dt">\</span></span>
-<span id="cb8-7" class="hljs-ln-code"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Скачанный lineage лучше указывать не как <strong>fusarium</strong>, а как <strong>fusarium_odb10</strong> - то есть навзание папки, так как версии lineage могут отличаться.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb8-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="dt">\</span></span>
+<span id="cb8-2" class="hljs-ln-code"><a></a>  <span class="at">-i</span> spades_test_out/scaffolds.fasta <span class="dt">\</span></span>
+<span id="cb8-3" class="hljs-ln-code"><a></a>  <span class="at">-l</span> enterobacterales_odb10 <span class="dt">\</span></span>
+<span id="cb8-4" class="hljs-ln-code"><a></a>  <span class="at">--offline</span> <span class="dt">\</span></span>
+<span id="cb8-5" class="hljs-ln-code"><a></a>  <span class="at">--download_path</span> busco_downloads <span class="dt">\</span></span>
+<span id="cb8-6" class="hljs-ln-code"><a></a>   <span class="at">-m</span> genome <span class="dt">\</span></span>
+<span id="cb8-7" class="hljs-ln-code"><a></a>   <span class="at">-o</span> busco_output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="busco-3" class="slide level2 center" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">BUSCO</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb9-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="dt">\</span></span>
-<span id="cb9-2" class="hljs-ln-code"><a></a>  <span class="at">-i</span> chr_fo47.fasta <span class="dt">\</span></span>
-<span id="cb9-3" class="hljs-ln-code"><a></a>  <span class="at">-l</span> fungi_odb10 <span class="dt">\</span></span>
-<span id="cb9-4" class="hljs-ln-code"><a></a>  <span class="at">--offline</span> <span class="dt">\</span></span>
-<span id="cb9-5" class="hljs-ln-code"><a></a>  <span class="at">--download_path</span> busco_downloads <span class="dt">\</span></span>
-<span id="cb9-6" class="hljs-ln-code"><a></a>   <span class="at">-m</span> genome <span class="dt">\</span></span>
-<span id="cb9-7" class="hljs-ln-code"><a></a>   <span class="at">-o</span> busco_output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="busco-4" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">BUSCO</h2>
 <h3 id="output">Output</h3>
 <p>Папка <code>busco_output/run_fungi_odb10/</code>:</p>
@@ -687,20 +675,20 @@ Vladislav Stanin
 └── short_summary.txt</code></pre>
 <p>Интереснее всего в <em>full_table.tsv</em> - тут аннотация генов и <em>short_summary.txt</em> - тут общая статистика и <strong>completeness</strong></p>
 </section>
-<section id="busco-5" class="slide level2 center" data-auto-animate="true">
+<section id="busco-4" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">BUSCO</h2>
 <p><em>short_summary.txt</em>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb11-1" class="hljs-ln-code"><a></a>------------------------------------------------</span>
-<span id="cb11-2" class="hljs-ln-code"><a></a>|Results from dataset enterobacterales_odb10   |</span>
-<span id="cb11-3" class="hljs-ln-code"><a></a>------------------------------------------------</span>
-<span id="cb11-4" class="hljs-ln-code"><a></a>|C:100.0%[S:99.5%,D:0.5%],F:0.0%,M:0.0%,n:440  |</span>
-<span id="cb11-5" class="hljs-ln-code"><a></a>|440    Complete BUSCOs (C)                    |</span>
-<span id="cb11-6" class="hljs-ln-code"><a></a>|438    Complete and single-copy BUSCOs (S)    |</span>
-<span id="cb11-7" class="hljs-ln-code"><a></a>|2    Complete and duplicated BUSCOs (D)       |</span>
-<span id="cb11-8" class="hljs-ln-code"><a></a>|0    Fragmented BUSCOs (F)                    |</span>
-<span id="cb11-9" class="hljs-ln-code"><a></a>|0    Missing BUSCOs (M)                       |</span>
-<span id="cb11-10" class="hljs-ln-code"><a></a>|440    Total BUSCO groups searched            |</span>
-<span id="cb11-11" class="hljs-ln-code"><a></a>------------------------------------------------</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb10-1" class="hljs-ln-code"><a></a>------------------------------------------------</span>
+<span id="cb10-2" class="hljs-ln-code"><a></a>|Results from dataset enterobacterales_odb10   |</span>
+<span id="cb10-3" class="hljs-ln-code"><a></a>------------------------------------------------</span>
+<span id="cb10-4" class="hljs-ln-code"><a></a>|C:100.0%[S:99.5%,D:0.5%],F:0.0%,M:0.0%,n:440  |</span>
+<span id="cb10-5" class="hljs-ln-code"><a></a>|440    Complete BUSCOs (C)                    |</span>
+<span id="cb10-6" class="hljs-ln-code"><a></a>|438    Complete and single-copy BUSCOs (S)    |</span>
+<span id="cb10-7" class="hljs-ln-code"><a></a>|2    Complete and duplicated BUSCOs (D)       |</span>
+<span id="cb10-8" class="hljs-ln-code"><a></a>|0    Fragmented BUSCOs (F)                    |</span>
+<span id="cb10-9" class="hljs-ln-code"><a></a>|0    Missing BUSCOs (M)                       |</span>
+<span id="cb10-10" class="hljs-ln-code"><a></a>|440    Total BUSCO groups searched            |</span>
+<span id="cb10-11" class="hljs-ln-code"><a></a>------------------------------------------------</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="homework" class="title-slide slide level1 center" style="text-align: center">
