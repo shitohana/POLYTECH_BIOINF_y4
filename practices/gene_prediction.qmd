@@ -76,7 +76,7 @@ trnascan-se -E <input fasta> -o <output>
 tRNAscan-SE -E <input fasta> -o <output>
 ```
 
- `-E` - обозначает поиск эукариотических тРНК
+`-E` - обозначает поиск эукариотических тРНК
 
 ## tRNA {auto-animate="true"}
 
@@ -192,7 +192,7 @@ seqkit fx2tab --length <orf fasta file> | \
 
 Семейство программ для разметки генов.
 
-::: columns
+::::: columns
 ::: {.column width="38%"}
 1.  **GeneMark.hmm**
 
@@ -206,7 +206,7 @@ seqkit fx2tab --length <orf fasta file> | \
 
 Все версии [ТУТ](https://genemark.bme.gatech.edu/GeneMark/), включая новейшие standalone версии
 :::
-:::
+:::::
 
 **Важно выбрать модель организма наиболее близкого к вашему**
 
@@ -243,7 +243,7 @@ getAnnoFasta.pl <augustus.gff>
 
 создает FASTA с предсказанными Augustus белками
 
-## BUSCO 
+## BUSCO
 
 Benchmarking Universal **Single-Copy Orthologs** - база данных с говорящим названием. Чаще используется для оценки "полноты" **полного генома**
 
@@ -259,11 +259,9 @@ busco -i <fasta file> \
 
 **Работает только с VPN или локально скачанными базами lineage**
 
-
 ## BUSCO {auto-animate="true"}
 
-При первых запусках новые lineage будут скачиваться локально. Но этого не проивойдет без VPN...
-Для запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:
+При первых запусках новые lineage будут скачиваться локально. Но этого не проивойдет без VPN... Для запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:
 
 ```         
 busco_downloads/
@@ -315,14 +313,15 @@ busco -i <fasta file> \
 
 Пусть команда была:
 
-```bash
+``` bash
 busco -i chr_fo47.fasta -l fungi_odb10 --offline \
    --download_path busco_downloads \
    -m genome -o busco_output_fungi
 ```
 
 Папка `busco_output_fungi/run_fungi_odb10/`:
-```
+
+```         
 busco_output_fungi/run_fungi_odb10/
 ├── busco_sequences
 ├── full_table.tsv
@@ -336,7 +335,8 @@ busco_output_fungi/run_fungi_odb10/
 ## BUSCO output {auto-animate="true"}
 
 Папка `busco_output_fungi/run_fungi_odb10/`:
-```
+
+```         
 busco_output_fungi/run_fungi_odb10/
 ├── busco_sequences
 ├── full_table.tsv
@@ -349,24 +349,20 @@ busco_output_fungi/run_fungi_odb10/
 
 Интереснее всего в *full_table.tsv* - тут аннотация генов и *short_summary.txt* - тут общая статистика и **completeness**
 
-
 ## BUSCO output {auto-animate="true"}
 
-
-Интереснее всего в *full_table.tsv* - тут аннотация генов и *short_summary.txt* - тут общая статистика и **completeness** 
+Интереснее всего в *full_table.tsv* - тут аннотация генов и *short_summary.txt* - тут общая статистика и **completeness**
 
 Пример одной и строчек *short_summary.txt*:
 
-```text
+``` text
 C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%
 ```
 
-+ C:11.2% - **completeness** 
-+ [S:11.2%,D:0.0%] - однокопийных 11.2% и 0% дупликатов
-+ F:0.4% - Fragmented
-+ M:88.4% - Missed
-
-
+-   C:11.2% - **completeness**
+-   \[S:11.2%,D:0.0%\] - однокопийных 11.2% и 0% дупликатов
+-   F:0.4% - Fragmented
+-   M:88.4% - Missed
 
 ## Deep Learning approaches {auto-animate="true" style="text-align: center"}
 
@@ -374,7 +370,7 @@ C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%
 
 Используют нейронные сети (обычно свёрточные) и машинное обучение для предсказания
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 **Tiberius**
 :::
@@ -382,11 +378,11 @@ C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%
 ::: {.column width="50%"}
 **Helixer**
 :::
-:::
+:::::
 
 ## Deep Learning approaches {auto-animate="true" style="text-align: center"}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 **Tiberius**
 
@@ -398,13 +394,13 @@ C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%
 
 ![](_files/gene_prediction/helixer.png){fig-align="center" width="1500"}
 :::
-:::
+:::::
 
-## Homework 
+## Homework
 
 Аннотировать хромосомы пивных дрожжей
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ![](_files/gene_prediction/kvas.jpg){width="570"}
 :::
@@ -412,4 +408,4 @@ C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%
 ::: {.column width="50%"}
 ![](_files/gene_prediction/yeasts.jpg){width="612"}
 :::
-:::
+:::::

@@ -11,6 +11,8 @@ title: "Дополнительные главы биоинформатики. 4 
 -   [Практика 10. Предсказание генов](practices/gene_prediction.qmd)
 -   [Практика 11. Онтологии](practices/ontology.qmd)
 
+-   [Практика 2.5. Сборка геномов](practices/genome_assembly.qmd)
+
 Дополнительно:
 
 [Q&A по виртуальной машине](practices/server-help.qmd) для практики 2.
