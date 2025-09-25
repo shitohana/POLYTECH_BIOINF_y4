@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Константин Юдыцкий">
+<meta name="dcterms.date" content="2024-01-01">
+
+<title>Основы Linux – POLYTECH_BIOINF_y4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/kbd/kbd.js"></script>
+<link href="../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">POLYTECH_BIOINF_y4</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#unix" id="toc-unix" class="nav-link active" data-scroll-target="#unix">Unix</a></li>
+  <li><a href="#gnu-linux" id="toc-gnu-linux" class="nav-link" data-scroll-target="#gnu-linux">GNU / Linux</a>
+  <ul class="collapse">
+  <li><a href="#дистрибутивы-linux" id="toc-дистрибутивы-linux" class="nav-link" data-scroll-target="#дистрибутивы-linux">Дистрибутивы Linux</a></li>
+  <li><a href="#файловая-система-linux" id="toc-файловая-система-linux" class="nav-link" data-scroll-target="#файловая-система-linux">Файловая система Linux</a></li>
+  </ul></li>
+  <li><a href="#терминал" id="toc-терминал" class="nav-link" data-scroll-target="#терминал">Терминал</a></li>
+  <li><a href="#основные-команды" id="toc-основные-команды" class="nav-link" data-scroll-target="#основные-команды">Основные команды</a>
+  <ul class="collapse">
+  <li><a href="#предисловие" id="toc-предисловие" class="nav-link" data-scroll-target="#предисловие">Предисловие</a></li>
+  <li><a href="#взаимодействие-с-файловой-системой" id="toc-взаимодействие-с-файловой-системой" class="nav-link" data-scroll-target="#взаимодействие-с-файловой-системой">Взаимодействие с файловой системой</a></li>
+  <li><a href="#linux-pipelines" id="toc-linux-pipelines" class="nav-link" data-scroll-target="#linux-pipelines">Linux pipelines</a></li>
+  <li><a href="#helpful-shortcuts" id="toc-helpful-shortcuts" class="nav-link" data-scroll-target="#helpful-shortcuts">Helpful shortcuts</a></li>
+  <li><a href="#общий-вид-команд" id="toc-общий-вид-команд" class="nav-link" data-scroll-target="#общий-вид-команд">Общий вид команд</a></li>
+  <li><a href="#работа-с-процессами" id="toc-работа-с-процессами" class="nav-link" data-scroll-target="#работа-с-процессами">Работа с процессами</a></li>
+  <li><a href="#работа-с-файлами-1" id="toc-работа-с-файлами-1" class="nav-link" data-scroll-target="#работа-с-файлами-1">Работа с файлами</a>
+  <ul class="collapse">
+  <li><a href="#reading-and-editing" id="toc-reading-and-editing" class="nav-link" data-scroll-target="#reading-and-editing">Reading and editing</a></li>
+  <li><a href="#downloading" id="toc-downloading" class="nav-link" data-scroll-target="#downloading">Downloading</a></li>
+  <li><a href="#работа-с-архивами" id="toc-работа-с-архивами" class="nav-link" data-scroll-target="#работа-с-архивами">Работа с архивами</a></li>
+  </ul></li>
+  <li><a href="#sudo" id="toc-sudo" class="nav-link" data-scroll-target="#sudo">sudo</a></li>
+  <li><a href="#apt" id="toc-apt" class="nav-link" data-scroll-target="#apt">apt</a></li>
+  </ul></li>
+  <li><a href="#установка-linux-на-virtualbox" id="toc-установка-linux-на-virtualbox" class="nav-link" data-scroll-target="#установка-linux-на-virtualbox">Установка Linux на VirtualBox</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Основы Linux</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Константин Юдыцкий </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 1, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="unix" class="level1">
+<h1>Unix</h1>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Unix</strong> – семейство переносимых, многозадачных и многопользовательских операционных систем, которые основаны на идеях оригинального проекта AT&amp;T Unix, разработанного в 1970-х годах в исследовательском центре Bell Labs Кеном Томпсоном и Деннисом Ритчи.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://commons.wikimedia.org/wiki/File:Simh-pdp11-unix-sysiii.png#/media/File:Simh-pdp11-unix-sysiii.png"><img src="_files/linux/unix_term.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Unix terminal"></a></p>
+</figure>
+</div>
+<figcaption>Unix terminal</figcaption>
+</figure>
+</div>
+<p>Основное отличие Unix-подобных систем от других операционных систем заключается в том, что это изначально многопользовательские многозадачные системы. В Unix может одновременно работать сразу много пользователей, каждый за своим терминалом, при этом каждый из них может выполнять множество различных вычислительных процессов, которые будут использовать ресурсы именно этого компьютера.</p>
+<p>Второе колоссальное преимущество Unix — её мультиплатформенность. Ядро системы разработано таким образом, что его легко можно приспособить практически под любой микропроцессор.</p>
+<p>Unix имеет и другие характерные особенности:</p>
+<ul>
+<li><p>использование простых текстовых файлов для настройки и управления системой;</p></li>
+<li><p>широкое применение утилит, запускаемых из командной строки;</p></li>
+<li><p>взаимодействие с пользователем посредством виртуального устройства — терминала;</p></li>
+<li><p>представление физических и виртуальных устройств и некоторых средств межпроцессного взаимодействия в виде файлов;</p></li>
+<li><p>использование конвейеров из нескольких программ, каждая из которых выполняет одну задачу.</p></li>
+</ul>
+<p>Таким образом, за последние 50 лет Unix-архитектура затронула большую часть технологической индустрии, начиная с вычислительных кластеров, заканчивая macOS и Android (которые так же являются модифицированными версиями Unix). Неудивительно, что и биоинформатику Unix не обошел стороной. Благодаря удобству работы с файлами и создания конвейерных систем обработки данных, мультиплатформенности и многозадачности Unix-системы оказались идеальны для ее задач.</p>
+</section>
+<section id="gnu-linux" class="level1">
+<h1>GNU / Linux</h1>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>GNU</strong> (<u>G</u>NU’s <u>N</u>ot <u>U</u>nix) – свободная Unix-подобная операционная система, разрабатываемая Проектом GNU. Акроним GNU был выбран из-за того, что GNU является Unix-подобной операционной системой, но отличается от Unix тем, что является свободным программным обеспечением и не содержит кода Unix.</p>
+</div>
+</div>
+<p>GNU стала первой абсолютно бесплатной ОС. Все ее компоненты являлись открытыми и некоммерческими. Для их распостранения потребовалось написать универсальную лицензию, позволяющую делиться и распостранять бесплатный софт – GNU General Public Licence. С годами разработки и развития, GNU превратился в сообщество энтузиастов, не только работающее над бесплатной ОС, но и создающее целый массив программных и системных решений.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>В 1991 году Линус Торвальдс разработал ядро ОС - Linux Kernel, которое, вместе с разработанными утилитами и программами GNU основали семейство Unix-подобных систем – <strong>Linux</strong></p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="http://forums.balancer.ru/tech/forum/2008/01/t59711--derevo-versij-linux-rodoslovnaya.4026.html"><img src="_files/linux/linux_tree.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Что же здесь являются Linux-ом? - Все эти дистрибутивы."></a></p>
+</figure>
+</div>
+<figcaption>Что же здесь являются Linux-ом? - Все эти дистрибутивы.</figcaption>
+</figure>
+</div>
+<p>Linux-системы реализуются на модульных принципах, стандартах и соглашениях, заложенных в Unix в течение 1970-х и 1980-х годов. Такая система использует монолитное ядро, которое управляет процессами, сетевыми функциями, периферией и доступом к файловой системе. Драйверы устройств либо интегрированы непосредственно в ядро, либо добавлены в виде модулей, загружаемых во время работы системы.</p>
+<p>Отдельные программы, взаимодействуя с ядром, обеспечивают функции системы более высокого уровня. Например, пользовательские компоненты GNU являются важной частью большинства Линукс-систем, включающей в себя наиболее распространённые реализации библиотеки языка Си, популярных оболочек операционной системы, и многих других общих инструментов Unix, которые выполняют многие основные задачи операционной системы.</p>
+<section id="дистрибутивы-linux" class="level2">
+<h2 class="anchored" data-anchor-id="дистрибутивы-linux">Дистрибутивы Linux</h2>
+<p>Большинство пользователей для установки Linux используют дистрибутивы, включающие не только набор программ, но и решающие ряд задач по обслуживанию, объединённых едиными системами установки, управления и обновления пакетов, настройки и поддержки.</p>
+<p>Самые распространённые в мире дистрибутивы (2017): Linux Mint, Ubuntu, Debian, Mageia, Fedora, OpenSUSE, ArchLinux, CentOS, PCLinuxOS, Slackware, Gentoo. Многие из дистрибутивов связаны друг с другом и в той или иной степени совместимы, в частности, Ubuntu основан на Debian, а дистрибутивы Mint основаны как на Ubuntu, так и Debian (LMDE) и полностью с ними совместимы, но при этом включают дополнительно поддержку по умолчанию Java, Adobe Flash и некоторых других проприетарных компонентов, а CentOS основан на исходных текстах коммерческого дистрибутива Red Hat Enterprise Linux (доступного в бинарной сборке только платным подписчикам) и при этом полностью бинарно совместимый с ним.</p>
+<p>Самый популярный дистрибутив для использования на серверах, а, соответственно, и на биоинформатических кластерах – Debian.</p>
+</section>
+<section id="файловая-система-linux" class="level2">
+<h2 class="anchored" data-anchor-id="файловая-система-linux">Файловая система Linux</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/linux/filetree.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Древо файловой системы Linux.</figcaption>
+</figure>
+</div>
+<p>В Unix (и Linux в частности) каждый процесс и в целом, объект, является файлом (даже папка). В отличие от Windows, где дисковое пространство распределяется между разделами, в Linux файловая система представляет собой единое дерево, корневым объектом (папкой) которого является <code>/</code> , также называемый <em>root (не путать с root user)</em>. На картинке сверху представлено дерево остальных системных папок Linux и их краткое описание. Обратите внимание, что все они исходят из <em>root</em>.</p>
+<p>Пользователь может вносить изменения практически в любой файл системы, хотя это занятие является достаточно опасным и может сломать систему. Безопасной, и по-праву пользовательской папкой является <code>/home</code> и дочерние. В ней для каждого пользователя создается своя домашняя папка.</p>
+</section>
+</section>
+<section id="терминал" class="level1">
+<h1>Терминал</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/linux/VT05.jpg" class="img-fluid figure-img" width="300"></p>
+<figcaption>ЭТО терминал! (VT05)</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/linux/CatFileLsChmodRun.png" class="img-fluid figure-img" width="247"></p>
+<figcaption>А это Bourne again shell (bash).</figcaption>
+</figure>
+</div>
+<p>Согласно Wikipedia: компьютерный терминал – устройство, используемое для взаимодействия пользователя (или оператора) с компьютером или компьютерной системой, локальной или удалённой. Однако слово терминал уже долгое время не используется в данном смысле. Терминалом гораздо чаще называют программу, предназначенную для эмуляции терминала - командную оболочку Unix (и не только).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Самой популярной командной оболочкой является <strong>Bash</strong> (<u>B</u>ourne <u>a</u>gain <u>sh</u>ell). Представляет собой командный процессор, работающий, как правило, в интерактивном режиме в текстовом окне. Bash также может читать команды из файла, который называется скриптом (или сценарием). Как и все Unix-оболочки, он поддерживает автодополнение имён файлов и каталогов, подстановку вывода результата команд, переменные, контроль над порядком выполнения, операторы ветвления и цикла.</p>
+</div>
+</div>
+<p>При подключении к удаленному кластеру, скорее всего вас встретит именно командная строка bash, ожидающая от вас следующую команду. Далее, мы ознакомимся с основными командами bash.</p>
+</section>
+<section id="основные-команды" class="level1">
+<h1>Основные команды</h1>
+<section id="предисловие" class="level2">
+<h2 class="anchored" data-anchor-id="предисловие">Предисловие</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/linux/Mac_command.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>Командная строка на Mac. Здесь используется командная оболочка OhMyZsh.</figcaption>
+</figure>
+</div>
+<p>Bash, хоть является популярной, но далеко не единственной командной оболочкой. Большинство команд будут выполнятся одинаково в любой из них, однако, могут быть и различия. Чтобы определить, какая командная оболочка используется в Вашем терминале, можно воспользоваться командой:</p>
+<p><code>echo $0</code> или <code>echo $SHELL</code></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Команды в Linux CASE-SENSITIVE.</p>
+</div>
+</div>
+<p>GNU/Linux и многие другие программы являются достаточно хорошо задокументированными проектами. Большинство программ имеют <code>--help</code> параметр, который выведет в терминал документацию. Также для программ GNU доступно руководство с помощью команды <code>man &lt;command-name&gt;</code> .</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Попробуйте посмотреть документацию и руководство команды <code>echo</code> . (Чтобы выйти из режима руководства - нажмите <kbd aria-hidden="true">q</kbd><span class="visually-hidden">q</span>)</p>
+</div>
+</div>
+<p>Выполнение любой команды можно полностью остановить комбинацией клавиш <kbd aria-hidden="true">Ctrl-C</kbd><span class="visually-hidden">Ctrl-C</span>, а для того, чтобы приостановить – <kbd aria-hidden="true">Ctrl-Z</kbd><span class="visually-hidden">Ctrl-Z</span></p>
+</section>
+<section id="взаимодействие-с-файловой-системой" class="level2">
+<h2 class="anchored" data-anchor-id="взаимодействие-с-файловой-системой">Взаимодействие с файловой системой</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Где я?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><code>pwd</code> (<u>p</u>rint <u>w</u>orking <u>d</u>irectory) - выводит на экран путь к текущей активной директории.</p></li>
+<li><p><code>ls</code> (<u>l</u>i<u>s</u>t) - показывает содержимое директории.</p></li>
+<li><p><code>du</code> - выводит информацию об использовании диска файлами и рекурсивно для файлов директорий.</p></li>
+<li><p><code>cd</code> – <u>c</u>hange <u>d</u>irectory</p></li>
+<li><p><code>tree</code> - выводит структуру файлового древа директории.</p></li>
+</ul>
+</div>
+</div>
+<p>Путь к файлу - его универсальный идентификатор в файловой системе. Путь может быть как абсолютным – исходящим из корневой папки, так и относительным – из текущей. Чтобы не приходилось постоянно вводить полный путь к файлу, для относительного пути были введены следующие сокращения:</p>
+<ul>
+<li><p><code>.</code> – текущая директория.</p></li>
+<li><p><code>..</code> – родительская директория.</p></li>
+<li><p><code>~</code> – домашняя папка пользователя (<code>/home/&lt;username&gt;</code>)</p></li>
+<li><p><code>/</code> - корневая папка файлового древа.</p></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Работа с файлами
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><code>file</code> - показать тип файла.</p></li>
+<li><p><code>head</code> / <code>tail</code> - показать первую/последнюю строку файла.</p></li>
+<li><p><code>less</code> – показать содержимое файла с возможностью скролла.</p></li>
+<li><p><code>strings</code> – показать все <a href="https://ru.wikipedia.org/wiki/ASCII">ASCII</a> строки из бинарного файла.</p></li>
+<li><p><code>cat</code> – скопировать из stdin в stdout.</p></li>
+<li><p><code>tac</code> - <code>cat</code> наоборот.</p></li>
+<li><p><code>mkdir</code> - создать папку.</p></li>
+</ul>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.putorius.net/linux-io-file-descriptors-and-redirection.html"><img src="_files/linux/stdio.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="403"></a></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+I/O redirection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><code>echo</code> - вывести строку в stdout.</p></li>
+<li><p><code>&lt;</code> - перенаправить stdin.</p></li>
+<li><p><code>&gt; / 1&gt;</code> – перенаправить stdout перезаписывая файл.</p></li>
+<li><p><code>&gt;&gt; / 1&gt;&gt;</code> - перенаправить stdout добавляя строки к файлу.</p></li>
+<li><p><code>2&gt;&gt;</code> – перенаправить stderr добавляя строки к файлу.</p></li>
+<li><p><code>|</code> – создать pipe.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="linux-pipelines" class="level2">
+<h2 class="anchored" data-anchor-id="linux-pipelines">Linux pipelines</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://iu5edu.ru/wiki/cpp2/docs/labs/lab1/UsefulInformation/LinuxCommands/"><img src="_files/linux/pipeline.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400" alt="Пример Linux pipeline."></a></p>
+</figure>
+</div>
+<figcaption>Пример Linux pipeline.</figcaption>
+</figure>
+</div>
+<p>Pipeline в Linux перенаправляет вывод одной программы на вход другой.</p>
+<p>Пример:</p>
+<ul>
+<li><p>Выводим содержимое файла с помощью&nbsp;<code>cat</code></p></li>
+<li><p>Передаем это утилите&nbsp;<code>grep</code>&nbsp;(<code>grep bmstu</code>&nbsp;- оставить только строки, содержащие&nbsp;<code>bmstu</code>)</p></li>
+<li><p>Далее передаем вывод утилите&nbsp;<code>sort</code>&nbsp;(<code>sort -u</code>&nbsp;- отсортировать в алфавитном порядке и оставить только уникальные значения)</p></li>
+</ul>
+<pre><code>cat file.txt | grep bmstu | sort -u</code></pre>
+</section>
+<section id="helpful-shortcuts" class="level2">
+<h2 class="anchored" data-anchor-id="helpful-shortcuts">Helpful shortcuts</h2>
+<ul>
+<li><p>Стрелки вверх/вниз – выбрать предыдущую команду.</p></li>
+<li><p><kbd aria-hidden="true">Ctrl-A</kbd><span class="visually-hidden">Ctrl-A</span> – передвинуть курсор на начало команды.</p></li>
+<li><p><kbd aria-hidden="true">Ctrl-E</kbd><span class="visually-hidden">Ctrl-E</span> – передвинуть курсор на конец команды.</p></li>
+<li><p><kbd aria-hidden="true">Ctrl-C</kbd><span class="visually-hidden">Ctrl-C</span> – очистить командную <em>строку</em>.</p></li>
+<li><p><kbd aria-hidden="true">Tab</kbd><span class="visually-hidden">Tab</span> – показать все возможные варианты продолжения команды.</p></li>
+<li><p><kbd aria-hidden="true">Tab+Tab</kbd><span class="visually-hidden">Tab+Tab</span> – выбрать первый предложенный вариант продолжения.</p></li>
+<li><p><code>A; B</code> – выполнить A, затем B вне зависимости от успеха выполнения A.</p></li>
+<li><p><code>A &amp;&amp; B</code> – выполнить B <em>только</em> в случае успеха A.</p></li>
+<li><p><code>A || B</code> – выполнить B <em>только</em> в случае ошибки/неуспеха A.</p></li>
+</ul>
+</section>
+<section id="общий-вид-команд" class="level2">
+<h2 class="anchored" data-anchor-id="общий-вид-команд">Общий вид команд</h2>
+<p>Все нижеперечисленные варианты равносильны:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Команда</th>
+<th>Параметры</th>
+<th>Аргументы</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ls</code></td>
+<td><code>-l --all --human-readable</code></td>
+<td><code>./directory</code></td>
+</tr>
+<tr class="even">
+<td><code>ls</code></td>
+<td><code>-l -a -h</code></td>
+<td><code>./directory</code></td>
+</tr>
+<tr class="odd">
+<td><code>ls</code></td>
+<td><code>-lah</code></td>
+<td><code>./directory</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="работа-с-процессами" class="level2">
+<h2 class="anchored" data-anchor-id="работа-с-процессами">Работа с процессами</h2>
+<p>Как закончить (kill) или приостановить процесс было сказано в разделе <a href="#предисловие">Предисловие</a>.</p>
+<ul>
+<li><p><code>bg N</code> - запустить процесс N в фоне.</p></li>
+<li><p><code>fg N</code> - вернуть процесс N на первый план.</p></li>
+<li><p><code>./script.sh &amp;</code> - запустить скрипт в фоне.</p></li>
+<li><p><code>top</code> - вывести список всех процессов (диспетчер задач).</p></li>
+<li><p><code>kill PID</code> - закончить процесс по ID.</p></li>
+<li><p><code>kill -9 PID</code> - немедленно прекратить (kill) процесс.</p></li>
+</ul>
+</section>
+<section id="работа-с-файлами-1" class="level2">
+<h2 class="anchored" data-anchor-id="работа-с-файлами-1">Работа с файлами</h2>
+<section id="reading-and-editing" class="level3">
+<h3 class="anchored" data-anchor-id="reading-and-editing">Reading and editing</h3>
+<ul>
+<li><p><code>cat</code> - вывести содержимое файла в терминал.</p></li>
+<li><p><code>zcat</code> – вывести содержимое <em>сжатого</em> файла в терминал.</p></li>
+<li><p><code>less -S</code> - открыть файл для чтения; <kbd aria-hidden="true">q</kbd><span class="visually-hidden">q</span> - выйти, <kbd aria-hidden="true">/</kbd><span class="visually-hidden">/</span> - поиск, <kbd aria-hidden="true">g</kbd><span class="visually-hidden">g</span> - в начало, <kbd aria-hidden="true">G</kbd><span class="visually-hidden">G</span> - в конец.</p></li>
+<li><p><code>nano</code> - открыть файл в текстовом редакторе; <kbd aria-hidden="true">Ctrl-X</kbd><span class="visually-hidden">Ctrl-X</span> - выйти.</p></li>
+</ul>
+</section>
+<section id="downloading" class="level3">
+<h3 class="anchored" data-anchor-id="downloading">Downloading</h3>
+<ul>
+<li><code>wget</code> - скачать по ссылке.</li>
+</ul>
+</section>
+<section id="работа-с-архивами" class="level3">
+<h3 class="anchored" data-anchor-id="работа-с-архивами">Работа с архивами</h3>
+<p>Одиночный файл:</p>
+<ul>
+<li><p>Decompression:</p>
+<ul>
+<li><p><code>gunzip -c file.gz &gt; file</code></p></li>
+<li><p><code>gzip -cd file.gz &gt; file</code></p></li>
+<li><p><code>unzip -p file.zip &gt; file</code></p></li>
+</ul></li>
+<li><p>Compression</p>
+<ul>
+<li><p><code>gzip -c file &gt; file.gz</code></p></li>
+<li><p><code>zip -file file.zip</code></p></li>
+</ul></li>
+</ul>
+<p>Множественные файлы:</p>
+<ul>
+<li><p>Decompression</p>
+<ul>
+<li><code>tar -xvzf files.tar.gz -C ./</code></li>
+</ul></li>
+<li><p>Compression</p>
+<ul>
+<li><code>tar -cvzf files.tar.gz ./*</code></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="sudo" class="level2">
+<h2 class="anchored" data-anchor-id="sudo">sudo</h2>
+<p><code>sudo</code> (англ. Substitute User and do, дословно «подменить пользователя и выполнить») — программа для системного администрирования UNIX-систем, позволяющая делегировать те или иные привилегированные ресурсы пользователям с ведением протокола работы. Основная идея — дать пользователям как можно меньше прав, при этом достаточных для решения поставленных задач. Программа поставляется для большинства UNIX и UNIX-подобных операционных систем.</p>
+<p>Команда sudo предоставляет возможность пользователям выполнять команды от имени суперпользователя root, либо других пользователей. Правила, используемые sudo для принятия решения о предоставлении доступа, находятся в файле /etc/sudoers (для редактирования файла можно использовать специальный редактор visudo, запускаемый из командной строки без параметров, в том числе без указания пути к файлу).</p>
+<p>В большинстве случаев грамотная настройка sudo делает небезопасную работу от имени суперпользователя ненужной. Все действия оказываются выполнимы из-под аккаунта пользователя, которому разрешено использовать sudo без ограничений. Имеется возможность запрещать и разрешать определённым пользователям или группам выполнение конкретного набора программ, а также разрешить выполнение определённых программ без необходимости ввода своего пароля.</p>
+</section>
+<section id="apt" class="level2">
+<h2 class="anchored" data-anchor-id="apt">apt</h2>
+<p><code>apt</code> (advanced packaging tool) — программа для установки, обновления и удаления программных пакетов в операционных системах Debian и основанных на них (Ubuntu, Linux Mint и т. п.), иногда также используется в дистрибутивах, основанных на Mandrake, например Mandriva, ALT Linux и PCLinuxOS. Способна автоматически устанавливать и настраивать программы для UNIX-подобных операционных систем как из предварительно откомпилированных пакетов, так и из исходных кодов.</p>
+<p>Пакеты берутся из интернет-репозиториев либо их можно установить с имеющихся носителей. Список источников пакетов хранится в файле /etc/apt/sources.list и в каталоге /etc/apt/sources.list.d/. Графические оболочки для apt позволяют легко добавлять новые и удалять ненужные источники.</p>
+<p>apt (apt-get) значительно упрощает процесс установки программ в командном режиме.</p>
+<pre><code>apt update          Обновление баз данных пакетов (указанных в/etc/apt/sources.list)
+apt upgrade         Обновление системы
+
+apt search пакет    Поиск пакетов
+apt search ^пакет   Поиск пакетов по регулярному выражению
+apt show пакет      Поиск пакетов и выводит информацию о пакете
+apt install пакет   Установить пакет
+
+apt purge пакет     Удалить пакет и его конфигурационные файлы. Возможно использовать для уже удаленного пакета.
+apt remove пакет    Удалить пакет
+apt autoremove      Удаление всех пакетов-сирот
+
+apt autoclean       Очистка кэша неустановленных пакетов
+apt clean           Очистка кэша пакетов
+
+apt edit-sources    Открывает файл /etc/apt/sources.list в текстовом редакторе для редактирования, после сохранения изменений и закрытия редактора, выполняет проверку файла на предмет ошибок. В случае наличия ошибок, выводит предложение на повторное редактирование файла, чтобы исправить ошибки.
+
+apt full-upgrade    Переход от одной основной версии дистрибутива к следующей</code></pre>
+</section>
+</section>
+<section id="установка-linux-на-virtualbox" class="level1">
+<h1>Установка Linux на VirtualBox</h1>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Этот раздел для тех, у кого Windows! Если у Вас macOS, то Вам и так доступен Unix терминал: <kbd aria-hidden="true">Сmd-P</kbd><span class="visually-hidden">Сmd-P</span> чтобы открыть поиск Spotlight -&gt; Terminal.</p>
+</div>
+</div>
+<p>VirtualBox (Oracle VM VirtualBox) — программный продукт виртуализации для операционных систем Windows, Linux, FreeBSD, macOS, Solaris/OpenSolaris, ReactOS, DOS и других.</p>
+<p>Мы будем пользоваться VirtualBox, чтобы Вам не пришлось устанавливать Linux на свой ПК в качестве параллельной ОС, однако, скорее всего в будущем Вам придется это сделать. К счастью, у популярных дистрибутивов процесс установки максимально документирован и упрощен. <em>Но будьте аккуратны с выделением разделов диска для системы, чтобы случайно не удалить все свои файлы :).</em></p>
+<p>Образ Debian для VirtualBox доступен для скачивания <a href="https://drive.google.com/file/d/1RHxIdtakvOFTHFeVu-Mda2UOSeqLrpoh/view?usp=share_link">по ссылке</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/shitohana\.github\.io\/POLYTECH_BIOINF_y4\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

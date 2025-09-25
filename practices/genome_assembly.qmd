@@ -1,0 +1,387 @@
+---
+title: "Genome Assembly"
+format: 
+   revealjs:
+      theme: style.scss
+      center: true
+      controls: true
+      # controlsLayout: 'bottom-left'
+      slide-number: true
+      show-slide-number: all
+      # fontsize: 40px
+      progress: true
+      
+       #center-title-slide: false
+# incremental: true 
+author:
+- Vladislav Stanin
+date: 03/13/2025
+---
+
+------------------------------------------------------------------------
+
+### Обычный пайплайн
+
+![](images/pipeline_common.png)
+
+------------------------------------------------------------------------
+
+### Технологии секвенирования {style="text-align: center"}
+
+![Today's most popular sequencing technologies](images/short_long_reads.png){fig-align="center" width="2000"}
+
+------------------------------------------------------------------------
+
+### Технологии секвенирования {style="text-align: center"}
+
+![](images/mgi_illumina.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Quality control {style="text-align: center"}
+
+::::: columns
+::: {.column width="25%"}
+[**Trimming!**]{.underline}
+
+-   **Adapters**
+
+-   **Indexes**
+
+[**Demultiplexing**]{.underline}
+:::
+
+::: {.column width="75%"}
+![](images/indexes.png){fig-align="center"}
+:::
+:::::
+
+## Аналогия {style="text-align: center"}
+
+![](images/newspaper.png){width="1455"}
+
+## Проблемы на пути сборки {style="text-align: center"}
+
+![](images/asm_problems.jpg){fig-align="center" width="2000"}
+
+## Методы сборки генома {style="text-align: center"}
+
+![](images/asm_algos.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+<!-- ### Graph visualization  {style="text-align: center"} -->
+
+![](images/graph.png){fig-align="center" width="3000"}
+
+[Bandage tool](https://github.com/rrwick/Bandage) for graph visualization
+
+------------------------------------------------------------------------
+
+![](images/graph_problems.jpg){fig-align="center" width="2000"}
+
+------------------------------------------------------------------------
+
+### Увы, но сразу собрать все хромосомы сложно {style="text-align: center"}
+
+![](images/contigs_scaffolds.jpeg){fig-align="center" width="850"}
+
+# Качество сборки
+
+## "Целостность" (Contiguity)
+
+![](images/contiguity.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+#### Genome length = 100 Mb
+
+#### Number of contigs = 14
+
+#### Largest contig = 25 Mb
+
+![](images/N50.png){fig-align="center"}
+
+::::: columns
+::: {.column width="50%" style="text-align: center"}
+### N50 = 8 Mb
+
+**Длина** **контига** самого короткого контига среди 50% самых длинных контигов сборки
+:::
+
+::: {.column width="50%" style="text-align: center"}
+### L50 = 4
+
+**Число** 50% самых длинных контигов сборки
+:::
+:::::
+
+## "Полнота" (Completeness)
+
+![](images/completeness.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### BUSCO
+
+Benchmarking Universal **Single-Copy Orthologs**
+
+![](images/busco.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+#### K-мерный состав - Гомозигота
+
+::::: columns
+::: {.column width="50%"}
+**Good** ![](images/kmer-spectra-merqury-homozygous-good.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+**Bad** ![](images/kmer-spectra-merqury-homozygous-bad.png){fig-align="center"}
+:::
+:::::
+
+[Merqury tool](https://github.com/marbl/merqury)
+
+------------------------------------------------------------------------
+
+#### K-мерный состав - Гетерозигота
+
+::::: columns
+::: {.column width="50%"}
+**Good** ![](images/kmer-spectra-merqury-heterozygous-good.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+**Bad** ![](images/kmer-spectra-merqury-c.gigas-hap2.png){fig-align="center"}
+:::
+:::::
+
+[Merqury tool](https://github.com/marbl/merqury)
+
+## "Корректность" (Correctness)
+
+<!-- ![](images/correctness.png){fig-align="center"} -->
+
+![](images/misassemblies_1.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+### Dotplot
+
+::::: columns
+::: {.column width="35%"}
+-   [MUMmer dotplot](https://github.com/mummer4/mummer)
+-   [Chromeister](https://github.com/estebanpw/chromeister)
+-   [D-genies](https://dgenies.toulouse.inra.fr/)
+:::
+
+::: {.column width="65%"}
+![](images/dotplot-dgenies.png){fig-align="center"}
+:::
+:::::
+
+## Ныряем! {style="text-align: center"}
+
+![](images/meme.jpg){fig-align="center"}
+
+## Escherichia coli K12
+
+Изолирована из образца стула пациента больного дифтерией в 1922 года в Стэнфорде. **Не патогенна!**
+
+![](images/ecoli.jpg){fig-align="center"}
+
+## Сколько скаффолдов ожидаем получить после сборки генома бактерии?
+
+------------------------------------------------------------------------
+
+![](images/one.jpg){fig-align="center"}
+
+## illumina Paired-End reads
+
+``` {.bash code-line-numbers="1|2|3"}
+prefetch SRR13921546
+fasterq-dump SRR13921546
+ls -hl
+```
+
+`SRR13921546`\
+`SRR13921546_1.fastq`\
+`SRR13921546_2.fastq`
+
+## QC
+
+``` {.bash code-line-numbers="1|3-8"}
+fastqc SRR13921546_1.fastq SRR13921546_1.fastq
+
+fastp \
+  -i SRR13921546_1.fastq \ 
+  -I SRR13921546_2.fastq \
+  -o SRR13921546_1.filtered.fastq \
+  -O SRR13921546_2.filtered.fastq \
+  -q 25 \
+  # --trim_front1 10 \
+  # --trim_front2 10 \
+  # --max_len1 100 \
+  # --max_len2 100 \ 
+```
+
+## SPAdes assembler
+
+``` {.bash code-line-numbers="1|2-8"}
+mkdir output_spades
+
+spades.py \ 
+  -1 SRR13921546_1.filtered.fastq \ 
+  -2 SRR13921546_2.filtered.fastq \
+  -o output_spades \
+  --threads 8 \
+  --isolate # для данных с огромным покрытием
+  # --memory 8 # лимит памяти ОЗУ - если SPAdes привысит его, то остановится
+```
+
+-   `scaffolds.fa`
+-   `contigs.fa`
+-   `assembly_graph_with_scaffolds.gfa` - *граф*
+
+------------------------------------------------------------------------
+
+### P.S. Reference guided assembly (scaffolding)
+
+**RagTag**
+
+``` bash
+# Скачиваем референс
+wget "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz"
+gunzip GCF_000005845.2_ASM584v2_genomic.fna.gz
+
+# Скэффолдинг
+ragtag.py scaffold -t 8 \
+  GCF_000005845.2_ASM584v2_genomic.fna \
+  ragtag_output/ragtag.correct.fasta 
+```
+
+## QUAST {auto-animate="true"}
+
+**Assembly quality check**
+
+``` {.bash code-line-numbers="1-3,6"}
+quast.py \
+  --threads 8 \
+  --output-dir quast_output \
+  # --gene-finding \ # GeneMark
+  # --conserved-genes-finding \ # BUSCO
+  spades_output/scaffolds.fasta 
+```
+
+-   `report.{txt tsv html pdf}`
+-   `icarus.html`
+
+## QUAST {auto-animate="true"}
+
+#### report.html
+
+![](images/quast_report.png){fig-align="center" width="2000"}
+
+## seqkit stats - simple variant
+
+``` bash
+seqkit stats 
+  -a \ # all stats
+  -b \ # basename of file
+  -T \ # tabular output
+  spades_test_out/scaffolds.fasta
+```
+
+## BUSCO {auto-animate="true"}
+
+При первых запусках новые lineage будут скачиваться локально. Но этого не проивойдет без VPN... Для запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:
+
+```         
+busco_downloads/
+├── file_versions.tsv
+└── lineages
+    ├── bacteria_odb10
+    └── enterobacterales_odb10
+```
+
+базы odb надо скачать... с VPN... [**отсюда**](https://busco-data.ezlab.org/v5/data/) или попросить у товарища
+
+## BUSCO {auto-animate="true"}
+
+``` bash
+busco \
+  -i spades_test_out/scaffolds.fasta \
+  -l enterobacterales_odb10 \
+  --offline \
+  --download_path busco_downloads \
+   -m genome \
+   -o busco_output
+```
+
+## BUSCO {auto-animate="true"}
+
+### Output
+
+Папка `busco_output/run_fungi_odb10/`:
+
+```         
+busco_output_fungi/run_fungi_odb10/
+├── busco_sequences
+├── full_table.tsv
+├── hmmer_output
+├── miniprot_output
+├── missing_busco_list.tsv
+├── short_summary.json
+└── short_summary.txt
+```
+
+Интереснее всего в *full_table.tsv* - тут аннотация генов и *short_summary.txt* - тут общая статистика и **completeness**
+
+## BUSCO {auto-animate="true"}
+
+*short_summary.txt*:
+
+``` text
+------------------------------------------------
+|Results from dataset enterobacterales_odb10   |
+------------------------------------------------
+|C:100.0%[S:99.5%,D:0.5%],F:0.0%,M:0.0%,n:440  |
+|440    Complete BUSCOs (C)                    |
+|438    Complete and single-copy BUSCOs (S)    |
+|2    Complete and duplicated BUSCOs (D)       |
+|0    Fragmented BUSCOs (F)                    |
+|0    Missing BUSCOs (M)                       |
+|440    Total BUSCO groups searched            |
+------------------------------------------------
+```
+
+# Homework {style="text-align: center"}
+
+## Homework
+
+::::: columns
+::: {.column width="55%"}
+Собрать геном бактерии (50):
+
+-   Vibrio cholerae
+-   Streptococcus pneumoniae
+-   Yersinia pestis
+-   Mycobacterium tuberculosis
+-   Haemophilus influenzae
+-   Helicobacter pylori
+-   Clostridium bolulinum
+:::
+
+::: {.column width="45%"}
+Оценить качество сборки
+
+-   Целостность (15)
+-   Полноту (15)
+
+\* **Доп задание** (20):
+
+Сделать скэффолдинг на основе референса и оценить качество новой сборки
+:::
+:::::
