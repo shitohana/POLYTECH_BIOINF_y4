@@ -6,7 +6,7 @@ project:
   output-dir: docs
     
 website:
-  title: "POLYTECH_BIOINF_y4"
+  title: "POLYTECH BIOINF"
   navbar:
     left:
       - href: index.qmd
