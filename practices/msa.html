@@ -9,7 +9,7 @@
 <meta name="author" content="Владислав Станин">
 <meta name="dcterms.date" content="2024-10-11">
 
-<title>Множественное выравнивание – POLYTECH_BIOINF_y4</title>
+<title>Множественное выравнивание – POLYTECH BIOINF</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -164,7 +164,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">POLYTECH_BIOINF_y4</span>
+    <span class="navbar-title">POLYTECH BIOINF</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -234,7 +234,13 @@ window.Quarto = {
   <li><a href="#визуализизация" id="toc-визуализизация" class="nav-link" data-scroll-target="#визуализизация">Визуализизация</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#добавление-к-выравниванию-новых-последовательностей" id="toc-добавление-к-выравниванию-новых-последовательностей" class="nav-link" data-scroll-target="#добавление-к-выравниванию-новых-последовательностей">Добавление к выравниванию новых последовательностей</a></li>
+  <li><a href="#добавление-к-выравниванию-новых-последовательностей" id="toc-добавление-к-выравниванию-новых-последовательностей" class="nav-link" data-scroll-target="#добавление-к-выравниванию-новых-последовательностей">Добавление к выравниванию новых последовательностей</a>
+  <ul class="collapse">
+  <li><a href="#вариант-1-добавляем-новые-последовательности-к-существующему-выравниванию" id="toc-вариант-1-добавляем-новые-последовательности-к-существующему-выравниванию" class="nav-link" data-scroll-target="#вариант-1-добавляем-новые-последовательности-к-существующему-выравниванию">Вариант 1: Добавляем новые последовательности к существующему выравниванию</a></li>
+  <li><a href="#вариант-2-добавляем-последовательности-к-seed" id="toc-вариант-2-добавляем-последовательности-к-seed" class="nav-link" data-scroll-target="#вариант-2-добавляем-последовательности-к-seed">Вариант 2: Добавляем последовательности к <strong><em>seed</em></strong></a></li>
+  <li><a href="#вариант-3-добавляем-выравнивание-к-выравниванию" id="toc-вариант-3-добавляем-выравнивание-к-выравниванию" class="nav-link" data-scroll-target="#вариант-3-добавляем-выравнивание-к-выравниванию">Вариант 3: Добавляем выравнивание к выравниванию</a></li>
+  <li><a href="#вуаля" id="toc-вуаля" class="nav-link" data-scroll-target="#вуаля">Вуаля</a></li>
+  </ul></li>
   <li><a href="#качество-выравнивания" id="toc-качество-выравнивания" class="nav-link" data-scroll-target="#качество-выравнивания">Качество выравнивания</a></li>
   <li><a href="#выравнивание-не-выходя-из-ugene" id="toc-выравнивание-не-выходя-из-ugene" class="nav-link" data-scroll-target="#выравнивание-не-выходя-из-ugene">Выравнивание не выходя из UGENE</a></li>
   <li><a href="#перекидываем-мостик-к-построению-деревьев" id="toc-перекидываем-мостик-к-построению-деревьев" class="nav-link" data-scroll-target="#перекидываем-мостик-к-построению-деревьев">Перекидываем мостик к построению деревьев</a></li>
@@ -363,6 +369,11 @@ Note
 <li>Случайное разбиение выравнивания на два набора последовательностей.</li>
 </ul></li>
 <li><p>Удалённую(-ые) последовательность(-и) выровнять заново на оставшийся профиль выравнивания или, если было сделано разбиение на два набора, то перевыровнять эти два набора (профиля) последовательностей</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Профиль выравнивания</strong> - совокупность выровненных столбцов из пробелов и букв, полученных после выравнивания</p>
+</blockquote>
+<ol start="4" type="1">
 <li><p>Оценить новое выравнивание с помощью функции оценки (критерия).</p></li>
 <li><p>Если новое выравнивание улучшает оценку, то принять его в качестве текущего, а иначе сохранить предыдущее выравнивание.</p></li>
 <li><p>Повторять шаги 2-5 до тех пор, пока не будет достигнут минимум критерия или максимальное количество итерацй</p></li>
@@ -706,17 +717,55 @@ Note
 <li><p>кто-то выпустил статью с гомологичными последовательностями</p></li>
 </ul>
 <p>которые надо тоже включить в выравнивание… <em>И что теперь всё заново переделывать?!</em></p>
-<p><strong>К нам на помощь приходит возможность выравнивать последовательности/профили на готовый профиль.</strong> Это легко можно сделать в MUSCLE (<strong>только в версии 3.8</strong>) и MAFFT.</p>
-<p>Сначала, если у нас несколько последовательностей на добавление, нужно их выровнять друг на друга. В нашем случае мы хоти добавить в профиль выравнивания миоглобина приматов последовательности гориллы и человека (файл <code>Myoglobin_human_gorilla.fna</code>)</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--auto</span> Myoglobin_human_gorilla.fna <span class="op">&gt;</span> Myoglobin_human_gorilla.mafft.fa</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># или</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># версия muscle 3.8!</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">muscle</span> <span class="at">-in</span> Myoglobin_human_gorilla.fna <span class="at">-outMyoglobin_human_gorilla.muscle.fa</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>К нам на помощь приходит возможность выравнивать последовательности/профили на готовый профиль.</strong> Это легко можно сделать MAFFT.</p>
+<section id="вариант-1-добавляем-новые-последовательности-к-существующему-выравниванию" class="level2">
+<h2 class="anchored" data-anchor-id="вариант-1-добавляем-новые-последовательности-к-существующему-выравниванию">Вариант 1: Добавляем новые последовательности к существующему выравниванию</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/add_mafft.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Самый ходовой и простой вариант: добавить к уже хорошему <em>большому</em> выравниванию, содержащему много последовательностей еще прочку сиквенсов. При этом <u><strong>изначальное выравнивание сохраняет изначальную структуру совпадений букв и пробелов.</strong></u> То есть использовать этот вариант стоит если у нас мло последовательностей для добавления и они не сильно отличаются от изначального <em>большого</em> профиля.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/add2_mafft.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1400"></p>
+</figure>
+</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--add</span> Myoglobin_human_gorilla.fna Myoglobin_primates.mafft.fa <span class="op">&gt;</span> Myoglobin_full.mafft.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="вариант-2-добавляем-последовательности-к-seed" class="level2">
+<h2 class="anchored" data-anchor-id="вариант-2-добавляем-последовательности-к-seed">Вариант 2: Добавляем последовательности к <strong><em>seed</em></strong></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="_files/msa/images/seed_mafft.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p><strong>Seed -</strong> это высоконадежное выравнивание, которому мы доверяем. Оно содержит <strong>небольшое количество последовательностей</strong>. В данном случае мы добавляем несколько последовательностей (которых может быть гораздо больше, чем в seed) и с<strong>охраняем структуру выровненных букв в seed,</strong> <strong>но не пробелов</strong>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--seed</span> Myoglobin_primates.mafft.fa Myoglobin_human_gorilla.fna <span class="op">&gt;</span> Myoglobin_full.mafft.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="вариант-3-добавляем-выравнивание-к-выравниванию" class="level2">
+<h2 class="anchored" data-anchor-id="вариант-3-добавляем-выравнивание-к-выравниванию">Вариант 3: Добавляем выравнивание к выравниванию</h2>
+<p>Допустим у нас есть выравнивание из 17000 последовательностей и 2000 для добавления к нему. Можно сделать выравнивание этих новых сиквенсов и потом выровнять два профиля. Еще лучше если у нас уже есть два выравнивания, но это не наш случай.</p>
+<p>Сначала нужно выровнять последовательности друг на друга. В нашем случае мы хотим добавить в профиль выравнивания миоглобина приматов последовательности гориллы и человека (файл <code>Myoglobin_human_gorilla.fna</code>)</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--auto</span> Myoglobin_human_gorilla.fna <span class="op">&gt;</span> Myoglobin_human_gorilla.mafft.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Затем добавим в созданный ранее профиль новый профиль (горилла+человек)</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--add</span> Myoglobin_human_gorilla.mafft.fa Myoglobin_primates.mafft.fa <span class="op">&gt;</span> Myoglobin_full.mafft.fa</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># или</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># версия muscle 3.8!</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">muscle</span> <span class="at">-profile</span> <span class="at">-in1</span> Myoglobin_primates.muscle.fa <span class="at">-in2</span> Myoglobin_human_gorilla.muscle.fa <span class="at">-out</span> Myoglobin_full.muscle.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> <span class="at">--add</span> Myoglobin_human_gorilla.mafft.fa Myoglobin_primates.mafft.fa <span class="op">&gt;</span> Myoglobin_full.mafft.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>В нашем случае к нашему <em>большому</em> выравниванию, в котором мы уверены из-за его консервативности, мы хотим добавить две новые последовательности. Таким образом, наиболее подходящий вариант для нас сейчас - <strong>первый</strong>.</p>
+</div>
+</div>
+</section>
+<section id="вуаля" class="level2">
+<h2 class="anchored" data-anchor-id="вуаля">Вуаля</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="_files/msa/images/ugene_gorilla_human.png" class="img-fluid figure-img" width="1400"></p>
@@ -724,6 +773,7 @@ Note
 </figure>
 </div>
 <p>Снизу видно, что добавились наши две последовательности гориллы и человека!</p>
+</section>
 </section>
 <section id="качество-выравнивания" class="level1">
 <h1>Качество выравнивания</h1>
@@ -777,7 +827,7 @@ Note
 <h1>Перекидываем мостик к построению деревьев</h1>
 <p>Все замены, вставки и делеции несут важную эволюционную информацию для построения филогенетических деревьев. Тем не менее, иногда итоговое выравнивание содержит последовательности разной длины, и тогда хвосты более длинных последовательностей “висят” или “торчат” среди пустой области. Такие регионы часто не несут никакой эволюционной информации, так как они находятся на концах, где другие последовательности не имеют остатков. При этом <u><strong>обращаем внимание(!)</strong></u>, что подобные области <strong>в середине выравнивания</strong> могут быть <u><strong>инсерцией</strong></u>, что является важной биологической информацией!</p>
 <p>Поэтому часто исследователи прибегают к обрезке концов (<em>триммингу</em>) профиля выравнивания, чтобы сохранить, только важную информацию для дальнейшего построения филогении. Для этого можно использовать утилиту <strong>trimAl:</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trimal</span> <span class="at">-in</span> Myoglobin_full.mafft.fa <span class="at">-out</span> Myoglobin_full.mafft.trim.fa <span class="at">-automated1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trimal</span> <span class="at">-in</span> Myoglobin_full.mafft.fa <span class="at">-out</span> Myoglobin_full.mafft.trim.fa <span class="at">-automated1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -791,7 +841,7 @@ Caution
 <ul>
 <li>Чтобы произошла обрезка, нужно указать хотя бы один параметр для обрезки (<code>-automated1</code> - автоматически подбирает параметры). Это сделано специально, так как эта утилита также может переводить выравнивания из одного формата в другой. Например, переведем <strong>fasta</strong> в <strong>phylip</strong></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trimal</span> <span class="at">-in</span> Myoglobin_full.mafft.fa <span class="at">-out</span> Myoglobin_full.mafft.phy <span class="at">-phylip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trimal</span> <span class="at">-in</span> Myoglobin_full.mafft.fa <span class="at">-out</span> Myoglobin_full.mafft.phy <span class="at">-phylip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Больше информации в <code>trimal -h</code></p>
 </div>
 </div>
@@ -929,7 +979,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/shitohana\.github\.io\/POLYTECH_BIOINF_y4\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
