@@ -148,9 +148,7 @@ getorf -sequence <inputfile> -outseq <outputfile>
 Longest ORF (3 штуки):
 
 ``` bash
-seqkit fx2tab --length <orf fasta file> | \
-   sort -t $'\t' -k4,4nr | \
-   head -n 3 | seqkit tab2fx > longest_orf.fasta
+cat file.fasta | seqkit sort -lr | sort head -n 3
 ```
 :::
 
