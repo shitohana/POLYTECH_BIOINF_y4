@@ -499,9 +499,7 @@
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="ex">getorf</span> <span class="at">-sequence</span> <span class="op">&lt;</span>inputfile<span class="op">&gt;</span> -outseq <span class="op">&lt;</span>outputfile<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment fade-in">
 <p>Longest ORF (3 штуки):</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="ex">seqkit</span> fx2tab <span class="at">--length</span> <span class="op">&lt;</span>orf fasta file<span class="op">&gt;</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb9-2"><a></a>   <span class="fu">sort</span> <span class="at">-t</span> <span class="st">$'</span><span class="dt">\t</span><span class="st">'</span> <span class="at">-k4,4nr</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb9-3"><a></a>   <span class="fu">head</span> <span class="at">-n</span> 3 <span class="kw">|</span> <span class="ex">seqkit</span> tab2fx <span class="op">&gt;</span> longest_orf.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="fu">cat</span> file.fasta <span class="kw">|</span> <span class="ex">seqkit</span> sort <span class="at">-lr</span> <span class="kw">|</span> <span class="fu">sort</span> head <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- #### **transeq** -->
 <!-- ``` bash -->
@@ -1013,7 +1011,7 @@
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/shitohana\.github\.io\/POLYTECH_BIOINF_y4\/");
+          var filterRegex = new RegExp('/' + window.location.host + '/');
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
