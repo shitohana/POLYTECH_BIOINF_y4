@@ -15,7 +15,7 @@ format:
 # incremental: true 
 author:
 - Владислав Станин
-date: 11/22/2024
+date: 11/20/2025
 ---
 
 ## Данные
@@ -148,7 +148,7 @@ getorf -sequence <inputfile> -outseq <outputfile>
 Longest ORF (3 штуки):
 
 ``` bash
-cat file.fasta | seqkit sort -lr | sort head -n 3
+cat file.fasta | seqkit sort -lr | seqkit head -n 3
 ```
 :::
 
@@ -215,7 +215,7 @@ augustus \
    --protein=on \ # предсказать кодируемые белки
    --hintsfile=<gff-file> \ # "подсказки"-гены
    --genemodel=complete \ # только полные гены
-   --species=human \ # надо выбрать species!
+   --species=fusarium \ # надо выбрать species!
    fasta.file > output.gff
 ```
 
