@@ -14,7 +14,7 @@ title: "Праткики по биоинформатике."
 
 -   [Практика 1.9 HMM-профили.](practices/hmm_profiles.qmd)
 
-<!-- -   [Практика 1.10. Предсказание генов](practices/gene_prediction.qmd) -->
+-   [Практика 1.10. Предсказание генов](practices/gene_prediction.qmd)
 
 <!-- -   [Практика 11. Онтологии](practices/ontology.qmd) -->
 
