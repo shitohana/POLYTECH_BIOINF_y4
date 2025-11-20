@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Владислав Станин">
-  <meta name="dcterms.date" content="2024-11-22">
+  <meta name="dcterms.date" content="2025-11-20">
   <title>POLYTECH BIOINF – Gene Prediction</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -402,7 +402,7 @@
 </div>
 </div>
 
-  <p class="date">2024-11-22</p>
+  <p class="date">2025-11-20</p>
 </section>
 <section id="данные" class="slide level2 center">
 <h2>Данные</h2>
@@ -499,7 +499,7 @@
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="ex">getorf</span> <span class="at">-sequence</span> <span class="op">&lt;</span>inputfile<span class="op">&gt;</span> -outseq <span class="op">&lt;</span>outputfile<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment fade-in">
 <p>Longest ORF (3 штуки):</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="fu">cat</span> file.fasta <span class="kw">|</span> <span class="ex">seqkit</span> sort <span class="at">-lr</span> <span class="kw">|</span> <span class="fu">sort</span> head <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="fu">cat</span> file.fasta <span class="kw">|</span> <span class="ex">seqkit</span> sort <span class="at">-lr</span> <span class="kw">|</span> <span class="ex">seqkit</span> head <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- #### **transeq** -->
 <!-- ``` bash -->
@@ -556,7 +556,7 @@
 <span id="cb10-2" class="hljs-ln-code"><a></a>   <span class="at">--protein</span><span class="op">=</span>on <span class="dt">\ </span># предсказать кодируемые белки</span>
 <span id="cb10-3" class="hljs-ln-code"><a></a>   <span class="ex">--hintsfile=</span><span class="op">&lt;</span>gff-file<span class="op">&gt;</span> <span class="dt">\ </span># <span class="st">"подсказки"</span>-гены</span>
 <span id="cb10-4" class="hljs-ln-code"><a></a>   <span class="ex">--genemodel=complete</span> <span class="dt">\ </span># только полные гены</span>
-<span id="cb10-5" class="hljs-ln-code"><a></a>   <span class="ex">--species=human</span> <span class="dt">\ </span># надо выбрать species!</span>
+<span id="cb10-5" class="hljs-ln-code"><a></a>   <span class="ex">--species=fusarium</span> <span class="dt">\ </span># надо выбрать species!</span>
 <span id="cb10-6" class="hljs-ln-code"><a></a>   <span class="ex">fasta.file</span> <span class="op">&gt;</span> output.gff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Список параметров и доступных species: <a href="https://github.com/Gaius-Augustus/Augustus/blob/master/docs/RUNNING-AUGUSTUS.md#basic-usage">документация</a></p>
 <p>Готовые подсказки - это gff-файл, где часть структур уже размечено (optional)</p>

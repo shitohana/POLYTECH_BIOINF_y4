@@ -494,7 +494,7 @@
     "href": "practices/gene_prediction.html#augustus",
     "title": "Gene Prediction",
     "section": "Augustus",
-    "text": "Augustus\naugustus \\\n   --protein=on \\ # предсказать кодируемые белки\n   --hintsfile=&lt;gff-file&gt; \\ # \"подсказки\"-гены\n   --genemodel=complete \\ # только полные гены\n   --species=human \\ # надо выбрать species!\n   fasta.file &gt; output.gff\nСписок параметров и доступных species: документация\nГотовые подсказки - это gff-файл, где часть структур уже размечено (optional)\n--genemodel по умолчанию partial - находит даже частичные гены"
+    "text": "Augustus\naugustus \\\n   --protein=on \\ # предсказать кодируемые белки\n   --hintsfile=&lt;gff-file&gt; \\ # \"подсказки\"-гены\n   --genemodel=complete \\ # только полные гены\n   --species=fusarium \\ # надо выбрать species!\n   fasta.file &gt; output.gff\nСписок параметров и доступных species: документация\nГотовые подсказки - это gff-файл, где часть структур уже размечено (optional)\n--genemodel по умолчанию partial - находит даже частичные гены"
   },
   {
     "objectID": "practices/gene_prediction.html#augustus-1",
@@ -1006,5 +1006,12 @@
     "title": "Выравнивание биологических последовательностей",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nhttps://github.com/ndaniel/fastqtk↩︎\nhttps://www.bioinformatics.babraham.ac.uk/projects/fastqc/↩︎\nhttps://github.com/FelixKrueger/TrimGalore/tree/master↩︎"
+  },
+  {
+    "objectID": "practices/gene_prediction.html",
+    "href": "practices/gene_prediction.html",
+    "title": "Gene Prediction",
+    "section": "",
+    "text": "Сегодня будем всячески аннотировать хромосому непатогенного гриба Fusarium oxysporum Fo47.\n\nФайл chr_fo47.fasta"
   }
 ]
