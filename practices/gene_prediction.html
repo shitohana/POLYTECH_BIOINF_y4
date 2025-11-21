@@ -593,28 +593,31 @@
     ├── ascomycota_odb10
     ├── fungi_odb10
     └── hypocreales_odb10</code></pre>
-<p>базы odb надо скачать… с VPN… <a href="https://busco-data.ezlab.org/v5/data/"><strong>отсюда</strong></a> или попросить у товарища</p>
+<p>базы odb надо скачать… с VPN… <a href="https://busco-data.ezlab.org/v5/data/"><strong>отсюда</strong></a></p>
+<p><strong>Не забудьте распаковать файлы .tar.gz:</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb14-1" class="hljs-ln-code"><a></a><span class="bu">cd</span> ./busco_downloads/lineages</span>
+<span id="cb14-2" class="hljs-ln-code"><a></a><span class="fu">tar</span> <span class="at">-xzvf</span> fungi_odb10.2024-01-08.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="busco-2" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">BUSCO</h2>
 <p>Запускаем оффлайн</p>
-<div class="sourceCode" id="cb14" data-code-line-numbers="4,5|f"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb14-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="at">-i</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb14-2" class="hljs-ln-code"><a></a>   <span class="at">-m</span> genome <span class="dt">\</span></span>
-<span id="cb14-3" class="hljs-ln-code"><a></a>   <span class="at">-l</span> <span class="op">&lt;</span>lineage<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb14-4" class="hljs-ln-code"><a></a>   <span class="at">--offline</span> <span class="dt">\</span></span>
-<span id="cb14-5" class="hljs-ln-code"><a></a>   <span class="at">--download_path</span> <span class="op">&lt;</span>path/to/directory<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb14-6" class="hljs-ln-code"><a></a>   <span class="at">--cpu</span> 8 <span class="dt">\</span></span>
-<span id="cb14-7" class="hljs-ln-code"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15" data-code-line-numbers="4,5|f"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb15-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="at">-i</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb15-2" class="hljs-ln-code"><a></a>   <span class="at">-m</span> genome <span class="dt">\</span></span>
+<span id="cb15-3" class="hljs-ln-code"><a></a>   <span class="at">-l</span> <span class="op">&lt;</span>lineage<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb15-4" class="hljs-ln-code"><a></a>   <span class="at">--offline</span> <span class="dt">\</span></span>
+<span id="cb15-5" class="hljs-ln-code"><a></a>   <span class="at">--download_path</span> <span class="op">&lt;</span>path/to/directory<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb15-6" class="hljs-ln-code"><a></a>   <span class="at">--cpu</span> 8 <span class="dt">\</span></span>
+<span id="cb15-7" class="hljs-ln-code"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Скачанный lineage лучше указывать не как <strong>fusarium</strong>, а как <strong>fusarium_odb10</strong> - то есть навзание папки, так как версии lineage могут отличаться.</p>
 </section>
 <section id="busco-3" class="slide level2 center" data-transition="fade-out">
 <h2>BUSCO</h2>
 <p>Benchmarking Universal <strong>Single-Copy Orthologs</strong></p>
-<div class="sourceCode" id="cb15" data-code-line-numbers="3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a><span class="ex">busco</span> <span class="at">-i</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb15-2"><a></a>   <span class="at">-m</span> <span class="op">&lt;</span>genome/protein<span class="op">&gt;</span> <span class="dt">\</span></span>
-<span id="cb15-3"><a></a>   <span class="at">--auto-lineage</span> <span class="dt">\ </span># если не уверены какой lineage</span>
-<span id="cb15-4"><a></a>   <span class="ex">--cpu</span> 8 <span class="dt">\</span></span>
-<span id="cb15-5"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16" data-code-line-numbers="3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a></a><span class="ex">busco</span> <span class="at">-i</span> <span class="op">&lt;</span>fasta file<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb16-2"><a></a>   <span class="at">-m</span> <span class="op">&lt;</span>genome/protein<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb16-3"><a></a>   <span class="at">--auto-lineage</span> <span class="dt">\ </span># если не уверены какой lineage</span>
+<span id="cb16-4"><a></a>   <span class="ex">--cpu</span> 8 <span class="dt">\</span></span>
+<span id="cb16-5"><a></a>   <span class="at">-o</span> <span class="op">&lt;</span>output directory<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Но это не панацея - <strong>он ошибается</strong></p>
 <div class="fragment fade-in">
 <ul>
@@ -626,9 +629,9 @@
 <section id="busco-output" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">BUSCO output</h2>
 <p>Пусть команда была:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb16-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="at">-i</span> chr_fo47.fasta <span class="at">-l</span> fungi_odb10 <span class="at">--offline</span> <span class="dt">\</span></span>
-<span id="cb16-2" class="hljs-ln-code"><a></a>   <span class="at">--download_path</span> busco_downloads <span class="dt">\</span></span>
-<span id="cb16-3" class="hljs-ln-code"><a></a>   <span class="at">-m</span> genome <span class="at">-o</span> busco_output_fungi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode bash hljs"><span id="cb17-1" class="hljs-ln-code"><a></a><span class="ex">busco</span> <span class="at">-i</span> chr_fo47.fasta <span class="at">-l</span> fungi_odb10 <span class="at">--offline</span> <span class="dt">\</span></span>
+<span id="cb17-2" class="hljs-ln-code"><a></a>   <span class="at">--download_path</span> busco_downloads <span class="dt">\</span></span>
+<span id="cb17-3" class="hljs-ln-code"><a></a>   <span class="at">-m</span> genome <span class="at">-o</span> busco_output_fungi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Папка <code>busco_output_fungi/run_fungi_odb10/</code>:</p>
 <pre><code>busco_output_fungi/run_fungi_odb10/
 ├── busco_sequences
@@ -656,7 +659,7 @@
 <h2 data-id="quarto-animate-title">BUSCO output</h2>
 <p>Интереснее всего в <em>full_table.tsv</em> - тут аннотация генов и <em>short_summary.txt</em> - тут общая статистика и <strong>completeness</strong></p>
 <p>Пример одной и строчек <em>short_summary.txt</em>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb19-1" class="hljs-ln-code"><a></a>C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb20-1" class="hljs-ln-code"><a></a>C:11.2%[S:11.2%,D:0.0%],F:0.4%,M:88.4%,n:758,E:11.8%</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>C:11.2% - <strong>completeness</strong></li>
 <li>[S:11.2%,D:0.0%] - однокопийных 11.2% и 0% дупликатов</li>

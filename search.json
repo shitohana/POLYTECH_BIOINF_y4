@@ -522,7 +522,7 @@
     "href": "practices/gene_prediction.html#busco-1",
     "title": "Gene Prediction",
     "section": "BUSCO",
-    "text": "BUSCO\nПри первых запусках новые lineage будут скачиваться локально. Но этого не проивойдет без VPN… Для запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:\nbusco_downloads/\n├── file_versions.tsv\n└── lineages\n    ├── ascomycota_odb10\n    ├── fungi_odb10\n    └── hypocreales_odb10\nбазы odb надо скачать… с VPN… отсюда или попросить у товарища"
+    "text": "BUSCO\nПри первых запусках новые lineage будут скачиваться локально. Но этого не проивойдет без VPN… Для запуска оффлайн нужно скачать нужные базы и положить их в директорию опеределнным образом:\nbusco_downloads/\n├── file_versions.tsv\n└── lineages\n    ├── ascomycota_odb10\n    ├── fungi_odb10\n    └── hypocreales_odb10\nбазы odb надо скачать… с VPN… отсюда\nНе забудьте распаковать файлы .tar.gz:\ncd ./busco_downloads/lineages\ntar -xzvf fungi_odb10.2024-01-08.tar.gz"
   },
   {
     "objectID": "practices/gene_prediction.html#busco-2",
