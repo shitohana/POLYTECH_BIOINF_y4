@@ -270,7 +270,14 @@ busco_downloads/
     └── hypocreales_odb10
 ```
 
-базы odb надо скачать... с VPN... [**отсюда**](https://busco-data.ezlab.org/v5/data/) или попросить у товарища
+базы odb надо скачать... с VPN... [**отсюда**](https://busco-data.ezlab.org/v5/data/)
+
+**Не забудьте распаковать файлы .tar.gz:**
+
+``` bash
+cd ./busco_downloads/lineages
+tar -xzvf fungi_odb10.2024-01-08.tar.gz
+```
 
 ## BUSCO {auto-animate="true"}
 
