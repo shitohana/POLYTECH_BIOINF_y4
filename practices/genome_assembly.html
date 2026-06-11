@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Vladislav Stanin">
-  <meta name="dcterms.date" content="2025-03-13">
+  <meta name="dcterms.date" content="2026-02-26">
   <title>POLYTECH BIOINF – Genome Assembly</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -402,7 +402,7 @@ Vladislav Stanin
 </div>
 </div>
 
-  <p class="date">2025-03-13</p>
+  <p class="date">2026-02-26</p>
 </section>
 <section class="slide level2 center">
 
@@ -1024,7 +1024,7 @@ Vladislav Stanin
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/shitohana\.github\.io\/POLYTECH_BIOINF_y4\/");
+          var filterRegex = new RegExp('/' + window.location.host + '/');
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
