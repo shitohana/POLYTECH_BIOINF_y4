@@ -8,17 +8,23 @@ title: "Праткики по биоинформатике."
 
 -   [Практика 1.3 BLAST](practices/blast.qmd)
 
--   [Практика 1.4. Множественное выравнивание последовательностей (MSA).](practices/msa.qmd)
+-   [Практика 1.4 Множественное выравнивание последовательностей (MSA).](practices/msa.qmd)
 
--   [Практика 1.8 Скрытые марковские модели.](practices/hmm.qmd)
+-   Практики 1.5 и 1.6 — Материал в Google-class
 
--   [Практика 1.9 HMM-профили.](practices/hmm_profiles.qmd)
+-   [Практика 1.7 Скрытые марковские модели.](practices/hmm.qmd)
 
--   [Практика 1.10. Предсказание генов](practices/gene_prediction.qmd)
+-   [Практика 1.8 HMM-профили.](practices/hmm_profiles.qmd)
 
-<!-- -   [Практика 11. Онтологии](practices/ontology.qmd) -->
+-   [Практика 1.9. Предсказание генов](practices/gene_prediction.qmd)
 
-<!-- -   [Практика 2.5. Сборка геномов](practices/genome_assembly.qmd) -->
+-   [Практика 11. Онтологии](practices/ontology.qmd)
+
+-   Практики 2.1 - 2.3 — Материал в Google-class
+
+-   [Практика 2.4. Сборка геномов](practices/genome_assembly.qmd)
+
+-   Практики 2.5 - 2.8 — Материал в Google-class
 
 Дополнительно:
 
